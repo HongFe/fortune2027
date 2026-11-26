@@ -4,317 +4,349 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#06040f">
-<meta name="description" content="2027 정미년 — 내 띠의 순위와 운이 바뀌는 달, 타로 3장">
-<title>2027 정미년 운세 · 운이 바뀌는 달이 있습니다</title>
+<meta name="description" content="고민을 적으면 타로가 답합니다 — 2027 정미년 띠 운세 + 실제 타로 카드 3장 + 내 상황 맞춤 처방전">
+<meta property="og:title" content="2027 정미년 타로 처방전">
+<meta property="og:description" content="내 띠·직업·고민을 넣고 78장 중 3장을 직접 고르면, 상황별 '이렇게 하세요' 처방이 나옵니다.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hongfe.github.io/fortune2027/">
+<meta property="og:image" content="https://hongfe.github.io/fortune2027/cards/m10.webp">
+<title>2027 정미년 타로 처방전 · 고민을 적으면 카드가 답합니다</title>
 <style>
 :root{
   --bg:#06040f;--bg2:#0d0820;
   --gold:#f0c060;--gold2:#b87c14;--vio:#c084fc;
-  --rose:#fb7185;--ok:#4ade80;
-  --tx:#f0eeff;--sub:#9080b8;--line:rgba(240,192,96,.2);
+  --rose:#fb7185;--ok:#4ade80;--warn:#fb923c;
+  --tx:#f0eeff;--sub:#9d8fc4;--line:rgba(240,192,96,.2);
+  --card:rgba(255,255,255,.045);--bd:rgba(255,255,255,.1);
   --t:env(safe-area-inset-top,0px);--b:env(safe-area-inset-bottom,0px);
   --font:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
 body{background:var(--bg);color:var(--tx);font-family:var(--font);overflow:hidden;height:100dvh}
+button{font-family:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 #sky{position:fixed;inset:0;z-index:0;pointer-events:none}
 
 /* ── 단계 슬라이드 ── */
-.step{
-  position:fixed;inset:0;
-  transform:translateX(100%);
-  transition:transform .42s cubic-bezier(.4,0,.2,1);
-  overflow-y:auto;overflow-x:hidden;z-index:1;
-  -webkit-overflow-scrolling:touch;
-}
-.step.active{transform:translateX(0)}
-.step.prev{transform:translateX(-28%)}
+.step{position:fixed;inset:0;transform:translateX(100%);visibility:hidden;
+  transition:transform .42s cubic-bezier(.4,0,.2,1),visibility 0s .42s;
+  overflow-y:auto;overflow-x:hidden;z-index:1;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
+.step.active{transform:none;visibility:visible;transition:transform .42s cubic-bezier(.4,0,.2,1)}
+.step.prev{transform:translateX(-28%);visibility:visible}
+.wrap{width:100%;max-width:520px;margin:0 auto;padding:0 18px;flex:1}
 
-/* ── 공통 헤더 ── */
-.shdr{
-  position:sticky;top:0;z-index:10;
-  display:flex;align-items:center;gap:10px;
-  padding:calc(var(--t) + 14px) 18px 14px;
-  background:linear-gradient(var(--bg) 70%,transparent);
-}
-.back{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.06);color:var(--tx);font-size:17px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.back:active{background:rgba(255,255,255,.14)}
-.dots{display:flex;gap:7px;align-items:center;flex:1;justify-content:center}
-.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18);transition:.3s}
-.dot.on{width:22px;border-radius:4px;background:var(--gold)}
-.hside{width:38px;flex-shrink:0}
+.shdr{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:10px;
+  padding:calc(var(--t) + 14px) 18px 12px;background:linear-gradient(var(--bg) 70%,transparent)}
+.back{width:38px;height:38px;border-radius:50%;border:1px solid var(--bd);
+  background:rgba(255,255,255,.06);color:var(--tx);font-size:17px;cursor:pointer;flex-shrink:0}
+.dots{display:flex;gap:6px;align-items:center;flex:1;justify-content:center}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);transition:.3s}
+.dot.on{width:20px;border-radius:4px;background:var(--gold)}
+.hside{width:38px;flex-shrink:0;font-size:20px;text-align:center}
 
-/* ══ STEP 1 ══ */
-#s1{background:var(--bg)}
-.s1w{
-  min-height:100dvh;display:flex;flex-direction:column;align-items:center;
-  padding:calc(var(--t) + 20px) 20px calc(var(--b) + 24px);
-}
-.moon-w{position:relative;margin:16px 0 22px;flex-shrink:0}
-.moon{
-  width:100px;height:100px;border-radius:50%;position:relative;z-index:1;
-  background:radial-gradient(circle at 35% 32%,#fff9e8 5%,#f5d87a 40%,#c89020 75%,#7a5010 100%);
-  box-shadow:0 0 50px rgba(240,192,96,.5),0 0 100px rgba(192,132,252,.3);
-  animation:pulse 6s ease-in-out infinite;
-  display:flex;align-items:center;justify-content:center;font:900 40px serif;color:rgba(80,52,10,.5);
-}
-@keyframes pulse{
-  0%,100%{box-shadow:0 0 50px rgba(240,192,96,.5),0 0 100px rgba(192,132,252,.3)}
-  50%{box-shadow:0 0 80px rgba(240,192,96,.7),0 0 150px rgba(192,132,252,.5)}
-}
-.ring{position:absolute;border-radius:50%;border:1px solid rgba(240,192,96,.28);animation:spin 22s linear infinite}
-.ring1{inset:-16px}
-.ring2{inset:-32px;animation-duration:38s;animation-direction:reverse;border-color:rgba(192,132,252,.18)}
-.ring1::before{content:"";position:absolute;top:-4px;left:50%;width:7px;height:7px;
-  background:var(--gold);border-radius:50%;box-shadow:0 0 10px var(--gold);transform:translateX(-50%)}
-@keyframes spin{to{transform:rotate(360deg)}}
+.h2{font-size:clamp(21px,5.6vw,26px);font-weight:900;letter-spacing:-.6px;line-height:1.3;margin:6px 0 6px}
+.h2 em{font-style:normal;color:var(--gold)}
+.lead{font-size:14px;color:var(--sub);line-height:1.6;margin-bottom:18px}
+.lbl{font:800 12px var(--font);color:var(--sub);letter-spacing:.06em;margin:18px 0 9px}
 
-.s1-ttl{font-size:clamp(28px,8vw,46px);font-weight:900;letter-spacing:-1.5px;line-height:1.08;
-  text-align:center;margin-bottom:5px;
-  background:linear-gradient(135deg,var(--gold) 0%,#fff8dc 50%,var(--vio) 90%);
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.s1-hook{font-size:clamp(15px,4vw,19px);font-weight:800;text-align:center;margin-bottom:5px;color:var(--tx)}
-.s1-sub{font-size:13px;color:var(--sub);text-align:center;margin-bottom:6px}
-.rank-tease{
-  font-size:13px;font-weight:800;color:var(--gold);
-  border:1px solid rgba(240,192,96,.28);border-radius:999px;padding:5px 15px;
-  margin-bottom:20px;cursor:default;animation:glow 2.5s ease-in-out infinite;
-}
-@keyframes glow{0%,100%{box-shadow:0 0 0 rgba(240,192,96,0)}50%{box-shadow:0 0 14px rgba(240,192,96,.35)}}
-.pick-lbl{font:800 11.5px var(--font);color:var(--sub);letter-spacing:.08em;margin-bottom:11px;text-align:center}
-.zgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;width:100%;max-width:500px}
-.zbtn{
-  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);
-  border-radius:16px;padding:11px 4px;color:var(--tx);cursor:pointer;
-  text-align:center;transition:.18s;display:flex;flex-direction:column;align-items:center;gap:2px;
-}
-.zbtn .em{font-size:34px;line-height:1}
+.cta-bar{position:sticky;bottom:0;z-index:5;margin-top:auto;
+  padding:16px 18px calc(var(--b) + 14px);background:linear-gradient(transparent,var(--bg) 38%)}
+.cta-in{max-width:484px;margin:0 auto;display:flex;gap:8px}
+.btn{border:0;border-radius:14px;padding:15px 18px;font:800 15px var(--font);cursor:pointer;
+  transition:.15s;display:inline-flex;align-items:center;justify-content:center;gap:6px;color:var(--tx)}
+.btn-pri{background:linear-gradient(90deg,var(--gold2),var(--gold));color:#1a0c00;flex:1}
+.btn-pri:disabled{background:rgba(255,255,255,.1);color:rgba(255,255,255,.35);cursor:not-allowed}
+.btn-pri:not(:disabled):active{filter:brightness(1.1)}
+.btn-sec{background:rgba(255,255,255,.08)}
+.btn-sec:active{background:rgba(255,255,255,.14)}
+
+/* ══ STEP 1 띠 ══ */
+.s1w{min-height:100%;display:flex;flex-direction:column;align-items:center;
+  padding:calc(var(--t) + 18px) 18px calc(var(--b) + 24px);max-width:520px;margin:0 auto;width:100%}
+.hero-cards{position:relative;width:200px;height:150px;margin:10px 0 18px}
+.hero-cards img{position:absolute;width:78px;border-radius:7px;top:10px;left:61px;
+  box-shadow:0 10px 30px rgba(0,0,0,.6),0 0 0 1.5px rgba(240,192,96,.6)}
+.hero-cards img:nth-child(1){transform:rotate(-16deg) translateX(-58px) translateY(12px);animation:hf1 5s ease-in-out infinite}
+.hero-cards img:nth-child(2){z-index:2;animation:hf2 5s ease-in-out infinite}
+.hero-cards img:nth-child(3){transform:rotate(16deg) translateX(58px) translateY(12px);animation:hf3 5s ease-in-out infinite}
+@keyframes hf1{50%{transform:rotate(-19deg) translateX(-62px) translateY(8px)}}
+@keyframes hf2{50%{transform:translateY(-8px)}}
+@keyframes hf3{50%{transform:rotate(19deg) translateX(62px) translateY(8px)}}
+.s1-ttl{font-size:clamp(28px,8vw,42px);font-weight:900;letter-spacing:-1.5px;line-height:1.12;text-align:center;margin-bottom:8px;
+  background:linear-gradient(135deg,var(--gold) 0%,#fff8dc 50%,var(--vio) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.s1-hook{font-size:clamp(15px,4vw,18px);font-weight:800;text-align:center;margin-bottom:6px;line-height:1.45}
+.s1-sub{font-size:12.5px;color:var(--sub);text-align:center;margin-bottom:14px}
+.flow{display:flex;gap:4px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.flow span{font-size:11.5px;font-weight:800;border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:#f3dea4}
+.flow i{font-style:normal;color:var(--sub);font-size:11px}
+.pick-lbl{font:800 12px var(--font);color:var(--sub);letter-spacing:.06em;margin-bottom:10px;text-align:center}
+.zgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;width:100%}
+.zbtn{border:1px solid var(--bd);background:var(--card);border-radius:16px;padding:10px 4px;color:var(--tx);cursor:pointer;
+  text-align:center;transition:.18s;display:flex;flex-direction:column;align-items:center;gap:2px}
+.zbtn .em{font-size:32px;line-height:1}
 .zbtn .nm{font-size:13px;font-weight:900}
 .zbtn .rk{font-size:9.5px;color:var(--gold);font-weight:800}
 .zbtn:active{background:rgba(255,255,255,.1);transform:scale(.94)}
-@media(max-width:360px){.zgrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:350px){.zgrid{grid-template-columns:repeat(3,1fr)}}
 .s1-foot{font-size:11px;color:var(--sub);margin-top:12px;text-align:center;line-height:1.65}
 
-/* ══ STEP 2 ══ */
-#s2{background:var(--bg)}
-.s2w{padding:0 18px calc(var(--b) + 100px)}
+/* ══ 칩 ══ */
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:999px;
+  padding:10px 15px;font:700 14px var(--font);cursor:pointer;transition:.15s}
+.chip .ce{margin-right:4px}
+.chip[aria-pressed="true"]{background:rgba(240,192,96,.16);border-color:var(--gold);color:#fff3cf}
+.chip:active{transform:scale(.96)}
+.catgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.cat{border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:14px;padding:11px 2px 9px;
+  cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font:800 12.5px var(--font);transition:.15s}
+.cat .ce{font-size:24px;line-height:1}
+.cat[aria-pressed="true"]{background:rgba(240,192,96,.16);border-color:var(--gold)}
+@media(max-width:350px){.catgrid{grid-template-columns:repeat(3,1fr)}}
 
-.z-decl{
-  font-size:clamp(16px,4.2vw,20px);font-weight:900;line-height:1.55;
-  text-align:center;padding:22px 4px 16px;color:var(--tx);
-}
-.z-decl::before{content:'"';color:var(--gold)}
-.z-decl::after{content:'"';color:var(--gold)}
+.ta-w{position:relative}
+textarea{width:100%;min-height:118px;resize:vertical;border-radius:16px;border:1px solid rgba(240,192,96,.3);
+  background:rgba(10,6,28,.75);color:var(--tx);font:500 15.5px/1.6 var(--font);padding:14px 14px 30px}
+textarea::placeholder{color:#6c5f94}
+textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(240,192,96,.15)}
+.ta-cnt{position:absolute;right:12px;bottom:10px;font-size:11px;color:var(--sub)}
+.examples{display:flex;gap:6px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:none}
+.examples::-webkit-scrollbar{display:none}
+.ex{flex-shrink:0;border:1px dashed rgba(192,132,252,.4);background:transparent;color:#d9c2ff;border-radius:999px;
+  padding:7px 12px;font:600 12.5px var(--font);cursor:pointer;white-space:nowrap}
+.catch{margin-top:12px;min-height:64px;border-radius:14px;padding:12px 14px;background:rgba(192,132,252,.07);
+  border:1px solid rgba(192,132,252,.22);font-size:13px;color:var(--sub);line-height:1.6;transition:.25s}
+.catch.hot{background:rgba(240,192,96,.08);border-color:rgba(240,192,96,.35)}
+.catch b{color:var(--gold)}
+.kw{display:inline-block;font-weight:800;font-size:12.5px;color:#fff3cf;background:rgba(240,192,96,.18);
+  border-radius:7px;padding:2px 8px;margin:2px 3px 2px 0;animation:pop .3s}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+.privacy{font-size:11px;color:#6c5f94;margin-top:8px}
 
-.badge-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-.title-badge{
-  font:900 15px var(--font);border-radius:8px;padding:5px 14px;
-  background:linear-gradient(90deg,var(--gold2),var(--gold));color:#1a0c00;
-}
-.rank-badge{
-  font:800 14px var(--font);border:1.5px solid var(--gold);border-radius:8px;
-  padding:5px 14px;color:var(--gold);
-}
-
-.moon-month{
-  display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
-  background:rgba(192,132,252,.1);border:1px solid rgba(192,132,252,.3);
-  border-radius:12px;padding:10px 16px;margin-bottom:14px;
-}
-.mm-lbl{font-size:12px;color:var(--vio);font-weight:800}
-.mm-val{font-size:16px;font-weight:900;color:#fff}
-.mm-note{font-size:11px;color:var(--sub)}
-
-.meters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
-@media(max-width:380px){.meters{grid-template-columns:repeat(2,1fr)}}
-.mi{background:rgba(255,255,255,.04);border-radius:12px;padding:12px 8px;text-align:center}
-.mi-lbl{font-size:11px;color:var(--sub);margin-bottom:5px}
-.mi-score{font-size:22px;font-weight:900;color:var(--gold);margin-bottom:6px;line-height:1}
-.mi-bar{height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
-.mi-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold2),var(--gold));width:0;transition:width .8s .1s ease}
-
-/* 아코디언 */
-.acc{
-  border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;
-  margin-bottom:8px;background:rgba(255,255,255,.03);
-}
-.acc summary{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 16px;cursor:pointer;font:800 14px var(--font);
-  list-style:none;user-select:none;
-}
-.acc summary::-webkit-details-marker{display:none}
-.acc summary::after{content:"﹀";font-size:12px;color:var(--sub);transition:.25s}
-.acc[open] summary::after{transform:rotate(180deg)}
-.acc-body{padding:4px 16px 16px;font-size:14.5px;line-height:1.75}
-.acc-action{
-  margin-top:12px;padding:12px 14px;border-radius:11px;
-  background:rgba(240,192,96,.08);border:1px solid rgba(240,192,96,.22);
-  font-size:14px;color:#f3dea4;
-}
-.acc-action b{color:var(--gold);display:block;margin-bottom:4px}
-.lucky-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-.lpill{font-size:12px;border:1px solid rgba(240,192,96,.22);border-radius:999px;
-  padding:4px 11px;color:#f3dea4;background:rgba(240,192,96,.05)}
-
-.match-share{
-  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-  background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.2);
-  border-radius:14px;padding:14px 16px;margin-top:8px;
-}
-.match-txt{font-size:13.5px;color:var(--tx);flex:1;min-width:0}
-.match-txt b{color:#4ade80}
-.match-btn{
-  font:800 13px var(--font);border:0;border-radius:10px;padding:9px 14px;
-  background:linear-gradient(90deg,#166534,#15803d);color:#fff;cursor:pointer;white-space:nowrap;
-}
-.match-btn:active{filter:brightness(1.15)}
-
-.cta-bar{
-  position:fixed;bottom:0;left:0;right:0;
-  padding:14px 18px calc(var(--b) + 14px);
-  background:linear-gradient(transparent,var(--bg) 35%);
-  display:flex;gap:8px;z-index:5;
-}
-.btn{border:0;border-radius:14px;padding:14px 18px;font:800 15px var(--font);cursor:pointer;
-  transition:.15s;display:inline-flex;align-items:center;justify-content:center;gap:6px}
-.btn-pri{background:linear-gradient(90deg,var(--gold2),var(--gold));color:#1a0c00;flex:1}
-.btn-pri:active{filter:brightness(1.1)}
-.btn-sec{background:rgba(255,255,255,.08);color:var(--tx);padding:14px 15px}
-.btn-sec:active{background:rgba(255,255,255,.14)}
-@media(min-width:600px){
-  .cta-bar{max-width:520px;left:50%;transform:translateX(-50%);right:auto;width:520px;border-radius:20px 20px 0 0}
-}
-
-/* ══ STEP 3 ══ */
-#s3{background:var(--bg)}
-.s3w{padding:0 18px calc(var(--b) + 100px)}
-.tarot-intro{font-size:14px;color:var(--sub);text-align:center;margin-bottom:20px;line-height:1.65}
-
-.spread{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;perspective:900px}
-.plbl{font-size:10px;color:var(--sub);font-weight:800;letter-spacing:.05em;text-align:center;margin-bottom:5px}
-.tcard{position:relative;aspect-ratio:2/3.2;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.3,1.2,.5,1)}
+/* ══ STEP 4 카드 고르기 ══ */
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;perspective:900px;margin:6px 0 14px}
+.slot .plbl{font-size:11px;color:var(--sub);font-weight:800;text-align:center;margin-bottom:6px}
+.slot .plbl b{display:block;color:var(--tx);font-size:12.5px}
+.tcard{position:relative;aspect-ratio:280/471;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,1.2,.5,1)}
 .tcard.flip{transform:rotateY(180deg)}
-.face{position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
-.cback{
-  background:radial-gradient(ellipse at 50% 50%,#2d1b8a 0%,#0e0636 100%);
-  border:2px solid rgba(240,192,96,.45);
-  display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--gold);
-}
-.cback::before{content:"";position:absolute;inset:7px;border:1px solid rgba(240,192,96,.22);border-radius:9px;
-  background:repeating-conic-gradient(from 45deg,rgba(192,132,252,.05) 0 22.5deg,transparent 22.5deg 45deg)}
-.cback span{position:relative;text-shadow:0 0 16px var(--gold)}
-.cfront{transform:rotateY(180deg);background:linear-gradient(160deg,#fef9e8,#f0e0a8);color:#3a2800;
-  border:2px solid rgba(192,144,32,.8);display:flex;flex-direction:column;
-  align-items:center;justify-content:space-between;padding:8px 6px}
-.cfront .fn{font:800 9px serif;letter-spacing:1px}
-.cfront .fs{font-size:clamp(22px,7vw,34px);line-height:1;margin:2px 0}
-.cfront .fnm{font:900 clamp(9px,2.5vw,11px)/1.2 var(--font);text-align:center}
-.cfront .fko{font-size:8px;color:#8b6830;margin-top:1px}
-.cfront .fdir{position:absolute;top:5px;right:5px;font-size:8px;font-weight:900;border-radius:3px;padding:1px 4px}
-.cfront:not(.rev) .fdir{background:#4ade80;color:#0a2a10}
-.cfront.rev .fdir{background:#fb7185;color:#3a0010}
-.cfront.rev .fn,.cfront.rev .fs{transform:rotate(180deg)}
+.face{position:absolute;inset:0;border-radius:10px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.empty{border:1.5px dashed rgba(240,192,96,.3);border-radius:10px;position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;color:rgba(240,192,96,.4);font-size:22px}
+.cback{background:radial-gradient(ellipse at 50% 50%,#2d1b8a 0%,#0e0636 100%);border:2px solid rgba(240,192,96,.5);
+  display:flex;align-items:center;justify-content:center;color:var(--gold)}
+.cback::before{content:"";position:absolute;inset:5px;border:1px solid rgba(240,192,96,.25);border-radius:6px;
+  background:repeating-conic-gradient(from 45deg,rgba(192,132,252,.07) 0 22.5deg,transparent 22.5deg 45deg)}
+.cback span{position:relative;font-size:20px;text-shadow:0 0 14px var(--gold)}
+.cfront{transform:rotateY(180deg);background:#f3ead2;box-shadow:0 0 0 2px rgba(240,192,96,.7)}
+.cfront img{width:100%;height:100%;object-fit:cover;display:block}
+.cfront.rev img{transform:rotate(180deg)}
+.dirtag{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:900;border-radius:5px;padding:2px 7px;white-space:nowrap}
+.dirtag.up{background:#4ade80;color:#06220f}.dirtag.rv{background:#fb7185;color:#3a0010}
+.slot.glow .tcard{filter:drop-shadow(0 0 14px rgba(240,192,96,.55))}
+.cname{text-align:center;font-size:12.5px;font-weight:900;margin-top:7px;min-height:18px;opacity:0;transition:.4s}
+.cname.on{opacity:1}
 
-.pause-hint{
-  display:none;text-align:center;font-size:14px;color:var(--gold);font-weight:800;
-  animation:blink .8s ease-in-out infinite;padding:6px 0;margin-bottom:4px;
-}
-@keyframes blink{0%,100%{opacity:.4}50%{opacity:1}}
+.pickmsg{text-align:center;font-size:14px;font-weight:800;color:#f3dea4;margin:4px 0 10px;min-height:22px}
+.deckbox{position:relative;margin:0 -18px}
+.deck{display:flex;overflow-x:auto;padding:26px 30px 18px 22px;scroll-snap-type:x proximity;scrollbar-width:none}
+.deck::-webkit-scrollbar{display:none}
+.dk{flex-shrink:0;width:58px;aspect-ratio:280/471;margin-right:-28px;border-radius:7px;cursor:pointer;
+  border:1.5px solid rgba(240,192,96,.55);background:radial-gradient(ellipse at 50% 40%,#3a24a0 0%,#0e0636 100%);
+  box-shadow:-3px 0 8px rgba(0,0,0,.45);transition:transform .2s,opacity .35s,margin .35s;position:relative;scroll-snap-align:center;
+  animation:deal .5s backwards}
+.dk::after{content:"✦";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(240,192,96,.7);font-size:13px}
+.dk:hover,.dk:focus-visible{transform:translateY(-14px)}
+.dk.used{opacity:0;pointer-events:none;transform:translateY(-60px) scale(.8)}
+@keyframes deal{from{opacity:0;transform:translateY(30px) rotate(-8deg)}}
+.deckfade{position:absolute;top:0;bottom:0;width:26px;pointer-events:none;z-index:2}
+.deckfade.l{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.deckfade.r{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.deckhint{text-align:center;font-size:11.5px;color:var(--sub)}
+.shuffle{display:block;margin:10px auto 0;border:1px solid var(--bd);background:transparent;color:var(--sub);
+  border-radius:999px;padding:7px 14px;font:700 12px var(--font);cursor:pointer}
+.qecho{font-size:13px;color:var(--sub);text-align:center;background:var(--card);border-radius:12px;padding:10px 12px;margin-bottom:8px;line-height:1.55}
+.qecho b{color:#f3dea4}
 
-.tread{margin-top:4px;display:none}
-.tread.on{display:block;animation:fadeup .4s}
-@keyframes fadeup{from{opacity:0;transform:translateY(10px)}}
-.tri{padding:14px 16px;border-radius:14px;margin:10px 0;
-  background:rgba(255,255,255,.04);border-left:3px solid var(--gold)}
-.tri .tpos{font-size:10px;color:var(--sub);font-weight:800;letter-spacing:.04em}
-.tri .tcn{font-size:16px;font-weight:900;margin:4px 0 3px}
-.tri .tmn{font-size:14px;line-height:1.65}
-.tri .ty27{font-size:12.5px;color:var(--vio);margin-top:4px;font-style:italic}
-.tarot-action{margin:14px 0;padding:14px 16px;background:rgba(240,192,96,.08);
-  border:1px solid rgba(240,192,96,.22);border-radius:14px;font-size:14px;line-height:1.65}
-.tarot-action b{color:var(--gold);display:block;margin-bottom:4px}
+/* ══ STEP 5 결과 ══ */
+.rhead{text-align:center;padding:6px 0 14px}
+.rtags{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin-bottom:10px}
+.rtag{font-size:11.5px;font-weight:800;border-radius:999px;padding:4px 10px;background:rgba(255,255,255,.07);color:#d8d0f5}
+.rttl{font-size:clamp(21px,5.8vw,27px);font-weight:900;letter-spacing:-.6px;line-height:1.3}
+.rttl em{font-style:normal;color:var(--gold)}
+.weather{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(240,192,96,.12),rgba(192,132,252,.1));
+  border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px}
+.wicon{font-size:44px;line-height:1}
+.wtxt{flex:1;min-width:0}
+.wlbl{font-size:11px;color:var(--sub);font-weight:800}
+.wval{font-size:19px;font-weight:900;margin:2px 0}
+.wdesc{font-size:13px;color:#d8d0f5;line-height:1.5}
+.wscore{text-align:center}
+.wscore b{display:block;font-size:26px;color:var(--gold);line-height:1}
+.wscore span{font-size:10px;color:var(--sub)}
+.answer{border-radius:16px;padding:14px 16px;margin-bottom:12px;border:1px solid}
+.answer .al{font-size:11px;font-weight:800;opacity:.8}
+.answer .av{font-size:20px;font-weight:900;margin:2px 0 4px}
+.answer p{font-size:13.5px;line-height:1.6}
+.answer.yes{background:rgba(74,222,128,.08);border-color:rgba(74,222,128,.3);color:#c9f7da}
+.answer.wait{background:rgba(240,192,96,.08);border-color:rgba(240,192,96,.3);color:#f7e6b8}
+.answer.no{background:rgba(251,113,133,.08);border-color:rgba(251,113,133,.3);color:#fbd0d8}
 
-.share3{display:none;gap:8px;margin-top:14px;flex-wrap:wrap}
-.share3.on{display:flex}
-.foot-note{font-size:11.5px;color:#4a3878;border-top:1px dashed rgba(255,255,255,.07);
-  margin-top:14px;padding-top:12px;line-height:1.65}
+.sec{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:16px;margin-bottom:12px}
+.sec h3{font-size:15px;font-weight:900;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.sec h3 small{font-size:11px;color:var(--sub);font-weight:700;margin-left:auto}
+.read{display:grid;grid-template-columns:76px 1fr;gap:12px;padding:12px 0;border-top:1px dashed rgba(255,255,255,.08)}
+.read:first-of-type{border-top:0;padding-top:0}
+.read img{width:76px;border-radius:7px;box-shadow:0 0 0 1.5px rgba(240,192,96,.55);display:block}
+.read img.rev{transform:rotate(180deg)}
+.rpos{font-size:10.5px;color:var(--vio);font-weight:900;letter-spacing:.04em}
+.rcn{font-size:15px;font-weight:900;margin:2px 0 1px}
+.rcn small{font-size:11px;font-weight:800;margin-left:4px}
+.rcn small.up{color:var(--ok)}.rcn small.rv{color:var(--rose)}
+.rkw{font-size:11.5px;color:var(--sub);margin-bottom:5px}
+.rmn{font-size:14px;line-height:1.65}
+
+.rx{border:1px solid rgba(240,192,96,.3);background:linear-gradient(180deg,rgba(240,192,96,.08),rgba(240,192,96,.02))}
+.rx-t{font-size:17px;font-weight:900;margin-bottom:6px;line-height:1.4}
+.rx-d{font-size:14px;line-height:1.7;color:#e6e0fb;margin-bottom:12px}
+.dolist,.dontlist{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+.dolist li,.dontlist li{font-size:14px;line-height:1.55;padding:10px 12px 10px 38px;border-radius:11px;position:relative}
+.dolist li{background:rgba(74,222,128,.07)}
+.dolist li::before{content:attr(data-n);position:absolute;left:11px;top:10px;width:19px;height:19px;border-radius:50%;
+  background:#4ade80;color:#06220f;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.dontlist li{background:rgba(251,113,133,.07)}
+.dontlist li::before{content:"✕";position:absolute;left:14px;top:10px;color:var(--rose);font-weight:900}
+.subl{font-size:12px;font-weight:900;color:var(--sub);margin:12px 0 7px}
+.timing{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.6;background:rgba(192,132,252,.08);
+  border-radius:12px;padding:11px 13px;margin-top:4px}
+.rx2{margin-top:10px;border-top:1px dashed rgba(255,255,255,.1);padding-top:12px}
+.rx2 summary{cursor:pointer;font-size:14px;font-weight:800;list-style:none}
+.rx2 summary::-webkit-details-marker{display:none}
+.rx2 summary::after{content:" ﹀";color:var(--sub);font-size:11px}
+.lens{font-size:14.5px;line-height:1.65;padding:12px 14px;border-left:3px solid var(--vio);background:rgba(192,132,252,.06);border-radius:0 12px 12px 0}
+.lucky{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lk{background:rgba(240,192,96,.06);border:1px solid rgba(240,192,96,.18);border-radius:12px;padding:10px 12px}
+.lk span{font-size:11px;color:var(--sub);font-weight:800;display:block}
+.lk b{font-size:14px;color:#fff3cf}
+
+.zrow{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.zrow .zem{font-size:38px}
+.zrow .zt{font-size:13px;color:var(--sub)}
+.zrow .zt b{display:block;font-size:16px;color:var(--tx)}
+.meters{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
+.mi{background:rgba(255,255,255,.04);border-radius:10px;padding:9px 6px;text-align:center}
+.mi-lbl{font-size:10.5px;color:var(--sub);margin-bottom:3px}
+.mi-score{font-size:17px;font-weight:900;color:var(--gold)}
+.zmore summary{cursor:pointer;font-size:13px;font-weight:800;color:#f3dea4;list-style:none;padding-top:6px}
+.zmore summary::-webkit-details-marker{display:none}
+.zmore p{font-size:14px;line-height:1.7;margin-top:8px}
+.zmore p b{color:var(--gold)}
+.match-share{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.2);
+  border-radius:14px;padding:12px 14px;margin-top:10px}
+.match-txt{font-size:13.5px;flex:1;min-width:0}.match-txt b{color:#4ade80}
+.match-btn{font:800 13px var(--font);border:0;border-radius:10px;padding:9px 13px;background:#15803d;color:#fff;cursor:pointer}
+.care{border-radius:14px;padding:13px 15px;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.3);font-size:13.5px;line-height:1.6;color:#cdeefe;margin-bottom:12px}
+.care b{color:#7dd3fc}
+.again{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px}
+.again .btn{flex:1;min-width:140px;font-size:14px;padding:13px}
+.ad-slot{border:1px dashed rgba(255,255,255,.12);border-radius:12px;min-height:90px;display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:#4a3878;margin:4px 0 12px}
+.foot-note{font-size:11px;color:#5d4c8e;border-top:1px dashed rgba(255,255,255,.07);margin-top:8px;padding-top:12px;line-height:1.7}
 
 .toast{position:fixed;left:50%;bottom:calc(var(--b) + 100px);transform:translateX(-50%) translateY(12px);
   background:#fff;color:#111;border-radius:12px;padding:11px 20px;font:700 13px var(--font);
   opacity:0;transition:.25s;z-index:200;pointer-events:none;white-space:nowrap}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-
-@media(min-width:600px){.s1w,.s2w,.s3w{max-width:520px;margin:0 auto}.s2w,.s3w{padding-left:0;padding-right:0}}
+.fade{animation:fadeup .5s backwards}
+@keyframes fadeup{from{opacity:0;transform:translateY(12px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+#stbar{position:fixed;top:0;left:0;right:0;z-index:999;font:700 12px monospace;padding:6px 10px}
 </style>
 </head>
 <body>
-<canvas id="sky"></canvas>
-<div class="toast" id="toast"></div>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<!-- ══ STEP 1 ══ -->
-<div class="step active" id="s1">
+<!-- ══ 1. 띠 ══ -->
+<section class="step active" id="s1" aria-label="띠 선택">
   <div class="s1w">
-    <div class="moon-w">
-      <div class="ring ring2"></div>
-      <div class="ring ring1"></div>
-      <div class="moon">未</div>
+    <div class="hero-cards" aria-hidden="true">
+      <img src="cards/m17.webp" alt=""><img src="cards/m10.webp" alt=""><img src="cards/m19.webp" alt="">
     </div>
-    <p class="s1-ttl">2027 정미년<br>운세</p>
-    <p class="s1-hook">운이 바뀌는 달이 있습니다.</p>
-    <p class="s1-sub">丁未年 · 양띠 해 · 화생토의 기운</p>
-    <div class="rank-tease">12띠 중 올해 1등은 누굴까요? 내 띠부터 확인</div>
-    <p class="pick-lbl">내 띠를 누르면, 2027년 첫 장이 열립니다</p>
+    <h1 class="s1-ttl">2027 정미년<br>타로 처방전</h1>
+    <p class="s1-hook">고민을 적으면, 카드가 답합니다.</p>
+    <p class="s1-sub">丁未年 · 띠 운세 × 실제 타로 78장 × 상황별 처방 50가지</p>
+    <div class="flow" aria-hidden="true"><span>띠</span><i>→</i><span>나</span><i>→</i><span>고민 입력</span><i>→</i><span>카드 3장</span><i>→</i><span>처방전</span></div>
+    <p class="pick-lbl">내 띠를 눌러 시작하세요</p>
     <div class="zgrid" id="zgrid"></div>
     <p class="s1-foot">띠는 음력 설(입춘) 기준 — 1~2월생은 앞 해 띠일 수 있어요</p>
   </div>
-</div>
+</section>
 
-<!-- ══ STEP 2 ══ -->
-<div class="step" id="s2">
-  <div class="shdr">
-    <button class="back" onclick="goStep(1)">←</button>
-    <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div>
-    <div class="hside"></div>
+<!-- ══ 2. 나 ══ -->
+<section class="step" id="s2" aria-label="나에 대해">
+  <div class="shdr"><button class="back" aria-label="뒤로" onclick="goStep(1)">←</button><div class="dots" data-n="2"></div><div class="hside" id="s2z"></div></div>
+  <div class="wrap">
+    <h2 class="h2">요즘의 당신은<br><em>어떤 자리</em>에 있나요?</h2>
+    <p class="lead">같은 카드도 학생과 사장님에게는 다르게 읽혀요.</p>
+    <p class="lbl">지금 하는 일</p>
+    <div class="chips" id="jobs" role="group" aria-label="지금 하는 일"></div>
+    <p class="lbl">연애 상태</p>
+    <div class="chips" id="rels" role="group" aria-label="연애 상태"></div>
   </div>
-  <div class="s2w" id="s2w"></div>
-  <div class="cta-bar">
-    <button class="btn btn-pri" onclick="goStep(3)">🔮 타로 뽑기 →</button>
-    <button class="btn btn-sec" onclick="shareResult()">📤</button>
-  </div>
-</div>
+  <div class="cta-bar"><div class="cta-in"><button class="btn btn-pri" id="s2next" disabled onclick="goStep(3)">다음 — 고민 털어놓기 →</button></div></div>
+</section>
 
-<!-- ══ STEP 3 ══ -->
-<div class="step" id="s3">
-  <div class="shdr">
-    <button class="back" onclick="goStep(2)">←</button>
-    <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div>
-    <div class="hside"></div>
-  </div>
-  <div class="s3w">
-    <p class="tarot-intro">마음속으로 '2027년의 나'를 떠올리세요.<br>78장 덱에서 3장이 나옵니다.</p>
-    <div class="spread" id="spread"></div>
-    <p class="pause-hint" id="phint">마지막 카드 — 천천히 확인하세요 ✦</p>
-    <div style="text-align:center;margin-bottom:16px">
-      <button class="btn btn-pri" id="draw" style="width:100%;max-width:280px">🔮 카드 3장 뽑기</button>
-      <button class="btn btn-sec" id="redraw" style="display:none;margin-top:8px;width:100%;max-width:280px">↺ 다시 뽑기</button>
+<!-- ══ 3. 고민 ══ -->
+<section class="step" id="s3" aria-label="고민 입력">
+  <div class="shdr"><button class="back" aria-label="뒤로" onclick="goStep(2)">←</button><div class="dots" data-n="3"></div><div class="hside"></div></div>
+  <div class="wrap">
+    <h2 class="h2">요즘 <em>가장 마음에 걸리는 것</em>은?</h2>
+    <p class="lead">분야를 고르고, 상황을 편하게 적어 주세요. 단어를 읽고 맞는 처방을 찾아요.</p>
+    <div class="catgrid" id="cats" role="group" aria-label="고민 분야"></div>
+    <p class="lbl">상황을 한두 줄로 (선택이지만, 적을수록 정확해요)</p>
+    <div class="ta-w">
+      <textarea id="q" maxlength="300" aria-label="고민 상황 입력" placeholder="예) 팀장이랑 계속 부딪혀서 이직을 고민 중이에요. 지금 나가도 될까요?"></textarea>
+      <span class="ta-cnt" id="qcnt">0/300</span>
     </div>
-    <div class="tread" id="tread"></div>
-    <div class="share3" id="share3">
-      <button class="btn btn-pri" onclick="shareResult()" style="flex:1">📤 결과 공유</button>
-      <button class="btn btn-sec" onclick="copyResult()">📋 복사</button>
-      <button class="btn btn-sec" onclick="goStep(1)">처음으로</button>
-    </div>
-    <p class="foot-note">타로는 상징을 통해 스스로를 돌아보는 도구입니다. 개인 사주는 월·일·시까지 보아야 하며, 중요한 결정은 전문가와 상의하세요. 재물 흐름은 투자 권유가 아닙니다.</p>
+    <div class="examples" id="examples"></div>
+    <div class="catch" id="catch" aria-live="polite">✦ 적는 동안 카드가 키워드를 읽어요.</div>
+    <p class="privacy">🔒 입력한 글은 이 기기 안에서만 읽고, 어디에도 보내거나 저장하지 않아요.</p>
   </div>
-</div>
+  <div class="cta-bar"><div class="cta-in"><button class="btn btn-pri" id="s3next" disabled onclick="goStep(4)">🔮 카드 고르러 가기 →</button></div></div>
+</section>
+
+<!-- ══ 4. 카드 ══ -->
+<section class="step" id="s4" aria-label="카드 고르기">
+  <div class="shdr"><button class="back" aria-label="뒤로" onclick="goStep(3)">←</button><div class="dots" data-n="4"></div><div class="hside"></div></div>
+  <div class="wrap">
+    <div class="qecho" id="qecho"></div>
+    <div class="slots" id="slots"></div>
+    <p class="pickmsg" id="pickmsg">고민을 떠올리며, 끌리는 카드 3장을 고르세요</p>
+    <div class="deckbox">
+      <div class="deckfade l"></div><div class="deckfade r"></div>
+      <div class="deck" id="deck" role="group" aria-label="78장 타로 덱"></div>
+    </div>
+    <p class="deckhint">← 옆으로 밀어서 78장 전부 볼 수 있어요 →</p>
+    <button class="shuffle" id="shuffle">↺ 다시 섞기</button>
+  </div>
+  <div class="cta-bar"><div class="cta-in"><button class="btn btn-pri" id="s4next" disabled onclick="goStep(5)">📜 나의 처방전 보기 →</button></div></div>
+</section>
+
+<!-- ══ 5. 결과 ══ -->
+<section class="step" id="s5" aria-label="처방전">
+  <div class="shdr"><button class="back" aria-label="뒤로" onclick="goStep(4)">←</button><div class="dots" data-n="5"></div><div class="hside"></div></div>
+  <div class="wrap" id="result"></div>
+  <div class="cta-bar"><div class="cta-in">
+    <button class="btn btn-pri" onclick="shareResult()">📤 처방전 공유</button>
+    <button class="btn btn-sec" onclick="copyResult()" aria-label="결과 복사">📋</button>
+  </div></div>
+</section>
 
 <script>
 "use strict";
 
-// ── 12띠 (psych-ad 협업: 선언형·순위·칭호·운이 바뀌는 달·할 일 1개) ──
+/* ═════════ 1. 12띠 (기존 명리 해석 유지) ═════════ */
 const ZODIAC=[
   {an:"쥐",em:"🐭",gz:"子",yrs:"1948·1960·1972·1984·1996·2008·2020",
    rank:10,title:"인내의 고수",match:"원숭이띠",month:"음력 11월",
@@ -426,190 +458,565 @@ const ZODIAC=[
    tip:"작은 결과물을 자주 내보이기",lucky:["청록색","숫자 6","음력 3월"]}
 ];
 
-// ── 타로 78장 ──
-const MAJOR=[
-  ["0","The Fool","바보","🃏","새로운 시작·순수한 용기","무모함·준비 없는 출발","2027은 겁내지 말고 첫발을 떼는 해. 계획이 완벽하지 않아도 괜찮아요."],
-  ["I","The Magician","마법사","🪄","재능 발휘·실행력","재능 낭비·속임수","가진 것만으로도 시작할 수 있어요."],
-  ["II","The High Priestess","여사제","🌙","직관·내면의 지혜","직감 무시·혼란","말보다 느낌을 믿을 때."],
-  ["III","The Empress","여황제","🌸","풍요·돌봄·창조성","과잉·의존","가꾼 만큼 자라는 해."],
-  ["IV","The Emperor","황제","👑","안정·질서·리더십","고집·경직","규칙과 루틴이 힘이 되는 해."],
-  ["V","The Hierophant","교황","📜","가르침·멘토·소속","틀에서 벗어남","좋은 스승과 배움을 만나는 해."],
-  ["VI","The Lovers","연인","💞","사랑·조화·중요한 선택","불균형·가치관 충돌","마음이 가리키는 쪽을 고르는 해."],
-  ["VII","The Chariot","전차","🏇","의지·전진·승리","방향 상실·조급함","목표를 정하면 거침없이."],
-  ["VIII","Strength","힘","🦁","부드러운 강함·인내","자기 의심·무기력","꾸준함이 힘이에요."],
-  ["IX","The Hermit","은둔자","🏮","성찰·탐구·내면의 시간","고립·회피","조용히 들여다보면 길이 밝아지는 해."],
-  ["X","Wheel","운명의 수레바퀴","🎡","전환점·행운","불운 반복·저항","흐름이 바뀌는 해."],
-  ["XI","Justice","정의","⚖️","균형·공정·책임","불공정·회피","뿌린 대로 거두는 해."],
-  ["XII","Hanged Man","매달린 사람","🙃","관점 전환·기다림","헛된 희생·고집","보는 각도를 바꾸면 풀려요."],
-  ["XIII","Death","죽음(변화)","🦋","끝과 시작·정리","변화 거부·정체","끝은 새 시작의 다른 이름."],
-  ["XIV","Temperance","절제","🍶","균형·조화·중용","과잉·불균형","적당히, 꾸준히."],
-  ["XV","The Devil","악마","⛓️","유혹·집착을 알아차림","해방·나쁜 습관 끊기","나를 붙잡는 것을 알아보는 해."],
-  ["XVI","The Tower","탑","⚡","갑작스런 변화·깨달음","변화 회피·두려움","흔들림 뒤에 더 단단한 것을 짓는 해."],
-  ["XVII","The Star","별","⭐","희망·치유·영감","낙담·자신감 부족","다시 꿈꾸는 해."],
-  ["XVIII","The Moon","달","🌕","불확실·무의식","혼란 해소·진실","서두르지 않기. 시간이 답을 보여요."],
-  ["XIX","The Sun","태양","☀️","성공·기쁨·명확함","일시적 우울·과신","노력이 빛을 보는 순간이 와요."],
-  ["XX","Judgement","심판","📯","재평가·새 출발의 결심","자기 비판·미루기","지난 일을 정리하고 다시 일어서는 해."],
-  ["XXI","The World","세계","🌍","완성·성취","미완성·마무리 지연","한 단계를 완성하고 더 넓은 세계로."]
-];
-const SUITS=[{k:"Wands",ko:"완드",sym:"🔥",theme:"열정·일·도전"},{k:"Cups",ko:"컵",sym:"🍷",theme:"감정·사랑·관계"},{k:"Swords",ko:"소드",sym:"🗡️",theme:"생각·결정·갈등"},{k:"Pentacles",ko:"펜타클",sym:"🪙",theme:"돈·일상·현실"}];
-const RANKS=[["Ace","에이스","새로운 시작","기회를 놓침"],["Two","2","선택과 균형","우유부단"],["Three","3","협력과 첫 성과","엇갈림"],["Four","4","안정과 휴식","정체"],["Five","5","갈등과 상실","회복의 시작"],["Six","6","회복과 나눔","과거에 머묾"],["Seven","7","도전과 전략","흔들리는 의지"],["Eight","8","속도와 집중","지연"],["Nine","9","거의 이룸·인내","불안"],["Ten","10","완성 또는 짐","과부하"],["Page","시종","새 소식·배움","미숙함"],["Knight","기사","행동·추진","성급함"],["Queen","여왕","성숙한 돌봄","감정 과잉"],["King","왕","책임과 통솔","독단"]];
-const DECK=[];
-MAJOR.forEach((m,i)=>DECK.push({id:"M"+i,num:m[0],en:m[1],ko:m[2],sym:m[3],up:m[4],rev:m[5],y27:m[6],major:true}));
-SUITS.forEach(s=>RANKS.forEach((r,i)=>DECK.push({id:s.k[0]+i,num:r[1],en:`${r[0]} of ${s.k}`,ko:`${s.ko} ${r[1]}`,sym:s.sym,up:`${s.theme} — ${r[2]}`,rev:`${s.theme} — ${r[3]}`,major:false})));
+/* ═════════ 2. 나 ═════════ */
+const JOBS=[["student","🎒","학생"],["seeker","📝","취준생"],["office","💼","직장인"],["biz","🏪","사업·자영업"],["free","💻","프리랜서"],["home","🏠","주부·육아"],["rest","☕","쉬는 중"]];
+const RELS=[["solo","🌱","솔로"],["some","💌","썸 타는 중"],["dating","💑","연애 중"],["married","💍","결혼"],["after","🌧️","이별 후"]];
+const CATS=[["love","💞","연애"],["work","💼","일·커리어"],["money","💰","돈"],["people","👥","인간관계"],["mind","🌿","마음·건강"],["study","📚","시험·공부"],["change","🧭","변화·결정"]];
+const CATNAME=Object.fromEntries(CATS.map(c=>[c[0],c[2]]));
 
-// ── 별빛 배경 ──
-const sky=document.getElementById("sky"),sc=sky.getContext("2d");let st=[];
+/* 직업 렌즈 — 같은 고민도 자리마다 다르게 */
+const LENS={
+ student:{love:"학교·동아리처럼 매일 보는 공간에서 인연이 자라요. 공부 리듬만 지키면 됩니다.",work:"지금의 경험은 전부 이력이 됩니다. 알바·대외활동 하나를 '이야기'로 남겨 두세요.",money:"용돈·알바비에서 30%를 먼저 떼는 습관, 지금 들이면 평생 갑니다.",people:"모든 친구와 잘 지낼 필요는 없어요. 편한 세 명이면 충분합니다.",mind:"시험 기간일수록 잠이 곧 성적이에요.",study:"공부량보다 복습 주기가 합격을 가릅니다.",change:"전과·휴학·편입 같은 큰 결정은 학기 시작 전에 내리세요."},
+ seeker:{love:"연애가 사치처럼 느껴져도, 기댈 사람 한 명은 큰 힘이 돼요.",work:"지원 수를 늘리기보다 한 곳 한 곳을 '맞춤'으로.",money:"고정비는 최소로, 대신 면접 교통비·옷은 아끼지 마세요.",people:"비교를 부르는 단톡방은 잠시 알림을 꺼도 괜찮아요.",mind:"하루 일과를 출근처럼 고정하면 불안이 줄어듭니다.",study:"자격증은 '지원 직무와 연결되는 것'만 고르세요.",change:"공백기는 설명할 수 있으면 약점이 아니에요."},
+ office:{love:"퇴근 후 시간이 연애의 무대. 평일 저녁 약속 하나를 고정해 보세요.",work:"올해는 '보이게 일하기'. 성과는 숫자로 남겨 두세요.",money:"월급날 자동이체가 의지보다 강합니다.",people:"회사 사람은 '좋은 동료'까지만 — 거리 조절이 체력을 지켜요.",mind:"퇴근 후 업무 알림 끄기, 그것만으로 회복이 시작됩니다.",study:"자격증·어학은 출근 전 30분이 가장 오래 갑니다.",change:"이직·이동은 '합격 후 결정'이 철칙입니다."},
+ biz:{love:"바쁠수록 '정해 둔 데이트 날'이 관계를 지켜요.",work:"단골이 오는 이유를 찾으면 매출의 길이 보입니다.",money:"사업 통장과 생활 통장은 반드시 분리하세요.",people:"직원·거래처와는 말보다 문서로.",mind:"쉬는 날을 달력에 먼저 박아 두세요. 사장의 컨디션이 가게의 운입니다.",study:"세무·노무 기초 하나만 알아도 돈이 남아요.",change:"확장은 고정비 6개월치가 쌓인 뒤에."},
+ free:{love:"일과 생활의 경계가 흐린 만큼, 연락 안 되는 시간을 미리 알려 주세요.",work:"기존 고객이 다음 고객을 데려옵니다. 안부 연락이 곧 영업이에요.",money:"들쭉날쭉한 수입은 '나에게 주는 월급' 통장 하나로 평탄하게.",people:"같은 업계 동료 네트워크가 일감 보험입니다.",mind:"출근 의식(옷 갈아입기·산책)이 집중을 켜는 스위치예요.",study:"포트폴리오에 넣을 수 있는 공부만 하세요.",change:"단가 인상은 신규 고객부터 적용하세요."},
+ home:{love:"'엄마·아빠' 말고 '우리 둘'로 보내는 시간이 필요해요.",work:"경력 공백이 아니라 운영 경력입니다. 작게 다시 시작해도 괜찮아요.",money:"가계부는 완벽보다 꾸준함 — 큰 항목 5개만 보세요.",people:"육아 동지 한 명이 마음의 숨구멍이 됩니다.",mind:"하루 30분, 누구의 무엇도 아닌 '나'의 시간을 확보하세요.",study:"짧게 끊어 듣는 강의가 지금 리듬에 맞아요.",change:"변화는 가족 회의에서 '내 몫'부터 말하는 것으로 시작됩니다."},
+ rest:{love:"쉬는 동안 만나는 인연은 조건보다 사람을 보게 해 줘요.",work:"쉬는 지금이 방향을 다시 잡는 시간. 작은 일부터 손에 익히세요.",money:"고정 지출을 줄이고 '몇 달 버틸 수 있는지' 계산해 두세요.",people:"연락이 뜸해져도 괜찮아요. 돌아갈 자리는 남아 있습니다.",mind:"쉬는 데 죄책감 갖지 않기 — 리듬만 지키면 됩니다.",study:"배우고 싶던 것 하나를 이 기회에 시작하세요.",change:"기한을 정한 휴식은 도약을 위한 준비 기간이에요."}
+};
+
+/* ═════════ 3. 상황 처방 세트 ═════════
+   kw: 입력문에서 찾을 단어(띄어쓰기 무시) · jobs/rels: 해당하면 가산점 */
+const SETS=[
+ // 💞 연애
+ {id:"crush",cat:"love",rels:["solo"],kw:["짝사랑","좋아하는사람","좋아하는애","고백","혼자좋아","호감","마음에드는","관심있는"],
+  t:"혼자 키워 온 마음, 꺼낼 때가 됐을까",d:"마음은 커졌는데 상대의 신호는 아직 애매한 상태. 지금 필요한 건 고백보다 '접점'을 늘리는 일이에요.",
+  do:["상대가 좋아하는 주제로 대화가 이어질 질문 하나 준비하기","단둘이 30분 이하의 짧은 만남부터 제안하기","2주 안에 반응이 3번 이상 오면 그때 마음 전하기"],dont:["새벽 감성 장문 메시지","친구들에게 먼저 소문내기"]},
+ {id:"some",cat:"love",rels:["some"],kw:["썸","답장","읽씹","안읽씹","애매","밀당","연락이","카톡","선톡"],
+  t:"썸, 확신이 안 설 때",d:"연락 빈도에 마음이 오르내리는 시기. 답은 메시지 속도가 아니라 '만남이 잡히는가'에 있어요.",
+  do:["날짜·장소까지 구체적으로 약속 제안하기","답장 속도는 상대보다 살짝 느리게 맞추기","만났을 때 다음 약속을 그 자리에서 잡기"],dont:["읽씹 시간 계산하기","주변에 카톡 해석 의뢰하기"]},
+ {id:"reunion",cat:"love",rels:["after"],kw:["재회","전남친","전여친","전애인","전남자친구","전여자친구","다시만나","연락올까","돌아올","다시사귀"],
+  t:"헤어진 사람, 다시 이어질까",d:"그리운 건 그 사람일 수도, 그때의 나일 수도 있어요. 재회는 '같은 이유로 또 헤어지지 않을 근거'가 있을 때만 의미가 있습니다.",
+  do:["헤어진 이유를 한 줄로 적어 보기","최소 4주는 연락 공백 두기","연락한다면 가볍고 짧게 — 근황 한 줄"],dont:["술 마신 날 연락","SNS 염탐 반복"]},
+ {id:"breakup",cat:"love",rels:["after"],kw:["이별","헤어졌","헤어지고","차였","잊고싶","못잊","실연","헤어진지"],
+  t:"이별 뒤, 마음 회복 처방",d:"아픈 건 정상이에요. 이 시기의 목표는 '빨리 잊기'가 아니라 '나를 다시 세우기'입니다.",
+  do:["산책·운동 같은 하루 루틴 하나 고정하기","사진·대화는 지우지 말고 보관함으로 옮기기","한동안 못 본 친구 한 명과 약속 잡기"],dont:["바로 새 연애로 덮기","그 사람 근황 확인하기"]},
+ {id:"bored",cat:"love",rels:["dating"],kw:["권태","지루","설렘이없","식었","무덤덤","오래사귄","장기연애","예전같지"],
+  t:"오래된 연애, 설렘이 줄었을 때",d:"설렘이 빠진 자리를 편안함이 채우는 중. 문제는 감정보다 '새로운 경험의 부족'인 경우가 많아요.",
+  do:["둘 다 처음 해 보는 활동 하나 예약하기","고마운 점 세 가지를 말로 전하기","각자의 시간도 존중하기"],dont:["예전 연애와 비교하기","침묵으로 서운함 표현하기"]},
+ {id:"fight",cat:"love",rels:["dating","married"],kw:["싸웠","싸움","다퉜","다툼","서운","화났","말다툼","삐졌","연락문제"],
+  t:"자꾸 다투게 될 때",d:"싸움의 주제는 매번 달라도 패턴은 같은 경우가 많아요. '무엇을'보다 '어떻게' 말하는지가 핵심입니다.",
+  do:["'너는' 대신 '나는 ~해서 서운했어'로 말하기","감정이 올라오면 20분 쉬고 다시 대화하기","둘만의 싸움 규칙 하나 같이 정하기"],dont:["지난 일 다시 꺼내기","이별을 무기로 쓰기"]},
+ {id:"marry",cat:"love",rels:["dating"],kw:["결혼","프러포즈","프로포즈","상견례","혼수","예식","결혼해도"],
+  t:"결혼, 이 사람이 맞을까",d:"결혼은 사랑의 크기보다 '생활 방식의 합'이 중요해요. 지금이 그걸 확인할 타이밍입니다.",
+  do:["돈·집·아이·명절 네 가지 주제로 대화해 보기","1박 이상 여행으로 생활 리듬 확인하기","양가 분위기를 미리 파악하기"],dont:["주변 나이·속도에 떠밀리기","불편한 주제 미루기"]},
+ {id:"meet",cat:"love",rels:["solo"],kw:["소개팅","인연","새로운사람","연애하고싶","남자친구","여자친구","애인","모태솔로","솔로탈출","만남"],
+  t:"새로운 인연을 만나고 싶다면",d:"인연은 '만날 확률' 게임이에요. 내 생활 반경에 새로운 사람이 들어올 틈을 만들어야 합니다.",
+  do:["새 모임·클래스 하나 등록하기","믿는 지인 두 명에게 소개 부탁하기","프로필 사진을 최근 것으로 바꾸기"],dont:["첫 만남에서 결론 내기","조건 리스트 10개 넘기기"]},
+ {id:"trust",cat:"love",rels:["dating","married"],kw:["바람피","바람났","의심","거짓말","신뢰","숨기","몰래","배신","다른여자","다른남자"],
+  t:"믿음이 흔들릴 때",d:"의심은 증거가 아니라 불안에서 자라기도 해요. 확인할 것과 내려놓을 것을 나눠야 합니다.",
+  do:["'본 사실'과 '추측'을 종이에 나눠 적기","감정이 가라앉은 뒤 직접 묻기","내 기준선(용서 가능/불가)을 미리 정하기"],dont:["몰래 휴대폰 보기","제3자에게 먼저 퍼뜨리기"]},
+ {id:"couple",cat:"love",rels:["married"],kw:["남편","아내","와이프","부부","배우자","신랑","결혼생활"],
+  t:"부부 사이, 다시 가까워지려면",d:"생활에 치여 '팀'이 아니라 '룸메이트'가 되어 가는 느낌. 작은 의식이 관계를 되살립니다.",
+  do:["주 1회, 둘만의 20분 대화 시간","집안일 분담표 다시 짜기","고마움은 구체적으로 표현하기"],dont:["아이·돈 얘기로만 대화 채우기","부모님 앞에서 배우자 흉보기"]},
+ // 💼 일
+ {id:"quit",cat:"work",jobs:["office"],kw:["이직","퇴사","그만두","회사옮","나가고싶","사표","경력직","나가도","옮길","회사를나","때려치"],
+  t:"이직, 지금 나가도 될까",d:"떠나고 싶은 이유가 '여기가 싫어서'인지 '저기가 좋아서'인지부터 가려야 해요. 후자일 때 이직운이 열립니다.",
+  do:["이력서부터 업데이트 — 고민은 붙고 나서","원하는 조건 3개의 우선순위 정하기","퇴사 통보는 합격 서류를 받은 뒤에"],dont:["홧김에 사표","면접에서 현 직장 험담"]},
+ {id:"boss",cat:"work",jobs:["office"],kw:["상사","팀장","부장","과장","실장","대표님","사장님","갑질","꼰대","윗사람","본부장"],
+  t:"상사 때문에 힘들 때",d:"사람은 바꾸기 어렵지만 '거리'와 '기록'은 내가 정할 수 있어요.",
+  do:["지시는 메일·메신저로 한 번 더 확인받기","감정 대신 일정·결과로 대화하기","부당한 일은 날짜별로 기록해 두기"],dont:["단톡방 뒷담화","참다가 한 번에 폭발"]},
+ {id:"coworker",cat:"work",jobs:["office"],kw:["동료","팀원","후배","선배","사내","텃세","왕따","따돌","신입"],
+  t:"동료와 부딪힐 때",d:"일보다 사람 때문에 지치는 시기. 내 편 한 명이 판을 바꿉니다.",
+  do:["믿을 만한 동료 한 명과 점심 먹기","업무 경계를 문장으로 정해 두기","공식 창구(인사팀) 위치 알아 두기"],dont:["편 가르기에 동참","감정 담긴 메시지 즉시 전송"]},
+ {id:"promo",cat:"work",jobs:["office"],kw:["승진","연봉","평가","고과","연봉협상","인상","성과급","인센티브"],
+  t:"승진·연봉, 내 몫 챙기기",d:"성과는 냈는데 보이지 않는 상태일 수 있어요. 올해는 '보이게 일하기'가 곧 운입니다.",
+  do:["올해 성과 3개를 숫자로 정리하기","면담을 먼저 요청하기","업계 연봉 자료 준비하기"],dont:["알아서 알아주길 기다리기","불만·비교로 협상 시작하기"]},
+ {id:"burnout",cat:"work",jobs:["office","free","biz"],kw:["번아웃","지쳤","지쳐","야근","일하기싫","출근하기싫","월요병","과로","힘들어"],
+  t:"번아웃 신호가 왔다면",d:"몸이 먼저 '멈춤'을 요구하는 중이에요. 지금 쉬는 건 게으름이 아니라 유지보수입니다.",
+  do:["이번 주 안에 반차·연차 하루 쓰기","퇴근 후 업무 알림 끄기","잠 7시간을 최우선으로 확보하기"],dont:["주말까지 일 끌어안기","카페인으로 버티기"]},
+ {id:"jobhunt",cat:"work",jobs:["seeker","student"],kw:["취업","취준","서류","자소서","불합격","탈락","공채","입사","떨어졌","채용"],
+  t:"취업, 언제쯤 될까",d:"떨어진 횟수가 실력을 말해 주진 않아요. 다만 같은 방식을 반복하고 있다면 바꿀 때입니다.",
+  do:["지원서 하나를 다른 사람에게 첨삭받기","지원 개수보다 '맞춤도' 올리기","하루 일과를 출근처럼 고정하기"],dont:["합격한 친구와 비교하며 자책","한 곳에 모든 희망 걸기"]},
+ {id:"interview",cat:"work",jobs:["seeker"],kw:["면접","인터뷰","발표","최종","프레젠테이션"],
+  t:"면접·발표를 앞두고",d:"준비한 만큼 보이는 날이에요. 긴장을 없애기보다 '긴장해도 나올 말'을 만들어 두세요.",
+  do:["첫 1분 자기소개를 소리 내서 10번","예상 질문 5개의 답을 메모로","전날 밤엔 일찍 자기"],dont:["당일 아침 새 자료 외우기","과장된 경험담"]},
+ {id:"startup",cat:"work",jobs:["biz","rest","office"],kw:["창업","사업시작","가게열","오픈","개업","내사업","스타트업","차릴"],
+  t:"창업, 시작해도 될까",d:"아이디어보다 '첫 고객 10명'이 답을 줍니다. 크게 벌이기 전에 작게 검증하세요.",
+  do:["최소 버전으로 2주 테스트하기","고정비 6개월치 계산하기","첫 고객에게 직접 피드백 받기"],dont:["인테리어·장비부터 투자","가족 돈 전부 걸기"]},
+ {id:"sales",cat:"work",jobs:["biz"],kw:["매출","손님","장사","가게","매장","고객","리뷰","단골","자영업","배달"],
+  t:"매출이 고민될 때",d:"새 손님보다 '다시 오는 손님'에서 돈이 나는 해. 단골의 이유를 찾으면 길이 보입니다.",
+  do:["단골 5명에게 왜 오는지 물어보기","가장 잘 팔리는 하나에 집중하기","리뷰에 빠짐없이 답글 달기"],dont:["가격부터 내리기","메뉴·상품 무리하게 늘리기"]},
+ {id:"freelance",cat:"work",jobs:["free"],kw:["프리랜서","외주","클라이언트","단가","일감","의뢰","거래처","계약직"],
+  t:"일감이 들쭉날쭉할 때",d:"실력보다 '연결'이 수입을 정하는 시기. 기존 고객이 다음 고객을 데려옵니다.",
+  do:["과거 고객 3명에게 안부와 근황 보내기","단가표를 정리해 공개하기","매달 고정으로 들어오는 일 하나 만들기"],dont:["단가 깎아서 일감 늘리기","마감 겹치게 받기"]},
+ {id:"path",cat:"work",jobs:["student","seeker","rest"],kw:["진로","적성","뭘해야","하고싶은게","꿈","방향","전공","커리어"],
+  t:"진로가 막막할 때",d:"정답을 찾는 단계가 아니라 '덜 틀린 것'을 고르는 단계예요. 작은 실험이 방향을 알려 줍니다.",
+  do:["관심 분야 3개를 각 1주씩 체험해 보기","그 일을 하는 사람 한 명 만나 묻기","잘했다고 느낀 순간 5개 적기"],dont:["남들 기준으로 순위 매기기","완벽한 확신 기다리기"]},
+ {id:"side",cat:"money",jobs:["office","home","student"],kw:["부업","n잡","투잡","사이드","블로그","유튜브","스마트스토어","쿠팡","부수입"],
+  t:"부업, 시작해 볼까",d:"본업 밖에서 수입 통로가 열리는 기운. 단, 시간 설계가 먼저입니다.",
+  do:["딱 주 5시간만 정해서 시작하기","'첫 1만 원 벌기'를 목표로","3개월 뒤 계속할지 판단 기준 정하기"],dont:["비싼 강의부터 결제","본업 시간 침범"]},
+ // 💰 돈
+ {id:"invest",cat:"money",kw:["주식","코인","비트","투자","수익률","손실","물렸","존버","매수","매도","etf","미장","국장","손절"],
+  t:"투자, 들어가도 될까",d:"운은 타이밍이 아니라 '버틸 수 있는 금액'에서 나와요. 잃어도 생활이 흔들리지 않는 선이 기준입니다. (투자 조언이 아닌 마음가짐 처방이에요)",
+  do:["투자금 상한선을 숫자로 정하기","한 번에 말고 나눠서 들어가기","팔 기준을 미리 적어 두기"],dont:["빚내서 투자","지인 추천 종목 몰빵"]},
+ {id:"debt",cat:"money",kw:["빚","대출","카드값","이자","할부","갚","마이너스","연체","리볼빙","돌려막"],
+  t:"빚이 마음을 누를 때",d:"막연한 빚이 가장 무거워요. 숫자로 보는 순간 절반은 가벼워집니다.",
+  do:["모든 빚을 금리순으로 한 표에 정리하기","금리 높은 것부터 갚기","무료 채무 상담(서민금융 콜센터 1397) 알아보기"],dont:["돌려막기","새 할부 추가"]},
+ {id:"save",cat:"money",kw:["저축","적금","돈모으","목돈","통장","재테크","짠테크","모으고싶"],
+  t:"돈을 모으고 싶을 때",d:"모으는 사람에겐 의지보다 '자동화'가 있어요.",
+  do:["월급날 자동이체로 먼저 떼기","구독 서비스 한 번 정리하기","목표 금액에 이름 붙이기"],dont:["남는 돈으로 저축하기","처음부터 큰 목표 세우기"]},
+ {id:"spend",cat:"money",kw:["지출","소비","충동","쇼핑","돈이새","과소비","탕진","생활비","돈을너무"],
+  t:"돈이 새는 느낌일 때",d:"큰돈보다 작은 반복이 새는 구멍이에요.",
+  do:["지난달 카드 내역에서 '후회한 결제' 표시하기","장바구니 24시간 규칙","생활비는 체크카드로 분리하기"],dont:["스트레스 쇼핑","할인이라서 사기"]},
+ {id:"house",cat:"money",kw:["전세","월세","부동산","청약","매매","집값","보증금","내집","집사"],
+  t:"집·계약을 앞두고",d:"큰돈이 오가는 계약은 운보다 '확인'이 지켜 줍니다.",
+  do:["등기부등본 직접 확인하기","전세보증보험 가입 가능 여부 체크","계약 전 하루 숙려 기간 두기"],dont:["급하게 도장 찍기","시세보다 너무 싼 매물에 혹하기"]},
+ {id:"lend",cat:"money",kw:["빌려준","빌려달","안갚","돈거래","보증","돈을빌"],
+  t:"돈 거래가 얽혔을 때",d:"돈과 관계가 섞이면 둘 다 잃기 쉬워요.",
+  do:["빌려준 날짜·금액을 문자로 남기기","갚을 계획을 구체적으로 묻기","앞으로는 '줄 수 있는 만큼만' 기준으로"],dont:["보증 서기","감정적으로 독촉하기"]},
+ {id:"income",cat:"money",kw:["월급","수입","돈벌","돈이없","가난","부자","돈이부족","적자"],
+  t:"수입을 늘리고 싶을 때",d:"올해는 '시간당 가치'를 올리는 사람이 돈을 법니다.",
+  do:["내 시간당 수입을 계산해 보기","돈이 되는 기술 하나에 집중하기","연봉·단가 협상 자료 준비하기"],dont:["로또·고위험으로 한 방 노리기","작은 돈 무시하기"]},
+ // 👥 인간관계
+ {id:"friend",cat:"people",kw:["친구","절친","손절","우정","멀어","단톡"],
+  t:"친구 관계가 흔들릴 때",d:"관계에도 계절이 있어요. 모든 관계를 같은 온도로 유지할 필요는 없습니다.",
+  do:["서운함은 한 번은 직접 말해 보기","나를 편하게 하는 사람 목록 만들기","멀어지는 관계는 자연스럽게 두기"],dont:["단체방에서 공개 저격","억지로 붙잡기"]},
+ {id:"family",cat:"people",kw:["부모","엄마","아빠","가족","형제","언니","오빠","누나","동생","잔소리","집안"],
+  t:"가족과 부딪힐 때",d:"가장 가까운 사이라 상처도 깊어요. 이해보다 '경계'가 먼저 필요할 때가 있습니다.",
+  do:["대화는 짧게, 주제는 하나만","나만의 공간·시간 확보하기","고마운 일 하나는 꼭 말로 전하기"],dont:["명절에 묵은 얘기 꺼내기","형제와 비교하기"]},
+ {id:"inlaw",cat:"people",rels:["married"],kw:["시댁","시어머니","시부모","시누","처가","장모","장인","며느리","사위","명절"],
+  t:"시댁·처가 스트레스",d:"배우자와 '한 팀'이 되는 것이 해결의 80%입니다.",
+  do:["배우자와 먼저 기준 합의하기","방문 빈도·시간을 미리 정하기","속마음은 배우자에게만 솔직히"],dont:["직접 정면충돌","배우자 탓만 하기"]},
+ {id:"parent",cat:"people",jobs:["home"],kw:["육아","아이가","아이를","우리아이","아기","애가","아들","딸","어린이집","학부모","사춘기","유치원"],
+  t:"육아에 지쳤을 때",d:"좋은 부모는 지치지 않는 부모가 아니라 회복하는 부모예요.",
+  do:["하루 30분 '나만의 시간' 확보하기","도움 요청할 사람 목록 만들기","오늘 잘한 것 하나 기록하기"],dont:["SNS 속 육아와 비교","혼자 다 하려 하기"]},
+ {id:"lonely",cat:"people",kw:["외로","혼자","인간관계","사람이싫","소외","내향","낯가림","친구가없"],
+  t:"사람에 지쳤거나 외로울 때",d:"관계의 양보다 '편한 사람 한 명'이 마음을 채워요.",
+  do:["오래 연락 안 한 한 명에게 안부 보내기","작은 취미 모임 한 번 나가 보기","혼자만의 시간도 일정에 넣기"],dont:["모든 초대에 응하기","혼자인 걸 실패로 여기기"]},
+ {id:"gossip",cat:"people",kw:["소문","뒷담","구설","험담","오해받","루머","말이돌"],
+  t:"구설·오해에 휘말렸을 때",d:"말은 빨리 퍼지지만 빨리 잊히기도 해요. 대응보다 '일관성'이 이깁니다.",
+  do:["사실관계만 짧게 정리해 두기","핵심 당사자하고만 대화하기","평소처럼 행동하기"],dont:["장문의 해명","같이 맞불 놓기"]},
+ // 🌿 마음·건강
+ {id:"anxiety",cat:"mind",care:1,kw:["불안","걱정","초조","긴장","무서","겁나","공황","두려"],
+  t:"불안이 커질 때",d:"불안은 미래를 너무 앞서 사는 마음이에요. 오늘 할 수 있는 크기로 줄이면 가라앉습니다.",
+  do:["걱정을 '바꿀 수 있는 것/없는 것'으로 나눠 적기","하루 10분 걷기","잠들기 전 휴대폰은 멀리"],dont:["새벽에 중요한 결정","카페인·술로 달래기"]},
+ {id:"low",cat:"mind",care:1,kw:["우울","무기력","의욕","아무것도","하기싫","공허","눈물","재미가없"],
+  t:"무기력이 찾아왔을 때",d:"에너지가 바닥일 땐 '작은 승리'부터 쌓아야 해요.",
+  do:["이불 정리 같은 2분짜리 일 하나 해내기","햇빛 15분 쬐기","믿는 사람 한 명에게 요즘 상태 말하기"],dont:["스스로를 게으르다 몰아붙이기","2주 넘게 혼자 버티기 — 그땐 상담을"]},
+ {id:"sleep",cat:"mind",kw:["잠을","잠이","불면","못자","수면","새벽에깨","피곤"],
+  t:"잠이 안 올 때",d:"잠은 모든 운의 바닥 공사예요. 잠이 흔들리면 판단도 흔들립니다.",
+  do:["기상 시간부터 고정하기(주말 포함)","잠들기 1시간 전 화면 끄기","오후 2시 이후 카페인 끊기"],dont:["누워서 고민 해결하기","1시간 넘는 낮잠"]},
+ {id:"health",cat:"mind",kw:["다이어트","살빼","살이","운동","건강","체중","헬스","병원","아프","통증","검진"],
+  t:"몸을 다시 챙기고 싶을 때",d:"거창한 계획보다 '매일 하는 최소 단위'가 몸을 바꿉니다.",
+  do:["하루 20분 걷기부터","미뤄 둔 건강검진 예약하기","물 1.5L 마시기"],dont:["극단적인 식단","주말에 몰아서 운동"]},
+ {id:"esteem",cat:"mind",kw:["자존감","자신감","비교","열등감","못난","남들은","나만","부러"],
+  t:"자꾸 남과 비교될 때",d:"비교는 남의 하이라이트와 나의 비하인드를 나란히 놓는 일이에요.",
+  do:["SNS 사용 시간 하루 30분으로 제한","오늘 잘한 일 3가지 적기","작은 약속을 지켜 자신감 쌓기"],dont:["남의 속도로 내 인생 채점하기","칭찬을 손사래로 거절하기"]},
+ // 📚 공부
+ {id:"exam",cat:"study",jobs:["student","seeker"],kw:["시험","수능","자격증","공시","공무원","기술사","토익","합격","모의고사","성적","고시","기사시험","임용"],
+  t:"시험, 붙을 수 있을까",d:"합격은 '공부한 시간'보다 '남은 기간 관리'에서 갈립니다.",
+  do:["기출 3회분부터 풀어 보기","D-day에서 거꾸로 주간 계획 세우기","하루 1시간은 오답 정리"],dont:["새 교재 계속 사기","시험 직전 밤샘"]},
+ {id:"focus",cat:"study",jobs:["student"],kw:["공부","집중","미루","슬럼프","계획표","의지","공부가안"],
+  t:"공부가 손에 안 잡힐 때",d:"의지 문제가 아니라 환경 문제일 가능성이 커요.",
+  do:["25분 집중 + 5분 휴식 4세트","휴대폰은 다른 방에","같은 자리·같은 음악으로 시작 의식 만들기"],dont:["계획표만 다시 짜기","공부 시간 인증에 집착하기"]},
+ {id:"admit",cat:"study",jobs:["student"],kw:["입시","대학","편입","대학원","유학","원서","수시","정시","학교"],
+  t:"진학·유학을 결정할 때",d:"학교 이름보다 '그곳에서 무엇을 할지'가 선명할수록 운이 따라요.",
+  do:["그 학교·과정 졸업생 두 명에게 묻기","비용·기간 현실적으로 계산하기","플랜B 원서 한 곳 준비"],dont:["주변 평판만으로 결정","마감 직전 원서 접수"]},
+ // 🧭 변화·결정
+ {id:"decide",cat:"change",kw:["선택","결정","갈림길","둘중","망설","할까말까","어떻게해야","고민중"],
+  t:"갈림길에서 고민될 때",d:"고민이 길다는 건 두 선택 모두 장단점이 있다는 뜻이에요. 기준을 먼저 정하면 답이 보입니다.",
+  do:["5년 뒤의 나에게 물어보기","선택지마다 '최악의 경우' 적어 보기","결정 마감일 정하기"],dont:["모두에게 의견 묻기","마감 없이 고민 반복"]},
+ {id:"move",cat:"change",kw:["이사","이주","독립","자취","집구하","방구하","본가"],
+  t:"이사·독립을 앞두고",d:"새 공간은 새 흐름을 부릅니다. 단, 계약 확인이 운을 지켜요.",
+  do:["출퇴근·생활 동선 직접 걸어 보기","낮·밤 두 번 방문하기","이사 전 짐 30% 버리기"],dont:["사진만 보고 계약","이사 날짜 무리하게 당기기"]},
+ {id:"challenge",cat:"change",kw:["도전","새로운","시작하","용기","결심","처음","해볼까"],
+  t:"새로운 도전을 앞두고",d:"두려움은 '중요한 일'이라는 표시예요. 작게 쪼개면 시작할 수 있어요.",
+  do:["첫 단계를 15분짜리로 쪼개기","가까운 사람에게 공개 선언하기","실패해도 얻는 것 적어 두기"],dont:["준비만 계속하기","시작 전에 결과 걱정하기"]},
+ {id:"pause",cat:"change",jobs:["rest"],kw:["백수","쉬는중","공백","휴직","쉬고","무직","퇴사후","갭이어","놀고"],
+  t:"쉬고 있는 지금이 불안할 때",d:"쉼에도 설계가 필요해요. 기한과 리듬이 있으면 휴식이 도약이 됩니다.",
+  do:["휴식이 끝나는 날짜 정하기","하루 하나 '생산적인 일' 하기","몸 쓰는 습관 하나 만들기"],dont:["밤낮 바뀌기","남들 근황 몰아 보기"]},
+ {id:"abroad",cat:"change",kw:["해외","워홀","이민","비자","외국","어학연수"],
+  t:"해외·워홀·이민을 고민한다면",d:"멀리 가는 기운이 들어와요. 막연한 동경 말고 숫자로 준비하세요.",
+  do:["비자 조건·마감일 확인하기","초기 정착 자금 계산하기","현지 경험자 한 명과 연결되기"],dont:["준비 없이 편도 티켓","현지 일자리 낙관"]}
+];
+const SET_BY=Object.fromEntries(SETS.map(s=>[s.id,s]));
+/* 분야만 고르고 글을 안 쓴 경우의 기본 처방 (직업·연애 상태로 고름) */
+const DEFAULT={
+ love:r=>({solo:"meet",some:"some",dating:"bored",married:"couple",after:"breakup"})[r]||"meet",
+ work:j=>({student:"path",seeker:"jobhunt",office:"quit",biz:"sales",free:"freelance",home:"path",rest:"pause"})[j]||"path",
+ money:j=>({student:"save",seeker:"save",office:"save",biz:"income",free:"income",home:"spend",rest:"spend"})[j]||"save",
+ people:j=>j==="home"?"parent":"lonely",
+ mind:()=>"anxiety",
+ study:j=>j==="office"||j==="seeker"?"exam":"focus",
+ change:j=>j==="rest"?"pause":"decide"
+};
+const EXAMPLES={
+ love:["썸 타는 사람이 답장이 느려요","전남친한테 연락 올까요?","3년 사귄 애인과 권태기 같아요","결혼해도 될지 고민돼요"],
+ work:["팀장 때문에 이직 고민 중","취업이 계속 안 돼요","가게 매출이 줄었어요","다음 주 최종 면접이에요"],
+ money:["코인 물렸는데 버틸까요?","카드값이 감당이 안 돼요","돈을 모으고 싶어요","전세 계약 앞두고 있어요"],
+ people:["친구랑 멀어진 느낌이에요","엄마랑 자꾸 싸워요","회사에서 이상한 소문이 돌아요","요즘 너무 외로워요"],
+ mind:["요즘 불안해서 잠을 못 자요","아무것도 하기 싫어요","다이어트 성공하고 싶어요","남들이랑 자꾸 비교돼요"],
+ study:["기술사 시험 합격할 수 있을까요?","공부가 손에 안 잡혀요","대학원 갈지 고민이에요","토익 점수가 안 올라요"],
+ change:["이사 갈까 말까 고민돼요","워홀 가도 될까요?","새로운 도전을 해 보고 싶어요","퇴사 후 쉬는 중인데 불안해요"]
+};
+
+/* ═════════ 4. 타로 78장 (Rider–Waite–Smith 1909 · 퍼블릭 도메인) ═════════
+   [번호, 영문, 한글, 기운(-2~3), 정방향 키워드, 역방향 키워드, 역방향 조언, {분야별 정방향 해석}] */
+const MAJOR=[
+ ["0","The Fool","바보",1,"새로운 시작·순수한 용기","무모함·준비 부족","뛰기 전에 착지할 곳부터 확인하세요.",
+  {love:"계산 없이 마음 가는 대로 다가가도 좋은 때. 새 인연의 문이 열려 있어요.",work:"경험 없는 분야라도 일단 발을 들여 보세요. 초심자의 운이 따릅니다.",money:"새 수입 통로가 보이지만 지갑은 가볍게 — 소액으로 시험해 보세요.",people:"낯선 모임에 가볍게 나가 보세요. 의외의 사람이 문을 열어 줍니다.",mind:"생각을 줄이고 몸을 먼저 움직이면 마음이 따라옵니다.",change:"완벽한 계획을 기다리지 마세요. 출발 자체가 답인 카드예요."}],
+ ["I","The Magician","마법사",2,"재능 발휘·실행력","말뿐인 계획·재능 낭비","말한 것 중 하나라도 오늘 실행하세요.",
+  {love:"적극적으로 표현하면 통하는 때. 내가 먼저 판을 깔아 보세요.",work:"가진 기술로 충분합니다. 아이디어를 바로 결과물로 만드세요.",money:"재능이 돈이 되는 카드. 할 줄 아는 것을 상품으로 만들어 보세요.",people:"대화의 주도권이 내게 있어요. 원하는 걸 분명히 말하세요.",mind:"스스로 바꿀 수 있는 것에 집중하면 무력감이 사라져요.",change:"필요한 재료는 이미 다 있어요. 시작 버튼만 누르면 됩니다."}],
+ ["II","The High Priestess","여사제",1,"직관·내면의 지혜","직감 무시·숨은 정보","아직 드러나지 않은 정보가 있어요. 확인 후 움직이세요.",
+  {love:"말보다 느낌을 믿으세요. 상대의 진심은 행동의 '결'에서 보입니다.",work:"아직 공개할 때가 아니에요. 조용히 준비하고 정보를 모으세요.",money:"남들 얘기보다 내 판단을 믿을 때. 단, 확인 안 된 정보엔 손대지 마세요.",people:"듣는 쪽이 될 때 관계의 속내가 보입니다.",mind:"혼자만의 조용한 시간이 답을 줍니다. 일기를 써 보세요.",change:"결정은 마음이 고요해졌을 때 내리세요."}],
+ ["III","The Empress","여황제",2,"풍요·돌봄·창조성","과잉·자기 돌봄 부족","남을 돌보기 전에 나부터 채우세요.",
+  {love:"사랑받고 사랑하는 기운이 풍성해요. 다정함이 가장 큰 매력입니다.",work:"꾸준히 가꾼 일이 열매를 맺어요. 창작·기획에 특히 좋습니다.",money:"풍요의 카드. 들어오는 흐름을 담을 그릇(저축)을 준비하세요.",people:"먼저 베푼 친절이 몇 배로 돌아옵니다.",mind:"맛있는 음식, 좋은 잠, 자연 — 몸을 돌보면 마음이 풀려요.",change:"새로운 것을 '키워 가는' 변화가 좋아요. 급하게 말고 자라게."}],
+ ["IV","The Emperor","황제",1,"안정·질서·리더십","고집·통제욕","내 방식만 고집하면 길이 막혀요. 규칙을 조금 느슨하게.",
+  {love:"책임감 있는 관계. 약속을 지키는 모습이 신뢰를 만듭니다.",work:"주도권을 잡을 때. 체계를 세우고 역할을 분명히 하세요.",money:"규칙이 돈을 지켜요. 예산표를 만들고 지키세요.",people:"경계를 분명히 하는 것이 오히려 관계를 오래 가게 합니다.",mind:"루틴이 마음의 기둥이 돼요. 기상 시간부터 고정하세요.",change:"감정보다 계획. 단계별 일정표를 만들면 변화가 안전해집니다."}],
+ ["V","The Hierophant","교황",1,"가르침·멘토·전통","틀을 깨고 싶은 마음","남이 정한 정답 말고 나만의 방식을 시험해 보세요.",
+  {love:"진지하고 공식적인 관계로 나아가는 기운. 소개로 오는 인연도 좋아요.",work:"선배·멘토의 조언이 지름길입니다. 먼저 물어보세요.",money:"검증된 방법이 최고예요. 유행보다 정석.",people:"어른·스승과의 인연이 도움이 됩니다.",mind:"믿을 만한 전문가와 이야기해 보세요. 혼자 끙끙 앓지 않아도 돼요.",change:"결정 전에 경험자 한 명에게 꼭 물어보세요."}],
+ ["VI","The Lovers","연인",2,"사랑·조화·중요한 선택","가치관 충돌·흔들리는 선택","머리와 마음이 다른 말을 해요. 내 가치부터 정리하세요.",
+  {love:"마음이 통하는 인연의 카드. 관계가 한 단계 깊어질 수 있어요.",work:"좋은 파트너를 만나는 카드. 함께할 사람을 고르는 안목이 중요합니다.",money:"동업·공동 투자는 가치관이 맞는지 먼저 확인하세요.",people:"진심이 통하는 사람과 가까워지는 때.",mind:"내가 진짜 원하는 것을 인정하면 마음이 편해져요.",change:"갈림길에서 '마음이 끌리는 쪽'이 정답에 가깝습니다."}],
+ ["VII","The Chariot","전차",2,"의지·전진·승리","방향 상실·조급함","속도를 늦추고 핸들(방향)부터 잡으세요.",
+  {love:"망설이지 말고 다가가세요. 적극성이 이깁니다.",work:"목표를 향해 밀어붙일 때. 경쟁에서 이기는 기운이에요.",money:"목표 금액을 정하면 달성하는 카드. 숫자로 정하세요.",people:"내가 먼저 약속을 잡으면 관계가 움직입니다.",mind:"의지로 이길 수 있는 시기. 작은 목표를 연달아 달성하세요.",change:"이동·출발에 아주 좋은 카드. 결정했다면 직진하세요."}],
+ ["VIII","Strength","힘",2,"부드러운 강함·인내","자기 의심·지침","약해진 게 아니라 지친 거예요. 회복이 먼저입니다.",
+  {love:"부드러움이 이기는 때. 다그치기보다 기다려 주세요.",work:"꾸준함이 실력을 증명합니다. 까다로운 상황도 차분히 다룰 수 있어요.",money:"충동을 다스리는 힘이 돈을 지켜요.",people:"까다로운 사람도 온화함으로 다룰 수 있는 시기예요.",mind:"당신은 생각보다 강해요. 스스로를 다정하게 대해 주세요.",change:"두려움을 인정하고도 나아갈 수 있어요. 용기의 카드입니다."}],
+ ["IX","The Hermit","은둔자",0,"성찰·탐구·홀로서기","고립·회피","혼자 너무 오래 있었어요. 한 사람에게 손을 내미세요.",
+  {love:"관계보다 나를 먼저 들여다볼 때. 서두를 필요 없어요.",work:"깊이 파고드는 전문성의 시기. 혼자 집중하는 일에 강합니다.",money:"소비를 줄이고 조용히 모으는 때예요.",people:"넓은 관계보다 깊은 한두 명.",mind:"혼자만의 시간이 필요하다는 신호. 산책과 기록을 권해요.",change:"결정 전에 혼자 충분히 생각할 시간을 가지세요."}],
+ ["X","Wheel of Fortune","운명의 수레바퀴",2,"전환점·행운","흐름 지연·반복","바퀴는 결국 돌아요. 지금은 버티며 준비할 때.",
+  {love:"인연의 타이밍이 맞물리는 카드. 우연한 만남을 놓치지 마세요.",work:"흐름이 바뀌는 시점. 갑자기 온 기회를 잡으세요.",money:"운이 들어오는 때. 단, 운은 준비된 통장에 머뭅니다.",people:"오랜만의 연락·재회가 반가운 기회를 가져와요.",mind:"나쁜 시기도 지나갑니다. 흐름은 돌고 있어요.",change:"변화의 바퀴가 이미 돌기 시작했어요. 올라타세요."}],
+ ["XI","Justice","정의",1,"균형·공정·책임","불공정·책임 회피","미뤄 둔 책임을 정리해야 다음이 열려요.",
+  {love:"주고받음의 균형을 점검하세요. 한쪽만 애쓰고 있지 않나요?",work:"정당한 평가를 받는 시기. 계약·서류는 꼼꼼히.",money:"계약·법적 문제에 유리한 카드. 서류로 남기세요.",people:"공정하게 말하면 오해가 풀립니다.",mind:"스스로에게도 공정하세요. 잘한 것도 인정해 주세요.",change:"장단점을 표로 비교해 보세요. 답이 선명해집니다."}],
+ ["XII","The Hanged Man","매달린 사람",0,"관점 전환·기다림","헛된 희생·제자리","버티는 것만이 답은 아니에요. 그만둘 용기도 필요합니다.",
+  {love:"지금은 밀어붙이기보다 기다릴 때. 상대 입장에서 다시 보세요.",work:"멈춘 듯해도 숙성 중이에요. 다른 각도의 해법을 찾으세요.",money:"지금 움직이면 손해. 잠시 관망하세요.",people:"내가 옳다는 생각을 잠시 내려놓으면 풀려요.",mind:"멈춤도 과정이에요. 쉬어도 괜찮아요.",change:"결정을 잠시 보류해도 좋은 때. 시간이 새 관점을 줍니다."}],
+ ["XIII","Death","죽음(변화)",-1,"끝과 새 시작","변화 거부·질질 끔","이미 끝난 것을 붙잡고 있어요. 놓아야 새것이 와요.",
+  {love:"한 장이 끝나고 새 장이 열려요. 관계의 형태가 바뀌는 때.",work:"한 단계가 끝나는 신호. 정리하면 새 기회가 들어옵니다.",money:"낡은 소비 습관을 끝낼 때. 해지·정리가 돈을 부릅니다.",people:"자연스럽게 멀어지는 관계를 받아들이세요.",mind:"과거의 나를 보내 주세요. 새 버전의 내가 기다립니다.",change:"끝은 새 시작의 다른 이름. 변화가 이미 진행 중이에요."}],
+ ["XIV","Temperance","절제",1,"균형·조화·중용","과잉·불균형","한쪽으로 너무 기울었어요. 비율을 다시 맞추세요.",
+  {love:"서로 속도를 맞춰 가는 관계. 천천히 스며드는 인연이에요.",work:"일과 삶의 균형을 맞출 때 성과가 올라요.",money:"적당히 쓰고 적당히 모으기. 극단은 피하세요.",people:"중재자 역할이 빛나는 시기예요.",mind:"몸과 마음의 리듬을 회복하는 카드. 규칙적인 생활이 약입니다.",change:"급격한 변화보다 조금씩 조정하는 게 맞아요."}],
+ ["XV","The Devil","악마",-2,"집착·유혹·얽매임","속박에서 벗어남","끊고 싶던 것을 끊을 힘이 생겼어요. 지금이 기회.",
+  {love:"강한 끌림과 집착 사이. 이 관계가 나를 자유롭게 하는지 물어보세요.",work:"돈·조건에 묶여 있지 않은지 점검하세요.",money:"충동 소비·도박성 투자 경고. 유혹이 큰 때입니다.",people:"나를 소모시키는 관계를 알아차리세요.",mind:"폰·술·야식 같은 습관이 나를 붙잡고 있어요. 하나만 끊어 보세요.",change:"두려움 때문에 떠나지 못하는 게 있다면, 그게 답이에요."}],
+ ["XVI","The Tower","탑",-2,"갑작스런 변화·각성","위기 모면·변화 회피","피한 위기도 신호예요. 기초를 보강하세요.",
+  {love:"숨은 문제가 드러나는 때. 아프지만 진실이 관계를 다시 세웁니다.",work:"예상 밖의 변동. 흔들리는 판에서 기회를 찾는 사람이 이깁니다.",money:"급한 지출·변동 주의. 비상금을 확인하세요.",people:"오해가 터져 나올 수 있어요. 감정보다 사실로.",mind:"무너진 자리에 더 단단한 내가 지어집니다.",change:"원치 않던 변화가 사실은 필요한 변화예요."}],
+ ["XVII","The Star","별",2,"희망·치유·영감","낙담·자신감 부족","희망이 사라진 게 아니라 잠시 가려졌어요. 작은 목표부터.",
+  {love:"치유와 희망의 인연. 상처가 아물고 다시 설렐 수 있어요.",work:"오래 품은 꿈에 다시 빛이 들어요. 결과물을 세상에 보여 주세요.",money:"장기적 희망의 카드. 꾸준히 넣는 돈이 미래를 밝혀요.",people:"진심을 나눌 수 있는 사람이 나타납니다.",mind:"회복의 카드. 마음이 다시 맑아지고 있어요.",change:"새 방향에 희망이 있어요. 믿고 가세요."}],
+ ["XVIII","The Moon","달",-1,"불확실·불안·숨은 진실","안개가 걷힘","헷갈렸던 것이 곧 선명해져요. 조금만 더.",
+  {love:"상대 마음이 잘 안 보이는 때. 추측 대신 확인하세요.",work:"정보가 불완전해요. 큰 결정은 사실 확인 후에.",money:"불확실한 투자·제안 주의. 모르는 건 하지 마세요.",people:"오해와 소문에 휘둘리지 마세요.",mind:"불안이 커 보이는 건 밤이라서예요. 아침에 다시 생각하세요.",change:"길이 안 보여도 한 걸음씩. 서두르면 헛디딥니다."}],
+ ["XIX","The Sun","태양",3,"성공·기쁨·명확함","일시적 흐림·과신","구름이 잠깐 가렸을 뿐. 기본만 지키면 해는 다시 떠요.",
+  {love:"밝고 행복한 관계의 카드. 좋은 소식이 따라와요.",work:"노력이 인정받는 때. 성과가 환하게 드러납니다.",money:"좋은 수입 흐름. 기쁘게 쓰고 넉넉히 남겨요.",people:"어디서든 환영받는 시기. 사람이 모입니다.",mind:"에너지가 회복되는 카드. 햇빛을 많이 쬐세요.",change:"답이 선명하고 결과도 밝아요. 자신 있게!"}],
+ ["XX","Judgement","심판",1,"재평가·부활·결심","미루기·자기 비판","과거의 나를 너무 심판하지 마세요. 다시 시작할 자격 있어요.",
+  {love:"지난 인연이 다시 부르거나, 관계를 새로 결심하는 때.",work:"재도전에 좋은 카드. 떨어졌던 곳의 문을 다시 두드려도 됩니다.",money:"잊고 있던 돈·환급을 찾아보세요. 재정 점검의 시기.",people:"오래된 관계를 정리하고 회복하는 때.",mind:"다시 태어나는 결심. 오늘을 '다시 1일'로.",change:"부르는 소리를 따라가세요. 이번엔 준비가 되어 있어요."}],
+ ["XXI","The World","세계",3,"완성·성취·더 넓은 무대","마무리 지연","거의 다 왔어요. 마지막 10%를 마무리하세요.",
+  {love:"관계의 완성. 결혼·동거 등 다음 단계로 가는 카드.",work:"목표 달성과 더 넓은 무대. 해외·확장 운도 있어요.",money:"목표 금액 달성의 기운. 한 사이클을 잘 마무리합니다.",people:"넓은 세계의 사람들과 연결돼요.",mind:"충만함의 카드. 지금까지 정말 잘 해 왔어요.",change:"한 챕터를 완성하고 다음 무대로 갑니다."}]
+];
+const SUITS=[
+ {k:"Wands",f:"w",ko:"완드",el:"불",speed:"2주 안",ctx:{love:"열정적으로 다가가는 연애",work:"새 프로젝트와 추진력",money:"벌이를 늘리는 적극성",people:"에너지를 주고받는 관계",mind:"몸을 움직여 기운 되찾기",change:"행동으로 여는 변화"},
+  lucky:{color:"빨강·주황",place:"햇빛 드는 공원",item:"운동화",act:"아침 20분 산책"}},
+ {k:"Cups",f:"c",ko:"컵",el:"물",speed:"한 달 안",ctx:{love:"감정이 오가는 마음의 교류",work:"일의 보람과 팀 분위기",money:"돈보다 마음의 여유",people:"정서적 유대",mind:"감정을 돌보는 일",change:"마음이 끌리는 쪽"},
+  lucky:{color:"파랑·은색",place:"물가·창가 카페",item:"텀블러",act:"고마운 사람에게 음성 메시지"}},
+ {k:"Swords",f:"s",ko:"소드",el:"바람",speed:"결정하는 즉시",ctx:{love:"말과 생각이 엇갈리는 지점",work:"판단·결정·갈등 조율",money:"냉정한 계산",people:"말로 생기는 오해",mind:"생각이 많아 지친 머리",change:"결단이 필요한 순간"},
+  lucky:{color:"흰색·하늘색",place:"도서관·서점",item:"펜과 작은 노트",act:"할 일 목록 딱 3줄 쓰기"}},
+ {k:"Pentacles",f:"p",ko:"펜타클",el:"흙",speed:"3개월에 걸쳐",ctx:{love:"현실적인 조건과 안정",work:"성과·보상·실무 능력",money:"실제 통장과 자산",people:"실질적인 도움",mind:"몸과 생활 리듬",change:"현실적인 준비"},
+  lucky:{color:"초록·갈색",place:"시장·화원",item:"작은 화분",act:"지갑·영수증 정리"}}
+];
+/* [영문, 한글, 기운, 정 키워드, 정 조언, 역 키워드, 역 조언] */
+const RANKS=[
+ ["Ace","에이스",2,"새로운 씨앗","작게라도 바로 시작하세요.","타이밍 지연","서두르지 말고 준비부터 하세요."],
+ ["Two","2",1,"선택과 균형","두 갈래를 저울질하되 기한을 정하세요.","우유부단","결정을 미룬 대가가 커지는 중이에요."],
+ ["Three","3",2,"협력과 첫 성과","혼자보다 함께할 사람을 찾으세요.","엇박자","역할과 기대를 다시 맞추세요."],
+ ["Four","4",1,"안정과 휴식","한숨 돌리며 지킬 것을 지키세요.","정체","익숙함에서 한 발 나오세요."],
+ ["Five","5",-2,"갈등·상실감","잃은 것보다 남은 것을 세어 보세요.","회복의 시작","최악은 지나갔어요."],
+ ["Six","6",1,"회복과 나눔","받은 도움을 돌려줄 때 운이 돕니다.","과거에 머묾","지나간 방식에 매달리지 마세요."],
+ ["Seven","7",0,"도전과 전략","지킬 자리를 정하고 버티세요.","흔들리는 의지","모든 싸움을 다 할 필요는 없어요."],
+ ["Eight","8",1,"속도와 몰입","지금은 집중해서 밀어붙일 때예요.","지연·답답함","막힌 건 방향이 아니라 방법일 수 있어요."],
+ ["Nine","9",1,"거의 다 옴","마지막 한 걸음, 포기하지 마세요.","불안·과로","혼자 진 짐을 나누세요."],
+ ["Ten","10",0,"완성 또는 무게","끝맺고 다음 장으로 넘어갈 준비를 하세요.","과부하","내려놓을 것 하나를 고르세요."],
+ ["Page","시종",1,"새 소식·배움","호기심을 따라 먼저 물어보세요.","미숙함","기초부터 다시 다지면 돼요."],
+ ["Knight","기사",1,"행동·추진","생각만 하던 걸 이번 주에 실행하세요.","성급함","속도보다 방향 확인이 먼저예요."],
+ ["Queen","여왕",2,"성숙한 돌봄","부드럽지만 단단하게 대하세요.","감정 과잉","남을 챙기다 나를 잃지 마세요."],
+ ["King","왕",2,"책임과 주도","결정권을 쥐고 이끌 때예요.","독단","다른 사람 말도 한 번 들어 보세요."]
+];
+const VAL_FIX={s3:-2,s9:-2,s10:-2,s8:-1,c10:3,c9:3,p10:2,w10:-1};
+const DECK=[];
+MAJOR.forEach((m,i)=>DECK.push({id:"m"+String(i).padStart(2,"0"),major:true,num:m[0],en:m[1],ko:m[2],v:m[3],up:m[4],rv:m[5],rvAdv:m[6],cat:m[7]}));
+SUITS.forEach(s=>RANKS.forEach((r,i)=>{const id=s.f+String(i+1).padStart(2,"0");
+  DECK.push({id,major:false,suit:s,num:r[1],en:`${r[0]} of ${s.k}`,ko:`${s.ko} ${r[1]}`,v:VAL_FIX[s.f+(i+1)]??r[2],up:r[3],upAdv:r[4],rv:r[5],rvAdv:r[6]})}));
+const img=c=>`cards/${c.id}.webp`;
+const POS=[["지금 상황","현재 흐름"],["걸림돌","막고 있는 것"],["해결 열쇠","이렇게 풀어요"]];
+
+/* ═════════ 5. 키워드 엔진 ═════════ */
+const norm=s=>String(s||"").toLowerCase().replace(/\s+/g,"");
+const YESNO=/(될까|할까|해도돼|해도될|좋을까|맞을까|올까|붙을까|할지|말지|가능할|괜찮을|될지|있을까|\?)/;
+const CRISIS=/(죽고싶|자살|사라지고싶|살기싫|죽어버)/;
+function analyze(text,cat,job,rel){
+  const t=norm(text);const found=[];const scored=[];
+  for(const s of SETS){
+    let hits=0;for(const k of s.kw){if(t.includes(k)){hits++;if(!found.includes(k))found.push(k)}}
+    let sc=hits*3;if(cat&&s.cat===cat)sc+=2;if(s.jobs&&s.jobs.includes(job))sc+=1.5;if(s.rels&&s.rels.includes(rel))sc+=1.5;
+    scored.push({s,hits,sc});
+  }
+  scored.sort((a,b)=>b.sc-a.sc||b.hits-a.hits);
+  const hit=scored.filter(x=>x.hits>0);
+  let main,sub=null;
+  if(hit.length){main=hit[0].s;const nx=hit.find(x=>x.s.id!==main.id&&x.sc>=3);if(nx)sub=nx.s}
+  else if(cat){main=SET_BY[DEFAULT[cat](cat==="love"?rel:job)]}
+  else main=SET_BY.decide;
+  if(!sub&&cat&&main.cat!==cat){sub=SET_BY[DEFAULT[cat](cat==="love"?rel:job)]}
+  const crisis=CRISIS.test(t);
+  if(crisis&&main.id!=="low"){sub=main;main=SET_BY.low}
+  return{kws:found,main,sub,cat:cat||main.cat,yesno:YESNO.test(t),crisis};
+}
+
+/* ═════════ 6. 상태·유틸 ═════════ */
+const S={z:null,job:null,rel:null,cat:null,text:"",picks:[],order:[],an:null};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function toast(m){const e=$("toast");e.textContent=m;e.classList.add("on");clearTimeout(toast.h);toast.h=setTimeout(()=>e.classList.remove("on"),2500)}
+const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+
+/* 별빛 배경 */
+const sky=$("sky"),sc=sky.getContext("2d");let st=[],shoot=null;
 function rs(){const d=devicePixelRatio||1;sky.width=innerWidth*d;sky.height=innerHeight*d;sc.setTransform(d,0,0,d,0,0);st=Array.from({length:Math.round(innerWidth*innerHeight/3200)},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.2,p:Math.random()*6.28,s:.35+Math.random()*1.5}))}
-let shoot=null;
-function sk(t){t/=1000;sc.clearRect(0,0,innerWidth,innerHeight);const g=sc.createLinearGradient(0,0,innerWidth*.4,innerHeight);g.addColorStop(0,"#06040f");g.addColorStop(.5,"#0d0820");g.addColorStop(1,"#120c2a");sc.fillStyle=g;sc.fillRect(0,0,innerWidth,innerHeight);for(const s of st){sc.globalAlpha=.25+.75*Math.abs(Math.sin(t*s.s+s.p));sc.fillStyle=s.r>1.3?"#f3dea4":"#dddeff";sc.beginPath();sc.arc(s.x,s.y,s.r,0,7);sc.fill()}if(!shoot&&Math.random()<.005)shoot={x:Math.random()*innerWidth,y:Math.random()*innerHeight*.35,l:0};if(shoot){shoot.l+=.025;sc.globalAlpha=1-shoot.l;sc.strokeStyle="#fff";sc.lineWidth=1.5;sc.beginPath();sc.moveTo(shoot.x+shoot.l*280,shoot.y+shoot.l*110);sc.lineTo(shoot.x+shoot.l*280-70,shoot.y+shoot.l*110-28);sc.stroke();if(shoot.l>=1)shoot=null}sc.globalAlpha=1;requestAnimationFrame(sk)}
+function sk(t){t/=1000;const g=sc.createLinearGradient(0,0,innerWidth*.4,innerHeight);g.addColorStop(0,"#06040f");g.addColorStop(.5,"#0d0820");g.addColorStop(1,"#120c2a");sc.fillStyle=g;sc.fillRect(0,0,innerWidth,innerHeight);for(const s of st){sc.globalAlpha=.25+.75*Math.abs(Math.sin(t*s.s+s.p));sc.fillStyle=s.r>1.3?"#f3dea4":"#dddeff";sc.beginPath();sc.arc(s.x,s.y,s.r,0,7);sc.fill()}if(!shoot&&Math.random()<.005)shoot={x:Math.random()*innerWidth,y:Math.random()*innerHeight*.35,l:0};if(shoot){shoot.l+=.025;sc.globalAlpha=1-shoot.l;sc.strokeStyle="#fff";sc.lineWidth=1.5;sc.beginPath();sc.moveTo(shoot.x+shoot.l*280,shoot.y+shoot.l*110);sc.lineTo(shoot.x+shoot.l*280-70,shoot.y+shoot.l*110-28);sc.stroke();if(shoot.l>=1)shoot=null}sc.globalAlpha=1;requestAnimationFrame(sk)}
 addEventListener("resize",rs);rs();requestAnimationFrame(sk);
 
-// ── 유틸 ──
-const $=id=>document.getElementById(id);
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function toast(m){const e=$("toast");e.textContent=m;e.classList.add("on");clearTimeout(toast.h);toast.h=setTimeout(()=>e.classList.remove("on"),2500)}
-
-// ── 단계 전환 ──
+/* 단계 전환 */
+document.querySelectorAll(".dots").forEach(d=>{const n=+d.dataset.n;d.innerHTML=[1,2,3,4,5].map(i=>`<div class="dot ${i<=n?"on":""}"></div>`).join("")});
 let cur=1;
 function goStep(n){
+  if(n===cur)return;
+  if(n===4)enterDeck();
+  if(n===5)buildResult();
   const from=$("s"+cur),to=$("s"+n);
-  if(n>cur){to.classList.add("active");from.classList.add("prev");setTimeout(()=>{from.classList.remove("active","prev");from.scrollTop=0},420)}
-  else{from.classList.remove("active");to.classList.remove("prev");setTimeout(()=>{from.scrollTop=0},420)}
-  cur=n;if(n===2)animateMeters();
+  if(n>cur){to.classList.add("active");from.classList.add("prev");setTimeout(()=>{from.classList.remove("active","prev")},420)}
+  else{to.classList.remove("prev");to.classList.add("active");from.classList.remove("active")}
+  to.scrollTop=0;cur=n;
 }
 window.goStep=goStep;
 
-// ── 띠 그리드 ──
-let picked=null;
-$("zgrid").innerHTML=ZODIAC.map((z,i)=>`<button class="zbtn" data-i="${i}"><span class="em">${z.em}</span><span class="nm">${z.an}</span><span class="rk">${z.rank}위</span></button>`).join("");
-$("zgrid").addEventListener("click",e=>{
-  const b=e.target.closest(".zbtn");if(!b)return;
-  const i=+b.dataset.i;picked=ZODIAC[i];
-  buildS2(picked);goStep(2);
-  try{localStorage.setItem("f27_z",i)}catch(e){}
-});
+/* ── STEP 1 ── */
+$("zgrid").innerHTML=ZODIAC.map((z,i)=>`<button class="zbtn" data-i="${i}" aria-label="${z.an}띠"><span class="em">${z.em}</span><span class="nm">${z.an}</span><span class="rk">${z.rank}위</span></button>`).join("");
+$("zgrid").addEventListener("click",e=>{const b=e.target.closest(".zbtn");if(!b)return;
+  S.z=ZODIAC[+b.dataset.i];LS.set("f27_z",b.dataset.i);$("s2z").textContent=S.z.em;goStep(2)});
 
-// ── Step 2 빌드 ──
-function tagStyle(cl){
-  if(cl==="g")return"background:rgba(74,222,128,.1);color:#4ade80;border-color:rgba(74,222,128,.28)";
-  if(cl==="w")return"background:rgba(251,145,70,.1);color:#fb923c;border-color:rgba(251,145,70,.28)";
-  return"background:rgba(255,255,255,.05);color:#9080b8;border-color:rgba(255,255,255,.12)";
+/* ── STEP 2 ── */
+function chipGroup(el,list,key,onPick){
+  el.innerHTML=list.map(([id,e,n])=>`<button class="chip" data-id="${id}" aria-pressed="false"><span class="ce">${e}</span>${n}</button>`).join("");
+  el.addEventListener("click",ev=>{const b=ev.target.closest(".chip");if(!b)return;
+    el.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c===b?"true":"false"));S[key]=b.dataset.id;onPick&&onPick()});
 }
-function buildS2(z){
-  const tags=z.tags.map(([cl,nm])=>`<span style="font-size:11px;font-weight:800;border-radius:999px;padding:3px 10px;border:1px solid;${tagStyle(cl)}">${nm}</span>`).join("");
-  const ms=[["🌟 총운",z.score.all],["💞 연애",z.score.love],["💰 금전",z.score.money],["📊 재물",z.score.invest]];
-  $("s2w").innerHTML=`
-    <p class="z-decl">${esc(z.decl)}</p>
-    <div class="badge-row">
-      <span class="title-badge">「${esc(z.title)}」</span>
-      <span class="rank-badge">12띠 중 ${z.rank}위</span>
-    </div>
-    <div class="moon-month">
-      <span class="mm-lbl">🌙 운이 바뀌는 달</span>
-      <span class="mm-val">${esc(z.month)}</span>
-      <span class="mm-note">이후 흐름이 달라집니다</span>
-    </div>
-    <div class="meters">
-      ${ms.map(([l,v],i)=>`<div class="mi"><div class="mi-lbl">${l}</div><div class="mi-score">${v}/5</div><div class="mi-bar"><div class="mi-fill" id="mf${i}" data-val="${v}"></div></div></div>`).join("")}
-    </div>
-    <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px">${tags}</div>
-    <div style="font-size:11px;color:var(--sub);margin-bottom:12px">${z.rel} · ${z.yrs}</div>
+const s2check=()=>{$("s2next").disabled=!(S.job&&S.rel)};
+chipGroup($("jobs"),JOBS,"job",s2check);chipGroup($("rels"),RELS,"rel",s2check);
 
-    <details class="acc" open>
-      <summary>🌟 종합운</summary>
-      <div class="acc-body"><p>${esc(z.all)}</p></div>
-    </details>
-    <details class="acc">
-      <summary>💞 연애운</summary>
-      <div class="acc-body"><p>${esc(z.love)}</p></div>
-    </details>
-    <details class="acc">
-      <summary>💰 재물 흐름</summary>
-      <div class="acc-body"><p>${esc(z.money)}</p></div>
-    </details>
-    <details class="acc">
-      <summary>✨ 2027 할 일 1개</summary>
-      <div class="acc-body">
-        <div class="acc-action"><b>지금 바로 하면 좋은 것</b>${esc(z.action)}</div>
-        <p style="margin-top:10px;font-size:13px;color:var(--sub)">🍀 행운 키워드</p>
-        <div class="lucky-row">${z.lucky.map(l=>`<span class="lpill">${esc(l)}</span>`).join("")}</div>
-      </div>
-    </details>
-
-    <div class="match-share">
-      <span class="match-txt">올해 나랑 <b>합(合)인 띠</b>: <b>${esc(z.match)}</b></span>
-      <button class="match-btn" onclick="shareToMatch()">그 사람한테 보내기</button>
-    </div>
-  `;
+/* ── STEP 3 ── */
+$("cats").innerHTML=CATS.map(([id,e,n])=>`<button class="cat" data-id="${id}" aria-pressed="false"><span class="ce">${e}</span>${n}</button>`).join("");
+$("cats").addEventListener("click",ev=>{const b=ev.target.closest(".cat");if(!b)return;
+  $("cats").querySelectorAll(".cat").forEach(c=>c.setAttribute("aria-pressed",c===b?"true":"false"));
+  S.cat=b.dataset.id;renderExamples();onType()});
+function renderExamples(){
+  const ex=EXAMPLES[S.cat||"work"];
+  $("examples").innerHTML=ex.map(x=>`<button class="ex">${esc(x)}</button>`).join("");
 }
-function animateMeters(){setTimeout(()=>{for(let i=0;i<4;i++){const f=$("mf"+i);if(f)f.style.width=(+f.dataset.val/5*100)+"%"}},80)}
-
-// ── 타로 ──
-const POS=["과거 · 2026","현재 · 지금","미래 · 2027"];
-let drawn=null;
-function renderSpread(cards){
-  $("spread").innerHTML=POS.map((p,i)=>{
-    const c=cards&&cards[i];
-    return`<div><div class="plbl">${p}</div><div class="tcard" id="tc${i}"><div class="face cback"><span>✦</span></div>${c?`<div class="face cfront ${c.rev?"rev":""}"><span class="fdir">${c.rev?"역":"정"}</span><div class="fn">${c.card.num}</div><div class="fs">${c.card.sym}</div><div class="fnm">${esc(c.card.ko)}</div><div class="fko">${esc(c.card.en)}</div></div>`:""}</div></div>`;
-  }).join("");
-}
-function drawThree(){
-  const idx=DECK.map((_,j)=>j);
-  for(let i=idx.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]]}
-  return idx.slice(0,3).map(i=>({card:DECK[i],rev:Math.random()<.35}));
-}
-function doDraw(){
-  drawn=drawThree();renderSpread(drawn);
-  $("tread").classList.remove("on");$("phint").style.display="none";
-  $("draw").style.display="none";$("redraw").style.display="none";
-  $("share3").classList.remove("on");
-  // 순차 플립: 카드1 → 850ms → 카드2 → 멈춤 힌트 → 800ms → 카드3
-  setTimeout(()=>$("tc0")&&$("tc0").classList.add("flip"),300);
-  setTimeout(()=>$("tc1")&&$("tc1").classList.add("flip"),1150);
-  setTimeout(()=>{$("phint").style.display="block"},1950);
-  setTimeout(()=>{$("phint").style.display="none";$("tc2")&&$("tc2").classList.add("flip")},2750);
-  setTimeout(()=>{
-    $("tread").innerHTML=drawn.map((c,i)=>`<div class="tri"><div class="tpos">${POS[i]}</div><div class="tcn">${c.card.sym} ${esc(c.card.ko)} <small style="color:var(--sub);font-weight:400">${c.rev?"역방향":"정방향"}</small></div><div class="tmn">${esc(c.rev?c.card.rev:c.card.up)}</div>${c.card.y27&&!c.rev&&i===2?`<div class="ty27">✦ ${esc(c.card.y27)}</div>`:""}</div>`).join("")+
-      (picked?`<div class="tarot-action"><b>🌟 2027 할 일 1개 (${picked.an}띠)</b>${esc(picked.action)}</div>`:"");
-    $("tread").classList.add("on");
-    $("redraw").style.display="inline-flex";
-    $("share3").classList.add("on");
-  },3400);
-}
-$("draw").onclick=doDraw;
-$("redraw").onclick=()=>{drawn=null;$("redraw").style.display="none";doDraw()};
-renderSpread(null);
-
-// ── 공유 ──
-const stars5=n=>"★".repeat(n)+"☆".repeat(5-n);
-function resultText(){
-  let t="🔮 2027 정미년 운세\n";
-  if(picked){
-    t+=`\n${picked.em} ${picked.an}띠 — 「${picked.title}」 (12띠 중 ${picked.rank}위)\n`;
-    t+=`총운 ${stars5(picked.score.all)} · 연애 ${stars5(picked.score.love)} · 재물 ${stars5(picked.score.money)}\n`;
-    t+=`🌙 운이 바뀌는 달: ${picked.month}\n"${picked.decl}"\n`;
+$("examples").addEventListener("click",ev=>{const b=ev.target.closest(".ex");if(!b)return;$("q").value=b.textContent;onType();$("q").focus()});
+function onType(){
+  S.text=$("q").value;$("qcnt").textContent=S.text.length+"/300";
+  const a=analyze(S.text,S.cat,S.job,S.rel);
+  const box=$("catch");
+  if(a.kws.length){
+    box.classList.add("hot");
+    box.innerHTML=`✦ 키워드 <b>${a.kws.length}개</b> 포착 ${a.kws.slice(0,8).map(k=>`<span class="kw">#${esc(k)}</span>`).join("")}<br>→ 「<b>${esc(a.main.t)}</b>」 처방 준비 완료${a.yesno?" · <b>예/아니오</b> 질문도 읽었어요":""}`;
+  }else{
+    box.classList.remove("hot");
+    box.innerHTML=S.cat?`✦ <b>${CATNAME[S.cat]}</b> 분야로 읽을게요. 상황을 적으면 더 정확한 처방을 찾아요.`:"✦ 분야를 고르거나 상황을 적으면, 카드가 키워드를 읽어요.";
   }
-  if(drawn)t+=`\n🃏 타로 3장\n${drawn.map((c,i)=>`${POS[i]}: ${c.card.ko}(${c.rev?"역":"정"})`).join("\n")}\n`;
-  return t+"\nhttps://hongfe.github.io/fortune2027/";
+  $("s3next").disabled=!(S.cat||norm(S.text).length>=4);
 }
-async function copyResult(){
-  try{await navigator.clipboard.writeText(resultText());toast("복사했어요! 카톡에 붙여 넣어 보세요 🎉")}
-  catch(e){toast("결과를 길게 눌러 복사하세요")}
+$("q").addEventListener("input",onType);
+renderExamples();
+
+/* ── STEP 4 ── */
+function shuffle(){const a=DECK.map((_,i)=>i);for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function enterDeck(){
+  S.an=analyze(S.text,S.cat,S.job,S.rel);
+  const q=norm(S.text)?`“${esc(S.text.trim().slice(0,70))}${S.text.trim().length>70?"…":""}”`:`${CATNAME[S.an.cat]} 고민`;
+  $("qecho").innerHTML=`<b>${S.z?S.z.em+" "+S.z.an+"띠 · ":""}${esc(JOBS.find(j=>j[0]===S.job)?.[2]||"")}</b><br>${q}`;
+  if(S.picks.length===3)return;
+  resetDeck();
 }
-function shareResult(){
-  if(navigator.share)navigator.share({title:"2027 정미년 운세",text:resultText()}).catch(()=>{});
-  else copyResult();
+function resetDeck(){
+  S.picks=[];S.order=shuffle();
+  $("slots").innerHTML=POS.map((p,i)=>`<div class="slot" id="sl${i}"><div class="plbl">${i+1}<b>${p[0]}</b></div><div class="tcard" id="tc${i}"><div class="empty">${i+1}</div></div><div class="cname" id="cn${i}"></div></div>`).join("");
+  $("deck").innerHTML=S.order.map((d,k)=>`<button class="dk" data-k="${k}" aria-label="${k+1}번째 카드" style="animation-delay:${Math.min(k,40)*12}ms"></button>`).join("");
+  $("pickmsg").textContent="고민을 떠올리며, 끌리는 카드 3장을 고르세요";
+  $("s4next").disabled=true;$("shuffle").hidden=false;
+  const dk=$("deck");dk.scrollLeft=(dk.scrollWidth-dk.clientWidth)/2;
 }
-function shareToMatch(){
-  if(!picked)return;
-  const t=`${picked.match}에게 — 2027년 나랑 합(合)인 띠야 🎯\n\n내 운세 보니 올해 ${picked.match}이랑 잘 맞는다고 나왔어.\n내 띠 뽑아봐 → https://hongfe.github.io/fortune2027/`;
-  if(navigator.share)navigator.share({title:"2027 운세",text:t}).catch(()=>{});
-  else{try{navigator.clipboard.writeText(t);toast("복사했어요! 카톡에 붙여 넣어 보내세요 💚")}catch(e){}}
+$("shuffle").onclick=()=>{if(S.picks.length<3){resetDeck();toast("78장을 다시 섞었어요 ✦")}};
+$("deck").addEventListener("click",ev=>{
+  const b=ev.target.closest(".dk");if(!b||S.picks.length>=3)return;
+  const card=DECK[S.order[+b.dataset.k]],rev=Math.random()<.3,i=S.picks.length;
+  S.picks.push({card,rev});b.classList.add("used");
+  new Image().src=img(card);
+  $("tc"+i).innerHTML=`<div class="face cback"><span>✦</span></div><div class="face cfront ${rev?"rev":""}"><img src="${img(card)}" alt="${esc(card.ko)} ${rev?"역방향":"정방향"}"><span class="dirtag ${rev?"rv":"up"}">${rev?"역방향":"정방향"}</span></div>`;
+  const left=3-S.picks.length;
+  $("pickmsg").textContent=left?`${left}장 더 고르세요 ✦`:"카드를 엽니다…";
+  if(!left){$("shuffle").hidden=true;reveal()}
+});
+function reveal(){
+  const fl=i=>{$("tc"+i).classList.add("flip");const c=S.picks[i];const n=$("cn"+i);n.textContent=c.card.ko;n.classList.add("on")};
+  setTimeout(()=>fl(0),500);
+  setTimeout(()=>fl(1),1400);
+  setTimeout(()=>{$("pickmsg").textContent="마지막 카드 — 해결 열쇠 ✦";$("sl2").classList.add("glow")},2200);
+  setTimeout(()=>{fl(2)},3000);
+  setTimeout(()=>{$("sl2").classList.remove("glow");$("pickmsg").textContent="카드가 모두 열렸어요. 처방전을 확인하세요";$("s4next").disabled=false;
+    $("s4next").scrollIntoView({behavior:"smooth",block:"nearest"})},3800);
 }
+
+/* ── STEP 5 결과 ── */
+function cardText(c,cat,pos){
+  const k=cat==="study"?"work":cat;
+  if(c.card.major){
+    if(c.rev)return`<b>${esc(c.card.rv)}</b>. ${esc(c.card.rvAdv)}`;
+    return esc(c.card.cat[k]);
+  }
+  const ctx=c.card.suit.ctx[k];
+  return c.rev?`<b>${esc(c.card.rv)}</b> — ${esc(ctx)}에서 생긴 흐름이에요. ${esc(c.card.rvAdv)}`
+              :`<b>${esc(c.card.up)}</b> — ${esc(ctx)}의 기운이에요. ${esc(c.card.upAdv)}`;
+}
+const val=c=>c.rev?(c.card.v>0?-1:c.card.v<0?0:-1):c.card.v;
+function weather(p){
+  const s=val(p[0])+val(p[1])*.5+val(p[2])*1.5;
+  const pct=Math.max(38,Math.min(98,Math.round(66+s*6)));
+  if(s>=4)return{ic:"☀️",nm:"맑음",d:"흐름이 당신 편이에요. 망설이던 걸 지금 하세요.",pct,k:"yes"};
+  if(s>=1.5)return{ic:"🌤️",nm:"구름 조금",d:"대체로 순조로워요. 걸림돌 하나만 치우면 됩니다.",pct,k:"yes"};
+  if(s>=-.5)return{ic:"⛅",nm:"흐린 뒤 갬",d:"지금은 애매해도 방향은 밝아요. 타이밍을 고르세요.",pct,k:"wait"};
+  return{ic:"🌦️",nm:"소나기 뒤 무지개",d:"한 번은 흔들리지만, 지나고 나면 더 단단해지는 흐름이에요.",pct,k:"no"};
+}
+function answerBox(p,w){
+  const key=p[2];const v=val(key);
+  if(w.k==="yes"&&v>0)return{cls:"yes",v:"예 — 해 보세요",p:`해결 열쇠 「${key.card.ko}」가 밀어 주고 있어요. 다만 아래 '이건 피하세요'를 꼭 지키면서.`};
+  if(w.k==="no"&&v<0)return{cls:"no",v:"지금은 아니오에 가까워요",p:`「${key.card.ko}」는 '지금 이 방식'이 아니라고 말해요. 방법을 바꾸거나 때를 기다리면 답이 달라집니다.`};
+  return{cls:"wait",v:"아직 — 타이밍을 보세요",p:`예/아니오보다 '언제·어떻게'가 중요한 패. 아래 타이밍과 처방을 먼저 실행해 보세요.`};
+}
+function timingText(p){
+  const k=p[2].card;const z=S.z;
+  const speed=k.major?"이번 달 안에 첫걸음":`${k.suit.speed}`;
+  return`작은 행동은 <b>${speed}</b>, 큰 결정은 <b>${z?esc(z.month):"다음 보름달"} 전후</b>가 좋아요.${z?` (${esc(z.an)}띠의 '운이 바뀌는 달')`:""}`;
+}
+function luckyOf(p){
+  const k=p[2].card;
+  if(!k.major)return k.suit.lucky;
+  const z=S.z;return{color:z?z.lucky[0]:"금색",place:"전망 좋은 높은 곳",item:`「${k.ko}」 카드를 폰 배경화면으로`,act:z?z.action.split(" — ")[0]:"오늘 할 일 하나 끝내기"};
+}
+function setBlock(s,n){
+  return`<div class="rx-t">💊 ${esc(s.t)}</div><p class="rx-d">${esc(s.d)}</p>
+    <p class="subl">✅ 이렇게 하세요</p><ol class="dolist">${s.do.map((x,i)=>`<li data-n="${i+1}">${esc(x)}</li>`).join("")}</ol>
+    <p class="subl">❌ 이건 피하세요</p><ul class="dontlist">${s.dont.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+}
+function buildResult(){
+  const a=S.an||analyze(S.text,S.cat,S.job,S.rel),p=S.picks;if(p.length<3)return;
+  const z=S.z,job=JOBS.find(j=>j[0]===S.job),rel=RELS.find(r=>r[0]===S.rel),cat=a.cat;
+  const w=weather(p),lk=luckyOf(p),ans=a.yesno?answerBox(p,w):null;
+  const zText=!z?"":cat==="love"?z.love:cat==="money"?z.money:z.all;
+  const careNeeded=a.crisis||a.main.care||(a.sub&&a.sub.care);
+  $("result").innerHTML=`
+  <div class="rhead fade">
+    <div class="rtags">${z?`<span class="rtag">${z.em} ${esc(z.an)}띠</span>`:""}${job?`<span class="rtag">${job[1]} ${job[2]}</span>`:""}${rel?`<span class="rtag">${rel[1]} ${rel[2]}</span>`:""}<span class="rtag">${CATS.find(c=>c[0]===cat)[1]} ${CATNAME[cat]}</span></div>
+    <h2 class="rttl">2027, 당신을 위한<br><em>타로 처방전</em></h2>
+    ${a.kws.length?`<div style="margin-top:10px">${a.kws.slice(0,8).map(k=>`<span class="kw">#${esc(k)}</span>`).join("")}</div>`:""}
+  </div>
+  ${a.crisis?`<div class="care fade"><b>잠깐, 먼저 이것부터요.</b><br>지금 많이 힘드시다면 혼자 견디지 마세요. <b>자살예방상담전화 109</b>(24시간)에서 바로 이야기를 들어 줍니다. 카드보다 사람이 먼저예요.</div>`:""}
+  <div class="weather fade" style="animation-delay:.1s">
+    <div class="wicon" aria-hidden="true">${w.ic}</div>
+    <div class="wtxt"><div class="wlbl">이 고민의 기운 날씨</div><div class="wval">${w.nm}</div><div class="wdesc">${w.d}</div></div>
+    <div class="wscore"><b>${w.pct}</b><span>흐름 지수</span></div>
+  </div>
+  ${ans?`<div class="answer ${ans.cls} fade" style="animation-delay:.15s"><div class="al">🔮 당신의 질문에 카드가 답하면</div><div class="av">${ans.v}</div><p>${esc(ans.p)}</p></div>`:""}
+
+  <div class="sec fade" style="animation-delay:.2s">
+    <h3>🃏 카드 3장 풀이 <small>${CATNAME[cat]} 관점</small></h3>
+    ${p.map((c,i)=>`<div class="read"><img src="${img(c.card)}" alt="${esc(c.card.ko)}" class="${c.rev?"rev":""}" loading="lazy">
+      <div><div class="rpos">${i+1} · ${POS[i][0]} — ${POS[i][1]}</div>
+      <div class="rcn">${esc(c.card.ko)}<small class="${c.rev?"rv":"up"}">${c.rev?"역방향":"정방향"}</small></div>
+      <div class="rkw">${esc(c.card.en)} · ${esc(c.rev?c.card.rv:c.card.up)}</div>
+      <div class="rmn">${cardText(c,cat,i)}</div></div></div>`).join("")}
+  </div>
+
+  <div class="sec rx fade" style="animation-delay:.25s">
+    ${setBlock(a.main)}
+    <div class="timing"><span aria-hidden="true">⏰</span><div>${timingText(p)}</div></div>
+    ${a.sub?`<details class="rx2"><summary>➕ 함께 읽힌 처방: ${esc(a.sub.t)}</summary><div style="margin-top:10px">${setBlock(a.sub)}</div></details>`:""}
+  </div>
+
+  ${job?`<div class="sec fade"><h3>${job[1]} ${job[2]}에게 한 줄</h3><p class="lens">${esc(LENS[S.job][cat])}</p></div>`:""}
+
+  <div class="sec fade">
+    <h3>🍀 행운 처방 <small>해결 열쇠 카드 기준</small></h3>
+    <div class="lucky">
+      <div class="lk"><span>행운 색</span><b>${esc(lk.color)}</b></div>
+      <div class="lk"><span>가면 좋은 곳</span><b>${esc(lk.place)}</b></div>
+      <div class="lk"><span>지니면 좋은 것</span><b>${esc(lk.item)}</b></div>
+      <div class="lk"><span>오늘 할 일</span><b>${esc(lk.act)}</b></div>
+    </div>
+  </div>
+
+  <div class="ad-slot" aria-hidden="true">AD</div>
+
+  ${z?`<div class="sec fade">
+    <h3>${z.em} 2027 ${esc(z.an)}띠 흐름</h3>
+    <div class="zrow"><div class="zt"><b>「${esc(z.title)}」 · 12띠 중 ${z.rank}위</b>${esc(z.rel)}</div></div>
+    <p class="rx-d" style="margin-bottom:8px">${esc(zText)}</p>
+    <div class="meters">${[["총운",z.score.all],["연애",z.score.love],["금전",z.score.money],["재물",z.score.invest]].map(([l,v])=>`<div class="mi"><div class="mi-lbl">${l}</div><div class="mi-score">${v}/5</div></div>`).join("")}</div>
+    <details class="zmore"><summary>띠 운세 전체 보기 ﹀</summary>
+      <p><b>“${esc(z.decl)}”</b></p><p><b>종합</b> ${esc(z.all)}</p><p><b>연애</b> ${esc(z.love)}</p><p><b>재물</b> ${esc(z.money)}</p>
+      <p><b>🌙 운이 바뀌는 달</b> ${esc(z.month)} · <b>할 일</b> ${esc(z.action)}</p></details>
+    <div class="match-share"><span class="match-txt">올해 나랑 <b>합(合)인 띠</b>: <b>${esc(z.match)}</b></span><button class="match-btn" onclick="shareToMatch()">그 사람한테 보내기</button></div>
+  </div>`:""}
+
+  ${careNeeded&&!a.crisis?`<div class="care">마음이 오래 무겁다면 혼자 버티지 마세요. <b>정신건강상담 1577-0199</b> · <b>자살예방상담 109</b> (24시간)</div>`:""}
+
+  <div class="again">
+    <button class="btn btn-sec" onclick="newQuestion()">✍️ 다른 고민 물어보기</button>
+    <button class="btn btn-sec" onclick="redraw()">↺ 같은 고민, 카드 다시</button>
+  </div>
+  <p class="foot-note">타로와 띠 운세는 상징을 빌려 스스로를 돌아보는 놀이예요. 처방은 일반적인 생활 조언이며, 투자·법률·의료 결정은 전문가와 상의하세요.<br>입력한 고민은 이 기기에서만 읽고 어디에도 보내지 않아요.<br>카드 이미지: Rider–Waite–Smith 타로(1909, 그림 Pamela Colman Smith) · 퍼블릭 도메인</p>`;
+}
+window.newQuestion=()=>{S.picks=[];$("q").value="";onType();goStep(3)};
+window.redraw=()=>{resetDeck();goStep(4)};
+
+/* ── 공유 ── */
+function resultText(){
+  const a=S.an,p=S.picks,z=S.z;if(!a||p.length<3)return"🔮 2027 정미년 타로 처방전\nhttps://hongfe.github.io/fortune2027/";
+  const w=weather(p);
+  return`🔮 2027 정미년 타로 처방전\n\n${z?`${z.em} ${z.an}띠 「${z.title}」 · `:""}${CATNAME[a.cat]} 고민\n${w.ic} 기운 날씨: ${w.nm} (흐름 지수 ${w.pct})\n\n🃏 ${p.map((c,i)=>`${POS[i][0]}: ${c.card.ko}${c.rev?"(역)":""}`).join(" / ")}\n\n💊 ${a.main.t}\n✅ ${a.main.do[0]}\n\n나도 고민 적고 카드 뽑기 → https://hongfe.github.io/fortune2027/`;
+}
+async function copyResult(){try{await navigator.clipboard.writeText(resultText());toast("복사했어요! 카톡에 붙여 넣어 보세요 🎉")}catch(e){toast("복사가 막혀 있어요. 화면을 캡처해 공유해 주세요")}}
+function shareResult(){if(navigator.share)navigator.share({title:"2027 정미년 타로 처방전",text:resultText()}).catch(()=>{});else copyResult()}
+function shareToMatch(){const z=S.z;if(!z)return;
+  const t=`${z.match}에게 — 2027년 나랑 합(合)인 띠래 🎯\n\n타로 처방전 봤는데 올해 ${z.match}이랑 잘 맞는대.\n너도 고민 적고 카드 뽑아 봐 → https://hongfe.github.io/fortune2027/`;
+  if(navigator.share)navigator.share({title:"2027 타로 처방전",text:t}).catch(()=>{});
+  else navigator.clipboard?.writeText(t).then(()=>toast("복사했어요! 카톡에 붙여 넣어 보내세요 💚"),()=>{})}
 window.shareResult=shareResult;window.copyResult=copyResult;window.shareToMatch=shareToMatch;
 
-// ── 복원 ──
-try{const z=localStorage.getItem("f27_z");if(z!==null&&ZODIAC[+z]){picked=ZODIAC[+z];buildS2(ZODIAC[+z])}}catch(e){}
+/* 이전에 고른 띠 기억 (편의) */
+(()=>{const i=LS.get("f27_z");if(i!==null&&ZODIAC[+i]){const b=$("zgrid").children[+i];b&&(b.style.borderColor="rgba(240,192,96,.55)")}})();
+
+/* ═════════ 자체 검사: ?selftest ═════════ */
+if(/selftest/.test(location.search)){
+  const T=[
+    ["팀장 때문에 이직하고 싶은데 지금 나가도 될까요?","work","office","solo",["boss","quit"],true],
+    ["전남친한테 연락 올까요","love","seeker","after",["reunion"],true],
+    ["코인 물렸는데 존버할까","money","office","solo",["invest"],true],
+    ["기술사 시험 합격할 수 있을까","study","office","married",["exam"],true],
+    ["","love","office","solo",["meet"],false],
+    ["","work","seeker","solo",["jobhunt"],false],
+    ["","work","biz","dating",["sales"],false],
+    ["시어머니가 명절마다 힘들게 해요","people","home","married",["inlaw"],false],
+    ["요즘 불안해서 잠을 못 자요","mind","student","solo",["anxiety","sleep"],false],
+    ["카드값이 감당이 안 돼요","money","free","solo",["debt"],false],
+    ["워홀 가도 될까요?","change","rest","solo",["abroad"],true],
+    ["썸 타는 사람이 답장이 느려요","love","student","some",["some"],false]
+  ];
+  let ok=0;const fails=[];
+  for(const [q,c,j,r,exp,yn] of T){const a=analyze(q,c,j,r);const pass=exp.includes(a.main.id)&&a.yesno===yn;pass?ok++:fails.push(`${q||"("+c+")"} → ${a.main.id}/${a.yesno}`)}
+  if(DECK.length!==78)fails.push("deck "+DECK.length);
+  if(SETS.some(s=>!CATNAME[s.cat]||s.do.length!==3||s.dont.length!==2))fails.push("set shape");
+  const ids=new Set(SETS.map(s=>s.id));if(ids.size!==SETS.length)fails.push("dup id");
+  for(const c of CATS)for(const j of JOBS)if(!LENS[j[0]][c[0]])fails.push("lens "+j[0]+c[0]);
+  const bar=document.createElement("div");bar.id="stbar";bar.style.background=fails.length?"#7f1d1d":"#14532d";
+  bar.textContent=`selftest ${ok}/${T.length} · sets ${SETS.length} · deck ${DECK.length}`+(fails.length?" · FAIL: "+fails.join(" | "):" · ALL PASS");
+  document.body.appendChild(bar);console.log(bar.textContent);
+}
 </script>
 </body>
 </html>
