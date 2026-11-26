@@ -166,11 +166,14 @@ textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(2
 .qecho b{color:#f3dea4}
 
 /* ══ STEP 5 결과 ══ */
-.rhead{text-align:center;padding:6px 0 14px}
-.rtags{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin-bottom:10px}
-.rtag{font-size:11.5px;font-weight:800;border-radius:999px;padding:4px 10px;background:rgba(255,255,255,.07);color:#d8d0f5}
-.rttl{font-size:clamp(21px,5.8vw,27px);font-weight:900;letter-spacing:-.6px;line-height:1.3}
-.rttl em{font-style:normal;color:var(--gold)}
+.rhead{text-align:center;padding:6px 0 18px}
+.rtags{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}
+.rtag{font-size:11.5px;font-weight:800;border-radius:999px;padding:4px 11px;background:rgba(255,255,255,.07);color:#d8d0f5;border:1px solid rgba(255,255,255,.1)}
+.rttl{font-size:clamp(22px,6vw,30px);font-weight:900;letter-spacing:-.6px;line-height:1.3;
+  background:linear-gradient(135deg,#f3dea4 0%,#ffffff 50%,#c084fc 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:none}
+.rttl em{font-style:normal;background:linear-gradient(90deg,#f3dea4,#fbbf24);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .weather{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(240,192,96,.12),rgba(192,132,252,.1));
   border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px}
 .wicon{font-size:44px;line-height:1}
@@ -192,9 +195,22 @@ textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(2
 .sec{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:16px;margin-bottom:12px}
 .sec h3{font-size:15px;font-weight:900;margin-bottom:12px;display:flex;align-items:center;gap:6px}
 .sec h3 small{font-size:11px;color:var(--sub);font-weight:700;margin-left:auto}
-.read{display:grid;grid-template-columns:76px 1fr;gap:12px;padding:12px 0;border-top:1px dashed rgba(255,255,255,.08)}
+/* 카드 3장 가로 배치 */
+.card-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 -4px 16px}
+.ctslot{display:flex;flex-direction:column;align-items:center;gap:5px}
+.ctslot .rpos{font-size:9.5px;letter-spacing:.05em}
+.ctslot img{width:100%;max-width:108px;border-radius:10px;
+  box-shadow:0 0 20px rgba(240,192,96,.35),0 0 0 1.5px rgba(240,192,96,.6),0 4px 16px rgba(0,0,0,.5);
+  display:block;transition:transform .2s;cursor:default}
+.ctslot img:hover{transform:scale(1.04)}
+.ctslot .rcn{font-size:12.5px;font-weight:900;text-align:center;margin:0}
+.ctslot small.up{color:var(--ok);font-size:10px;font-weight:800}
+.ctslot small.rv{color:var(--rose);font-size:10px;font-weight:800}
+/* 카드 상세 (접힌 목록) */
+.read{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:11px 0;border-top:1px dashed rgba(255,255,255,.08);align-items:start}
 .read:first-of-type{border-top:0;padding-top:0}
-.read img{width:76px;border-radius:7px;box-shadow:0 0 0 1.5px rgba(240,192,96,.55);display:block}
+.read-num{width:22px;height:22px;border-radius:50%;background:rgba(192,132,252,.2);border:1px solid rgba(192,132,252,.4);
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--vio);flex-shrink:0;margin-top:1px}
 .rpos{font-size:10.5px;color:var(--vio);font-weight:900;letter-spacing:.04em}
 .rcn{font-size:15px;font-weight:900;margin:2px 0 1px}
 .rcn small{font-size:11px;font-weight:800;margin-left:4px}
@@ -230,9 +246,12 @@ textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(2
 .zrow .zt{font-size:13px;color:var(--sub)}
 .zrow .zt b{display:block;font-size:16px;color:var(--tx)}
 .meters{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
-.mi{background:rgba(255,255,255,.04);border-radius:10px;padding:9px 6px;text-align:center}
-.mi-lbl{font-size:10.5px;color:var(--sub);margin-bottom:3px}
-.mi-score{font-size:17px;font-weight:900;color:var(--gold)}
+.mi{background:rgba(255,255,255,.04);border-radius:12px;padding:10px 4px 8px;text-align:center;position:relative}
+.mi-ring{width:56px;height:56px;display:block;margin:0 auto 4px}
+.mi-arc{transition:stroke-dasharray 1.1s cubic-bezier(.4,0,.2,1)}
+.mi-val{position:absolute;top:17px;left:50%;transform:translateX(-50%);font-size:14px;font-weight:900;color:var(--gold);pointer-events:none}
+.mi-lbl{font-size:10px;color:var(--sub);font-weight:800}
+.mi-score{display:none}
 .zmore summary{cursor:pointer;font-size:13px;font-weight:800;color:#f3dea4;list-style:none;padding-top:6px}
 .zmore summary::-webkit-details-marker{display:none}
 .zmore p{font-size:14px;line-height:1.7;margin-top:8px}
@@ -919,9 +938,18 @@ function buildResult(){
   ${ans?`<div class="answer ${ans.cls} fade" style="animation-delay:.15s"><div class="al">🔮 당신의 질문에 카드가 답하면</div><div class="av">${ans.v}</div><p>${esc(ans.p)}</p></div>`:""}
 
   <div class="sec fade" style="animation-delay:.2s">
-    <h3>🃏 카드 3장 풀이 <small>${CATNAME[cat]} 관점</small></h3>
-    ${p.map((c,i)=>`<div class="read"><img src="${img(c.card)}" alt="${esc(c.card.ko)}" loading="lazy">
-      <div><div class="rpos">${i+1} · ${POS[i][0]} — ${POS[i][1]}</div>
+    <h3>🃏 카드 3장 <small>${CATNAME[cat]} 관점</small></h3>
+    <div class="card-trio">
+      ${p.map((c,i)=>`<div class="ctslot">
+        <div class="rpos">${POS[i][0]}</div>
+        <img src="${img(c.card)}" alt="${esc(c.card.ko)}" loading="lazy">
+        <div class="rcn">${esc(c.card.ko)}</div>
+        <small class="${c.rev?"rv":"up"}">${c.rev?"역방향":"정방향"}</small>
+      </div>`).join("")}
+    </div>
+    ${p.map((c,i)=>`<div class="read">
+      <div class="read-num">${i+1}</div>
+      <div><div class="rpos">${POS[i][0]} — ${POS[i][1]}</div>
       <div class="rcn">${esc(c.card.ko)}<small class="${c.rev?"rv":"up"}">${c.rev?"역방향":"정방향"}</small></div>
       <div class="rkw">${esc(c.card.en)} · ${esc(c.rev?c.card.rv:c.card.up)}</div>
       <div class="rmn">${cardText(c,cat,i)}</div></div></div>`).join("")}
@@ -951,7 +979,19 @@ function buildResult(){
     <h3>${z.em} 2027 ${esc(z.an)}띠 흐름</h3>
     <div class="zrow"><div class="zt"><b>「${esc(z.title)}」 · 12띠 중 ${z.rank}위</b>${esc(z.rel)}</div></div>
     <p class="rx-d" style="margin-bottom:8px">${esc(zText)}</p>
-    <div class="meters">${[["총운",z.score.all],["연애",z.score.love],["금전",z.score.money],["재물",z.score.invest]].map(([l,v])=>`<div class="mi"><div class="mi-lbl">${l}</div><div class="mi-score">${v}/5</div></div>`).join("")}</div>
+    <div class="meters">${[["총운",z.score.all],["연애",z.score.love],["금전",z.score.money],["재물",z.score.invest]].map(([l,v])=>{const c=Math.round(v/5*150.8);return`<div class="mi">
+        <svg viewBox="0 0 60 60" class="mi-ring" aria-hidden="true">
+          <circle cx="30" cy="30" r="24" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="5"/>
+          <circle cx="30" cy="30" r="24" fill="none" stroke="url(#mg)" stroke-width="5"
+            stroke-dasharray="${c} 150.8" stroke-dashoffset="0" stroke-linecap="round"
+            transform="rotate(-90 30 30)" class="mi-arc"/>
+        </svg>
+        <div class="mi-val">${v}</div>
+        <div class="mi-lbl">${l}</div></div>`}).join("")}
+      <svg width="0" height="0" style="position:absolute"><defs>
+        <linearGradient id="mg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#f3dea4"/><stop offset="100%" stop-color="#c084fc"/>
+        </linearGradient></defs></svg></div>
     <details class="zmore"><summary>띠 운세 전체 보기 ﹀</summary>
       <p><b>“${esc(z.decl)}”</b></p><p><b>종합</b> ${esc(z.all)}</p><p><b>연애</b> ${esc(z.love)}</p><p><b>재물</b> ${esc(z.money)}</p>
       <p><b>🌙 운이 바뀌는 달</b> ${esc(z.month)} · <b>할 일</b> ${esc(z.action)}</p></details>
