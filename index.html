@@ -4,15 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#06040f">
-<meta name="description" content="2027 정미년(丁未年) 12띠 운세 · 연애운 · 금전운 · 타로 3카드 — 전 연령대">
-<title>2027 정미년 운세 · 띠별 운세와 타로</title>
+<meta name="description" content="2027 정미년 — 내 띠의 순위와 운이 바뀌는 달, 타로 3장">
+<title>2027 정미년 운세 · 운이 바뀌는 달이 있습니다</title>
 <style>
 :root{
   --bg:#06040f;--bg2:#0d0820;
-  --gold:#f0c060;--gold2:#c89020;--vio:#c084fc;--vio2:#7c3aed;
-  --rose:#fb7185;--ok:#4ade80;--warn:#fb923c;
-  --tx:#f0eeff;--sub:#9890c0;--line:rgba(240,192,96,.22);
-  --r:env(safe-area-inset-right,0px);--l:env(safe-area-inset-left,0px);
+  --gold:#f0c060;--gold2:#b87c14;--vio:#c084fc;
+  --rose:#fb7185;--ok:#4ade80;
+  --tx:#f0eeff;--sub:#9080b8;--line:rgba(240,192,96,.2);
   --t:env(safe-area-inset-top,0px);--b:env(safe-area-inset-bottom,0px);
   --font:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
 }
@@ -25,358 +24,412 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);overflow:hidde
   position:fixed;inset:0;
   transform:translateX(100%);
   transition:transform .42s cubic-bezier(.4,0,.2,1);
-  overflow-y:auto;overflow-x:hidden;
-  z-index:1;
+  overflow-y:auto;overflow-x:hidden;z-index:1;
   -webkit-overflow-scrolling:touch;
 }
 .step.active{transform:translateX(0)}
 .step.prev{transform:translateX(-28%)}
 
 /* ── 공통 헤더 ── */
-.step-hdr{
+.shdr{
   position:sticky;top:0;z-index:10;
-  display:flex;align-items:center;gap:12px;
-  padding:calc(var(--t) + 14px) 20px 14px;
+  display:flex;align-items:center;gap:10px;
+  padding:calc(var(--t) + 14px) 18px 14px;
   background:linear-gradient(var(--bg) 70%,transparent);
 }
-.back-btn{
-  width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.06);color:var(--tx);font-size:18px;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.back-btn:active{background:rgba(255,255,255,.12)}
-.step-dots{display:flex;gap:7px;align-items:center;flex:1;justify-content:center}
+.back{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);color:var(--tx);font-size:17px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.back:active{background:rgba(255,255,255,.14)}
+.dots{display:flex;gap:7px;align-items:center;flex:1;justify-content:center}
 .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18);transition:.3s}
 .dot.on{width:22px;border-radius:4px;background:var(--gold)}
-.hdr-side{width:38px;flex-shrink:0}
+.hside{width:38px;flex-shrink:0}
 
-/* ── 단계1: 인트로 ── */
+/* ══ STEP 1 ══ */
 #s1{background:var(--bg)}
-.s1-wrap{
+.s1w{
   min-height:100dvh;display:flex;flex-direction:column;align-items:center;
   padding:calc(var(--t) + 20px) 20px calc(var(--b) + 24px);
 }
-.moon-wrap{position:relative;margin:12px 0 20px;flex-shrink:0}
+.moon-w{position:relative;margin:16px 0 22px;flex-shrink:0}
 .moon{
-  width:110px;height:110px;border-radius:50%;
+  width:100px;height:100px;border-radius:50%;position:relative;z-index:1;
   background:radial-gradient(circle at 35% 32%,#fff9e8 5%,#f5d87a 40%,#c89020 75%,#7a5010 100%);
   box-shadow:0 0 50px rgba(240,192,96,.5),0 0 100px rgba(192,132,252,.3);
   animation:pulse 6s ease-in-out infinite;
-  display:flex;align-items:center;justify-content:center;
-  font:900 46px serif;color:rgba(80,52,10,.5);position:relative;z-index:1
+  display:flex;align-items:center;justify-content:center;font:900 40px serif;color:rgba(80,52,10,.5);
 }
 @keyframes pulse{
   0%,100%{box-shadow:0 0 50px rgba(240,192,96,.5),0 0 100px rgba(192,132,252,.3)}
-  50%{box-shadow:0 0 80px rgba(240,192,96,.7),0 0 160px rgba(192,132,252,.5)}
+  50%{box-shadow:0 0 80px rgba(240,192,96,.7),0 0 150px rgba(192,132,252,.5)}
 }
 .ring{position:absolute;border-radius:50%;border:1px solid rgba(240,192,96,.28);animation:spin 22s linear infinite}
-.ring1{inset:-18px}.ring2{inset:-36px;animation-duration:38s;animation-direction:reverse;border-color:rgba(192,132,252,.18)}
-.ring1::before{content:"";position:absolute;top:-4px;left:50%;width:8px;height:8px;background:var(--gold);border-radius:50%;box-shadow:0 0 10px var(--gold);transform:translateX(-50%)}
+.ring1{inset:-16px}
+.ring2{inset:-32px;animation-duration:38s;animation-direction:reverse;border-color:rgba(192,132,252,.18)}
+.ring1::before{content:"";position:absolute;top:-4px;left:50%;width:7px;height:7px;
+  background:var(--gold);border-radius:50%;box-shadow:0 0 10px var(--gold);transform:translateX(-50%)}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-.s1-ttl{font-size:clamp(32px,9vw,52px);font-weight:900;letter-spacing:-2px;line-height:1.05;text-align:center;
+.s1-ttl{font-size:clamp(28px,8vw,46px);font-weight:900;letter-spacing:-1.5px;line-height:1.08;
+  text-align:center;margin-bottom:5px;
   background:linear-gradient(135deg,var(--gold) 0%,#fff8dc 50%,var(--vio) 90%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px}
-.s1-sub{font-size:14px;color:var(--sub);text-align:center;margin-bottom:16px}
-.year-chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:22px}
-.year-chip{font-size:12px;border:1px solid rgba(240,192,96,.28);border-radius:999px;padding:5px 13px;color:var(--gold);background:rgba(240,192,96,.07)}
-
-.pick-label{font:800 12px var(--font);color:var(--sub);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;text-align:center}
-
-/* ── 띠 그리드 ── */
-.zgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:500px}
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.s1-hook{font-size:clamp(15px,4vw,19px);font-weight:800;text-align:center;margin-bottom:5px;color:var(--tx)}
+.s1-sub{font-size:13px;color:var(--sub);text-align:center;margin-bottom:6px}
+.rank-tease{
+  font-size:13px;font-weight:800;color:var(--gold);
+  border:1px solid rgba(240,192,96,.28);border-radius:999px;padding:5px 15px;
+  margin-bottom:20px;cursor:default;animation:glow 2.5s ease-in-out infinite;
+}
+@keyframes glow{0%,100%{box-shadow:0 0 0 rgba(240,192,96,0)}50%{box-shadow:0 0 14px rgba(240,192,96,.35)}}
+.pick-lbl{font:800 11.5px var(--font);color:var(--sub);letter-spacing:.08em;margin-bottom:11px;text-align:center}
+.zgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;width:100%;max-width:500px}
 .zbtn{
   border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);
-  border-radius:16px;padding:12px 4px;color:var(--tx);cursor:pointer;
-  text-align:center;transition:.18s;display:flex;flex-direction:column;align-items:center;gap:3px;
+  border-radius:16px;padding:11px 4px;color:var(--tx);cursor:pointer;
+  text-align:center;transition:.18s;display:flex;flex-direction:column;align-items:center;gap:2px;
 }
-.zbtn .em{font-size:36px;line-height:1}
+.zbtn .em{font-size:34px;line-height:1}
 .zbtn .nm{font-size:13px;font-weight:900}
-.zbtn .yrs{font-size:9.5px;color:var(--sub);line-height:1.4}
-.zbtn:active{background:rgba(255,255,255,.1);transform:scale(.95)}
+.zbtn .rk{font-size:9.5px;color:var(--gold);font-weight:800}
+.zbtn:active{background:rgba(255,255,255,.1);transform:scale(.94)}
 @media(max-width:360px){.zgrid{grid-template-columns:repeat(3,1fr)}}
+.s1-foot{font-size:11px;color:var(--sub);margin-top:12px;text-align:center;line-height:1.65}
 
-/* ── 단계2: 운세 결과 ── */
+/* ══ STEP 2 ══ */
 #s2{background:var(--bg)}
-.s2-wrap{padding:0 18px calc(var(--b) + 100px)}
+.s2w{padding:0 18px calc(var(--b) + 100px)}
 
-.z-hero{
-  display:flex;align-items:center;gap:16px;
-  padding:20px 18px;
-  background:linear-gradient(135deg,rgba(240,192,96,.12),rgba(192,132,252,.07));
-  border:1px solid rgba(240,192,96,.25);border-radius:20px;
-  margin-bottom:18px
+.z-decl{
+  font-size:clamp(16px,4.2vw,20px);font-weight:900;line-height:1.55;
+  text-align:center;padding:22px 4px 16px;color:var(--tx);
 }
-.z-hero .z-em{font-size:72px;line-height:1;flex-shrink:0}
-.z-hero h2{font-size:22px;font-weight:900;margin-bottom:4px}
-.z-rel{font-size:13px;color:var(--gold);font-weight:700;margin-bottom:8px}
-.tags{display:flex;gap:5px;flex-wrap:wrap}
-.tag{font-size:11px;font-weight:800;border-radius:999px;padding:3px 10px;border:1px solid}
-.tg{background:rgba(74,222,128,.1);color:#4ade80;border-color:rgba(74,222,128,.28)}
-.tw{background:rgba(251,145,70,.1);color:#fb923c;border-color:rgba(251,145,70,.28)}
-.tn{background:rgba(255,255,255,.05);color:var(--sub);border-color:rgba(255,255,255,.12)}
+.z-decl::before{content:'"';color:var(--gold)}
+.z-decl::after{content:'"';color:var(--gold)}
 
-.meters{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px}
-@media(min-width:420px){.meters{grid-template-columns:repeat(4,1fr)}}
-.mi{background:rgba(255,255,255,.04);border-radius:14px;padding:14px 10px;text-align:center}
-.mi-lbl{font-size:11.5px;color:var(--sub);margin-bottom:6px}
-.mi-score{font-size:24px;font-weight:900;color:var(--gold);margin-bottom:7px;line-height:1}
-.mi-bar{height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+.badge-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.title-badge{
+  font:900 15px var(--font);border-radius:8px;padding:5px 14px;
+  background:linear-gradient(90deg,var(--gold2),var(--gold));color:#1a0c00;
+}
+.rank-badge{
+  font:800 14px var(--font);border:1.5px solid var(--gold);border-radius:8px;
+  padding:5px 14px;color:var(--gold);
+}
+
+.moon-month{
+  display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+  background:rgba(192,132,252,.1);border:1px solid rgba(192,132,252,.3);
+  border-radius:12px;padding:10px 16px;margin-bottom:14px;
+}
+.mm-lbl{font-size:12px;color:var(--vio);font-weight:800}
+.mm-val{font-size:16px;font-weight:900;color:#fff}
+.mm-note{font-size:11px;color:var(--sub)}
+
+.meters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+@media(max-width:380px){.meters{grid-template-columns:repeat(2,1fr)}}
+.mi{background:rgba(255,255,255,.04);border-radius:12px;padding:12px 8px;text-align:center}
+.mi-lbl{font-size:11px;color:var(--sub);margin-bottom:5px}
+.mi-score{font-size:22px;font-weight:900;color:var(--gold);margin-bottom:6px;line-height:1}
+.mi-bar{height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
 .mi-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold2),var(--gold));width:0;transition:width .8s .1s ease}
 
-.ztabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
-.ztabs button{flex:1;min-width:60px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);
-  color:var(--sub);border-radius:11px;padding:9px 4px;font:700 12px var(--font);cursor:pointer;transition:.15s}
-.ztabs button.on{background:rgba(192,132,252,.2);color:#fff;border-color:var(--vio)}
-.ztab-content{font-size:15px;line-height:1.75;display:none;
-  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px;margin-bottom:14px}
-.ztab-content.on{display:block;animation:fadeup .3s}
-@keyframes fadeup{from{opacity:0;transform:translateY(10px)}}
+/* 아코디언 */
+.acc{
+  border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;
+  margin-bottom:8px;background:rgba(255,255,255,.03);
+}
+.acc summary{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 16px;cursor:pointer;font:800 14px var(--font);
+  list-style:none;user-select:none;
+}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"﹀";font-size:12px;color:var(--sub);transition:.25s}
+.acc[open] summary::after{transform:rotate(180deg)}
+.acc-body{padding:4px 16px 16px;font-size:14.5px;line-height:1.75}
+.acc-action{
+  margin-top:12px;padding:12px 14px;border-radius:11px;
+  background:rgba(240,192,96,.08);border:1px solid rgba(240,192,96,.22);
+  font-size:14px;color:#f3dea4;
+}
+.acc-action b{color:var(--gold);display:block;margin-bottom:4px}
+.lucky-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.lpill{font-size:12px;border:1px solid rgba(240,192,96,.22);border-radius:999px;
+  padding:4px 11px;color:#f3dea4;background:rgba(240,192,96,.05)}
 
-.z-advice{padding:14px 16px;background:rgba(240,192,96,.07);border-left:3px solid var(--gold);
-  border-radius:0 13px 13px 0;font-size:14px;margin-bottom:12px}
-.z-advice b{color:var(--gold)}
-.lucky-wrap{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
-.lucky-pill{font-size:12px;border:1px solid rgba(240,192,96,.22);border-radius:999px;padding:4px 12px;
-  color:#f3dea4;background:rgba(240,192,96,.05)}
-.yrs-note{font-size:11.5px;color:var(--sub);margin-bottom:18px}
+.match-share{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.2);
+  border-radius:14px;padding:14px 16px;margin-top:8px;
+}
+.match-txt{font-size:13.5px;color:var(--tx);flex:1;min-width:0}
+.match-txt b{color:#4ade80}
+.match-btn{
+  font:800 13px var(--font);border:0;border-radius:10px;padding:9px 14px;
+  background:linear-gradient(90deg,#166534,#15803d);color:#fff;cursor:pointer;white-space:nowrap;
+}
+.match-btn:active{filter:brightness(1.15)}
 
-/* ── 하단 CTA 바 ── */
 .cta-bar{
   position:fixed;bottom:0;left:0;right:0;
   padding:14px 18px calc(var(--b) + 14px);
-  background:linear-gradient(transparent 0%,var(--bg) 35%);
-  display:flex;gap:8px;z-index:5
+  background:linear-gradient(transparent,var(--bg) 35%);
+  display:flex;gap:8px;z-index:5;
 }
 .btn{border:0;border-radius:14px;padding:14px 18px;font:800 15px var(--font);cursor:pointer;
   transition:.15s;display:inline-flex;align-items:center;justify-content:center;gap:6px}
-.btn-pri{background:linear-gradient(90deg,var(--gold2),var(--gold));color:#2a1800;flex:1}
+.btn-pri{background:linear-gradient(90deg,var(--gold2),var(--gold));color:#1a0c00;flex:1}
 .btn-pri:active{filter:brightness(1.1)}
-.btn-sec{background:rgba(255,255,255,.08);color:var(--tx);flex:none;padding:14px 16px}
+.btn-sec{background:rgba(255,255,255,.08);color:var(--tx);padding:14px 15px}
 .btn-sec:active{background:rgba(255,255,255,.14)}
+@media(min-width:600px){
+  .cta-bar{max-width:520px;left:50%;transform:translateX(-50%);right:auto;width:520px;border-radius:20px 20px 0 0}
+}
 
-/* ── 단계3: 타로 ── */
+/* ══ STEP 3 ══ */
 #s3{background:var(--bg)}
-.s3-wrap{padding:0 18px calc(var(--b) + 100px)}
+.s3w{padding:0 18px calc(var(--b) + 100px)}
 .tarot-intro{font-size:14px;color:var(--sub);text-align:center;margin-bottom:20px;line-height:1.65}
 
-.spread{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;perspective:800px}
-.plbl{font-size:10px;color:var(--sub);font-weight:800;letter-spacing:.05em;text-align:center;margin-bottom:6px}
-.tcard{position:relative;aspect-ratio:2/3.2;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,1.4,.5,1);cursor:pointer}
+.spread{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;perspective:900px}
+.plbl{font-size:10px;color:var(--sub);font-weight:800;letter-spacing:.05em;text-align:center;margin-bottom:5px}
+.tcard{position:relative;aspect-ratio:2/3.2;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.3,1.2,.5,1)}
 .tcard.flip{transform:rotateY(180deg)}
 .face{position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
-.back{background:radial-gradient(ellipse at 50% 50%,#2d1b8a 0%,#0e0636 100%);
-  border:2px solid rgba(240,192,96,.45);display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--gold)}
-.back::before{content:"";position:absolute;inset:7px;border:1px solid rgba(240,192,96,.25);border-radius:9px;
+.cback{
+  background:radial-gradient(ellipse at 50% 50%,#2d1b8a 0%,#0e0636 100%);
+  border:2px solid rgba(240,192,96,.45);
+  display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--gold);
+}
+.cback::before{content:"";position:absolute;inset:7px;border:1px solid rgba(240,192,96,.22);border-radius:9px;
   background:repeating-conic-gradient(from 45deg,rgba(192,132,252,.05) 0 22.5deg,transparent 22.5deg 45deg)}
-.back span{position:relative;text-shadow:0 0 18px var(--gold)}
-.front{transform:rotateY(180deg);background:linear-gradient(160deg,#fef9e8,#f0e0a8);color:#3a2800;
-  border:2px solid rgba(192,144,32,.8);display:flex;flex-direction:column;align-items:center;
-  justify-content:space-between;padding:8px 6px}
-.front .fn{font:800 10px serif;letter-spacing:1px}
-.front .fs{font-size:clamp(22px,7vw,36px);line-height:1;margin:2px 0}
-.front .fnm{font:900 clamp(9px,2.5vw,12px)/1.2 var(--font);text-align:center}
-.front .fko{font-size:8.5px;color:#8b6830;margin-top:1px}
-.front.rev .fs,.front.rev .fn{transform:rotate(180deg)}
-.front .fdir{position:absolute;top:5px;right:5px;font-size:8px;font-weight:900;border-radius:4px;padding:1px 4px}
-.front:not(.rev) .fdir{background:#4ade80;color:#0a2a10}
-.front.rev .fdir{background:#fb7185;color:#3a0010}
+.cback span{position:relative;text-shadow:0 0 16px var(--gold)}
+.cfront{transform:rotateY(180deg);background:linear-gradient(160deg,#fef9e8,#f0e0a8);color:#3a2800;
+  border:2px solid rgba(192,144,32,.8);display:flex;flex-direction:column;
+  align-items:center;justify-content:space-between;padding:8px 6px}
+.cfront .fn{font:800 9px serif;letter-spacing:1px}
+.cfront .fs{font-size:clamp(22px,7vw,34px);line-height:1;margin:2px 0}
+.cfront .fnm{font:900 clamp(9px,2.5vw,11px)/1.2 var(--font);text-align:center}
+.cfront .fko{font-size:8px;color:#8b6830;margin-top:1px}
+.cfront .fdir{position:absolute;top:5px;right:5px;font-size:8px;font-weight:900;border-radius:3px;padding:1px 4px}
+.cfront:not(.rev) .fdir{background:#4ade80;color:#0a2a10}
+.cfront.rev .fdir{background:#fb7185;color:#3a0010}
+.cfront.rev .fn,.cfront.rev .fs{transform:rotate(180deg)}
+
+.pause-hint{
+  display:none;text-align:center;font-size:14px;color:var(--gold);font-weight:800;
+  animation:blink .8s ease-in-out infinite;padding:6px 0;margin-bottom:4px;
+}
+@keyframes blink{0%,100%{opacity:.4}50%{opacity:1}}
 
 .tread{margin-top:4px;display:none}
 .tread.on{display:block;animation:fadeup .4s}
+@keyframes fadeup{from{opacity:0;transform:translateY(10px)}}
 .tri{padding:14px 16px;border-radius:14px;margin:10px 0;
   background:rgba(255,255,255,.04);border-left:3px solid var(--gold)}
-.tri .tpos{font-size:10.5px;color:var(--sub);font-weight:800;letter-spacing:.04em}
+.tri .tpos{font-size:10px;color:var(--sub);font-weight:800;letter-spacing:.04em}
 .tri .tcn{font-size:16px;font-weight:900;margin:4px 0 3px}
 .tri .tmn{font-size:14px;line-height:1.65}
 .tri .ty27{font-size:12.5px;color:var(--vio);margin-top:4px;font-style:italic}
+.tarot-action{margin:14px 0;padding:14px 16px;background:rgba(240,192,96,.08);
+  border:1px solid rgba(240,192,96,.22);border-radius:14px;font-size:14px;line-height:1.65}
+.tarot-action b{color:var(--gold);display:block;margin-bottom:4px}
 
-.share-wrap{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
-.src-note{font-size:12px;color:#5a5898;border-top:1px dashed rgba(255,255,255,.07);
+.share3{display:none;gap:8px;margin-top:14px;flex-wrap:wrap}
+.share3.on{display:flex}
+.foot-note{font-size:11.5px;color:#4a3878;border-top:1px dashed rgba(255,255,255,.07);
   margin-top:14px;padding-top:12px;line-height:1.65}
 
-/* ── 토스트 ── */
 .toast{position:fixed;left:50%;bottom:calc(var(--b) + 100px);transform:translateX(-50%) translateY(12px);
   background:#fff;color:#111;border-radius:12px;padding:11px 20px;font:700 13px var(--font);
   opacity:0;transition:.25s;z-index:200;pointer-events:none;white-space:nowrap}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* ── 반응형 ── */
-@media(min-width:600px){
-  .s1-wrap,.s2-wrap,.s3-wrap{max-width:520px;margin:0 auto}
-  .s2-wrap,.s3-wrap{padding-left:0;padding-right:0}
-  .cta-bar{max-width:520px;left:50%;transform:translateX(-50%);right:auto;width:520px;border-radius:20px 20px 0 0}
-}
+@media(min-width:600px){.s1w,.s2w,.s3w{max-width:520px;margin:0 auto}.s2w,.s3w{padding-left:0;padding-right:0}}
 </style>
 </head>
 <body>
 <canvas id="sky"></canvas>
 <div class="toast" id="toast"></div>
 
-<!-- ══ STEP 1: 띠 선택 ══ -->
+<!-- ══ STEP 1 ══ -->
 <div class="step active" id="s1">
-  <div class="s1-wrap">
-    <div class="moon-wrap">
+  <div class="s1w">
+    <div class="moon-w">
       <div class="ring ring2"></div>
       <div class="ring ring1"></div>
-      <div class="moon" aria-hidden="true">未</div>
+      <div class="moon">未</div>
     </div>
     <p class="s1-ttl">2027 정미년<br>운세</p>
+    <p class="s1-hook">운이 바뀌는 달이 있습니다.</p>
     <p class="s1-sub">丁未年 · 양띠 해 · 화생토의 기운</p>
-    <div class="year-chips">
-      <span class="year-chip">🐑 양(羊)의 해</span>
-      <span class="year-chip">🔥 불이 흙을 살리는 해</span>
-      <span class="year-chip">전 연령대</span>
-    </div>
-    <p class="pick-label">내 띠를 선택하세요</p>
+    <div class="rank-tease">12띠 중 올해 1등은 누굴까요? 내 띠부터 확인</div>
+    <p class="pick-lbl">내 띠를 누르면, 2027년 첫 장이 열립니다</p>
     <div class="zgrid" id="zgrid"></div>
-    <p style="font-size:11.5px;color:var(--sub);margin-top:14px;text-align:center;line-height:1.65">
-      띠는 음력 설(입춘) 기준 — 1~2월생은 앞 해 띠일 수 있어요
-    </p>
+    <p class="s1-foot">띠는 음력 설(입춘) 기준 — 1~2월생은 앞 해 띠일 수 있어요</p>
   </div>
 </div>
 
-<!-- ══ STEP 2: 운세 결과 ══ -->
+<!-- ══ STEP 2 ══ -->
 <div class="step" id="s2">
-  <div class="step-hdr">
-    <button class="back-btn" onclick="goStep(1)" aria-label="뒤로">←</button>
-    <div class="step-dots">
-      <div class="dot on"></div>
-      <div class="dot on"></div>
-      <div class="dot"></div>
-    </div>
-    <div class="hdr-side"></div>
+  <div class="shdr">
+    <button class="back" onclick="goStep(1)">←</button>
+    <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div>
+    <div class="hside"></div>
   </div>
-  <div class="s2-wrap" id="s2wrap"></div>
-  <div class="cta-bar" id="cta2">
-    <button class="btn btn-pri" onclick="goStep(3)">타로 뽑기 →</button>
+  <div class="s2w" id="s2w"></div>
+  <div class="cta-bar">
+    <button class="btn btn-pri" onclick="goStep(3)">🔮 타로 뽑기 →</button>
     <button class="btn btn-sec" onclick="shareResult()">📤</button>
   </div>
 </div>
 
-<!-- ══ STEP 3: 타로 ══ -->
+<!-- ══ STEP 3 ══ -->
 <div class="step" id="s3">
-  <div class="step-hdr">
-    <button class="back-btn" onclick="goStep(2)" aria-label="뒤로">←</button>
-    <div class="step-dots">
-      <div class="dot on"></div>
-      <div class="dot on"></div>
-      <div class="dot on"></div>
-    </div>
-    <div class="hdr-side"></div>
+  <div class="shdr">
+    <button class="back" onclick="goStep(2)">←</button>
+    <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div>
+    <div class="hside"></div>
   </div>
-  <div class="s3-wrap">
-    <p class="tarot-intro">마음속으로 '2027년의 나'를 떠올리고<br>카드를 선택하세요. 78장 덱에서 무작위 3장.</p>
+  <div class="s3w">
+    <p class="tarot-intro">마음속으로 '2027년의 나'를 떠올리세요.<br>78장 덱에서 3장이 나옵니다.</p>
     <div class="spread" id="spread"></div>
+    <p class="pause-hint" id="phint">마지막 카드 — 천천히 확인하세요 ✦</p>
     <div style="text-align:center;margin-bottom:16px">
       <button class="btn btn-pri" id="draw" style="width:100%;max-width:280px">🔮 카드 3장 뽑기</button>
-      <button class="btn btn-sec" id="redraw" style="display:none;margin-top:8px">↺ 다시 뽑기</button>
+      <button class="btn btn-sec" id="redraw" style="display:none;margin-top:8px;width:100%;max-width:280px">↺ 다시 뽑기</button>
     </div>
     <div class="tread" id="tread"></div>
-    <div class="share-wrap" id="share3" style="display:none">
+    <div class="share3" id="share3">
       <button class="btn btn-pri" onclick="shareResult()" style="flex:1">📤 결과 공유</button>
-      <button class="btn btn-sec" onclick="copyResult()">📋</button>
-      <button class="btn btn-sec" onclick="goStep(1)">처음부터</button>
+      <button class="btn btn-sec" onclick="copyResult()">📋 복사</button>
+      <button class="btn btn-sec" onclick="goStep(1)">처음으로</button>
     </div>
-    <p class="src-note">타로는 상징을 통해 스스로를 돌아보는 도구입니다. 개인 사주는 월·일·시까지 보아야 하며, 중요한 결정은 전문가와 상의하세요. 참고: 연해자평·적천수·삼명통회</p>
+    <p class="foot-note">타로는 상징을 통해 스스로를 돌아보는 도구입니다. 개인 사주는 월·일·시까지 보아야 하며, 중요한 결정은 전문가와 상의하세요. 재물 흐름은 투자 권유가 아닙니다.</p>
   </div>
 </div>
 
 <script>
 "use strict";
 
-// ── 12띠 데이터 ──
+// ── 12띠 (psych-ad 협업: 선언형·순위·칭호·운이 바뀌는 달·할 일 1개) ──
 const ZODIAC=[
-  {an:"쥐",em:"🐭",gz:"子",yrs:"1948·1960·1972·1984·1996·2008·2020",rel:"子未 해(害)",
-   tags:[["w","조심"],["","인내"]],score:{all:3,love:3,money:3,invest:2},
+  {an:"쥐",em:"🐭",gz:"子",yrs:"1948·1960·1972·1984·1996·2008·2020",
+   rank:10,title:"인내의 고수",match:"원숭이띠",month:"음력 11월",
+   decl:"2027년, 쥐띠는 느리더라도 단단하게 쌓는 것이 빛나는 해를 맞습니다.",
+   rel:"子未 해(害)",tags:[["w","조심"],["","인내"]],score:{all:3,love:3,money:3,invest:2},
    all:"자미 해(害)는 서로 거스르는 관계로 풀이합니다. 뜻대로 안 풀리는 느낌이 들 수 있지만, 그만큼 나를 단단하게 만드는 해예요. 무리하지 않고 실속을 챙기는 방향이 좋습니다.",
    love:"감정 표현이 엇갈리기 쉬운 해. 오해가 생기면 직접 말로 풀어 주세요. 묵혀 두면 커집니다.",
    money:"지출이 예상보다 늘기 쉬운 해. 목돈 쓸 일이 생기면 미리 준비해 두는 것이 안전해요.",
-   invest:"불확실성이 높은 해라 분산이 최선. 한쪽에 몰기보다 나눠 두세요.",
+   action:"비상금 목표 금액을 오늘 정하세요 — 얼마가 있으면 마음이 편한지.",
    tip:"조급함을 내려놓는 것이 이 해의 운을 여는 열쇠",lucky:["검은색","숫자 1","음력 11월"]},
-  {an:"소",em:"🐮",gz:"丑",yrs:"1949·1961·1973·1985·1997·2009·2021",rel:"丑未 충(沖)",
-   tags:[["w","큰 변화"],["","책임"]],score:{all:3,love:3,money:3,invest:2},
-   all:"축미 충(沖)은 판을 뒤흔드는 에너지로 풀이합니다. 환경·관계·일터에 큰 변화가 올 수 있지만, 미리 준비하면 오히려 도약의 기회가 됩니다.",
-   love:"관계에 흔들림이 올 수 있어요. 위기를 솔직한 대화로 넘기면 더 단단해집니다.",
+  {an:"소",em:"🐮",gz:"丑",yrs:"1949·1961·1973·1985·1997·2009·2021",
+   rank:12,title:"버텨낸 용사",match:"닭띠",month:"음력 1월",
+   decl:"2027년, 소띠는 오래 버티던 자리에서 한 걸음 옮기게 됩니다.",
+   rel:"丑未 충(沖) — 방향이 바뀌는 해",tags:[["w","큰 변화"],["","전환"]],score:{all:3,love:3,money:3,invest:2},
+   all:"축미 충(沖)은 판을 뒤흔드는 에너지입니다. 위험이 아니라 방향 전환 — 오래 버텨온 자리가 움직이기 시작하는 해예요. 그 방향이 맞는지는 음력 1월에 보입니다.",
+   love:"환경이 바뀌면서 관계에도 흔들림이 올 수 있어요. 솔직한 대화가 더 단단하게 만들어 줍니다.",
    money:"예상 밖의 지출이 생기기 쉬워요. 비상금을 여유 있게 확보해 두는 것이 좋습니다.",
-   invest:"변화가 큰 해엔 단순하게. 이해할 수 있는 상품만, 소액으로.",
+   action:"옮기고 싶은 것 3개를 써보세요 — 이직, 이사, 관계. 적기만 해도 길이 보입니다.",
    tip:"변화를 피하기보다 먼저 준비하기",lucky:["노란색","숫자 5","음력 1월"]},
-  {an:"호랑이",em:"🐯",gz:"寅",yrs:"1950·1962·1974·1986·1998·2010·2022",rel:"寅未 귀문(鬼門)",
-   tags:[["w","예민"],["","변화"]],score:{all:3,love:3,money:3,invest:2},
-   all:"귀문(鬼門)은 직관과 감수성이 날카로워지는 관계입니다. 남들이 못 보는 기회를 먼저 알아채지만, 그만큼 생각이 많아지고 쉽게 지칠 수 있어요.",
+  {an:"호랑이",em:"🐯",gz:"寅",yrs:"1950·1962·1974·1986·1998·2010·2022",
+   rank:9,title:"예감의 사람",match:"말띠",month:"음력 7월",
+   decl:"2027년, 호랑이띠는 남들이 못 보는 것을 먼저 보게 됩니다.",
+   rel:"寅未 귀문(鬼門) — 직관이 살아나는 관계",tags:[["","직관"],["w","에너지 관리"]],score:{all:3,love:3,money:3,invest:2},
+   all:"귀문(鬼門)은 직관과 감수성이 날카로워지는 관계입니다. 남들이 못 보는 기회를 먼저 알아채지만, 그만큼 생각이 많아지고 쉽게 지칠 수 있어요. 음력 7월 이후 흐름이 달라집니다.",
    love:"감정의 온도가 빨리 오르내립니다. 확신이 들 때까지 한 박자 쉬어 가면 좋아요.",
    money:"충동적인 결제가 늘기 쉬운 해. 정기 지출을 한 번 정리하면 마음이 편해집니다.",
-   invest:"직감보다 기록. 감으로 들어가고 싶을 때일수록 이유를 적어 보세요.",
-   tip:"잠과 루틴을 지키는 것이 운을 지키는 법",lucky:["보라색","숫자 3","음력 6월"]},
-  {an:"토끼",em:"🐰",gz:"卯",yrs:"1951·1963·1975·1987·1999·2011·2023",rel:"卯未 반합(半合·木局)",
-   tags:[["g","귀인"],["g","협력"]],score:{all:4,love:4,money:4,invest:3},
-   all:"亥卯未 삼합 중 반합이라, 나와 결이 맞는 사람·팀이 자연스럽게 모이는 흐름입니다. 혼자보다 함께일 때 일이 잘 풀리는 해예요.",
+   action:"잠 루틴 하나 만들기 — 재우는 시간을 고정하면 직관이 더 선명해집니다.",
+   tip:"잠과 루틴을 지키는 것이 운을 지키는 법",lucky:["보라색","숫자 3","음력 7월"]},
+  {an:"토끼",em:"🐰",gz:"卯",yrs:"1951·1963·1975·1987·1999·2011·2023",
+   rank:2,title:"귀인맞이꾼",match:"돼지띠",month:"음력 2월",
+   decl:"2027년, 토끼띠는 혼자보다 함께일 때 더 커지는 한 해를 맞습니다.",
+   rel:"卯未 반합(半合·木局) — 나와 결이 맞는 사람이 모이는 해",tags:[["g","귀인"],["g","협력"]],score:{all:4,love:4,money:4,invest:3},
+   all:"亥卯未 삼합 중 반합이라, 나와 결이 맞는 사람·팀이 자연스럽게 모이는 흐름입니다. 음력 2월부터 그 기운이 확 살아나요. 혼자보다 함께일 때 일이 잘 풀리는 해예요.",
    love:"편안하고 오래가는 인연의 기운. 친구에서 연인으로 넘어가는 흐름이 생기기 쉬워요.",
    money:"협업·추천으로 들어오는 기회가 늘어요. 소개받은 일을 성실히 하면 다음 일로 이어집니다.",
-   invest:"공부한 분야에 조금씩, 꾸준히. 크게 한 번보다 나눠서 가는 편이 이 해와 맞아요.",
+   action:"도움을 청하는 연습 — 먼저 한 번 부탁해 보세요. 귀인은 그때 나타납니다.",
    tip:"도움을 청하는 것이 곧 운을 여는 열쇠",lucky:["초록색","숫자 8","음력 2월"]},
-  {an:"용",em:"🐲",gz:"辰",yrs:"1952·1964·1976·1988·2000·2012·2024",rel:"辰未 토와 토의 만남",
-   tags:[["","고집"],["w","건강 관리"]],score:{all:3,love:3,money:4,invest:3},
-   all:"진토(辰)와 미토(未)가 만나 흙 기운이 두터워지는 해입니다. 기반을 다지기엔 좋지만, 고집이 세지고 몸이 무거워지기 쉬워요.",
+  {an:"용",em:"🐲",gz:"辰",yrs:"1952·1964·1976·1988·2000·2012·2024",
+   rank:7,title:"묵직한 쌓기꾼",match:"원숭이띠",month:"음력 3월",
+   decl:"2027년, 용띠는 쌓아 온 것이 단단한 기반이 되는 것을 느끼게 됩니다.",
+   rel:"辰未 — 흙 기운이 두터워지는 해",tags:[["","기반"],["w","건강 관리"]],score:{all:3,love:3,money:4,invest:3},
+   all:"진토(辰)와 미토(未)가 만나 흙 기운이 두터워지는 해입니다. 기반을 다지기엔 좋지만, 고집이 세지고 몸이 무거워지기 쉬워요. 음력 3월에 방향이 선명해집니다.",
    love:"내 방식만 고집하면 엇갈리기 쉬워요. 상대의 속도에 맞춰 주는 연습이 관계를 지켜 줍니다.",
    money:"쌓는 힘이 좋은 해. 적금·저축처럼 묵직하게 모으는 방식이 잘 맞아요.",
-   invest:"단기 매매보다 긴 호흡. 자주 확인하지 않을수록 마음이 편한 해예요.",
+   action:"적금 계좌 하나 더 만드세요 — 이름은 '2027 목표'로.",
    tip:"가볍게 걷기 · 소화와 수면 관리",lucky:["흰색","숫자 5","음력 4월"]},
-  {an:"뱀",em:"🐍",gz:"巳",yrs:"1953·1965·1977·1989·2001·2013",rel:"巳未 방합(方合·火局) 흐름",
-   tags:[["g","상승"],["","추진력"]],score:{all:4,love:3,money:4,invest:4},
-   all:"巳午未 여름 방합이라, 미년에 뱀띠는 같은 계절의 기운을 타고 흐름이 순하게 이어지는 해입니다. 하던 일에 속도가 붙어요.",
+  {an:"뱀",em:"🐍",gz:"巳",yrs:"1953·1965·1977·1989·2001·2013",
+   rank:4,title:"순풍의 달인",match:"말띠",month:"음력 5월",
+   decl:"2027년, 뱀띠는 하던 일에 드디어 속도가 붙게 됩니다.",
+   rel:"巳未 방합(方合·火局) — 여름 흐름을 타는 해",tags:[["g","상승"],["","추진력"]],score:{all:4,love:3,money:4,invest:4},
+   all:"巳午未 여름 방합이라, 미년에 뱀띠는 같은 계절의 기운을 타고 흐름이 순하게 이어지는 해입니다. 음력 5월 전후로 속도가 가장 붙어요. 하던 일에 집중하면 됩니다.",
    love:"적극적으로 다가가면 반응이 오는 해. 다만 일에 몰두하다 연락이 뜸해지지 않게 주의하세요.",
    money:"일한 만큼 돌아오는 해. 부업·프로젝트 수입이 생기기 좋은 흐름입니다.",
-   invest:"흐름은 좋지만 과열 신호엔 브레이크. 목표 수익을 미리 정해 두면 좋아요.",
+   action:"지금 하고 있는 일의 속도를 하나 올리세요 — 가장 익숙한 것부터.",
    tip:"한여름(음력 5~6월)에 큰 결정을 몰지 않기",lucky:["주황색","숫자 7","음력 5월"]},
-  {an:"말",em:"🐴",gz:"午",yrs:"1954·1966·1978·1990·2002·2014",rel:"午未 육합(六合) ⭐",
-   tags:[["g","최고의 합"],["g","연애운"]],score:{all:5,love:5,money:4,invest:4},
-   all:"午未는 육합(六合)으로, 정미년과 가장 잘 맞물리는 띠입니다. 사람·기회·타이밍이 맞아떨어지는 '합이 드는 해'예요.",
+  {an:"말",em:"🐴",gz:"午",yrs:"1954·1966·1978·1990·2002·2014",
+   rank:1,title:"주인공",match:"양띠",month:"음력 6월",
+   decl:"2027년, 말띠는 '드디어 내 차례'라는 말을 하게 됩니다.",
+   rel:"午未 육합(六合) ⭐ — 12띠 중 가장 잘 맞물리는 해",tags:[["g","12띠 1위"],["g","연애운 최강"]],score:{all:5,love:5,money:4,invest:4},
+   all:"午未는 육합(六合)으로, 정미년과 가장 잘 맞물리는 띠입니다. 사람·기회·타이밍이 맞아떨어지는 '합이 드는 해'예요. 기다려 온 일이 사람을 통해 들어오는 해 — 음력 6월이 절정입니다.",
    love:"연애운이 특히 강한 해. 새로운 인연도, 지금의 관계가 한 단계 나아가는 일도 생기기 좋아요.",
    money:"관계에서 오는 돈 — 소개, 협업, 좋은 제안이 들어오는 흐름. 계약서는 꼼꼼히!",
-   invest:"기회가 많아 보일수록 한 번에 다 하지 않기. 좋은 흐름일수록 원칙이 운을 지켜 줍니다.",
+   action:"만나고 싶었던 사람에게 먼저 연락하세요 — 2027년 가장 잘한 일이 될 겁니다.",
    tip:"좋은 일이 몰릴 때 체력 배분",lucky:["빨간색","숫자 2","음력 6월"]},
-  {an:"양",em:"🐑",gz:"未",yrs:"1955·1967·1979·1991·2003·2015",rel:"未未 복음(伏吟) · 본명년",
-   tags:[["","본명년"],["w","마음 점검"]],score:{all:3,love:3,money:3,invest:2},
-   all:"태어난 해의 띠가 돌아오는 본명년이자, 같은 글자가 겹치는 복음(伏吟)입니다. 같은 고민이 반복되는 느낌이 들 수 있어 '나를 점검하는 해'로 보면 좋아요.",
+  {an:"양",em:"🐑",gz:"未",yrs:"1955·1967·1979·1991·2003·2015",
+   rank:8,title:"자기발견자",match:"말띠",month:"음력 9월",
+   decl:"2027년, 양띠는 오래된 고민의 답이 드디어 보이기 시작합니다.",
+   rel:"未未 복음(伏吟) · 본명년 — 나를 점검하는 해",tags:[["","본명년"],["w","마음 점검"]],score:{all:3,love:3,money:3,invest:2},
+   all:"태어난 해의 띠가 돌아오는 본명년이자 복음(伏吟)입니다. 같은 고민이 반복되는 느낌이 들 수 있어요 — 하지만 그 고민의 패턴이 보이기 시작합니다. 음력 9월 이후 선명해져요.",
    love:"익숙한 패턴을 반복하기 쉬운 해. 지난 연애에서 배운 것을 떠올리면 다른 선택을 할 수 있어요.",
    money:"큰 변화보다 정리. 고정비를 줄이면 숨통이 트입니다.",
-   invest:"새로운 시도보다 지키기. 잘 모르는 상품은 쉬어 가도 괜찮아요.",
+   action:"일기장을 준비하세요 — 2027년 답은 기록에서 나옵니다.",
    tip:"혼자만의 시간 · 일기 쓰기",lucky:["노란색","숫자 0","음력 9월"]},
-  {an:"원숭이",em:"🐵",gz:"申",yrs:"1956·1968·1980·1992·2004·2016",rel:"未土→申金 토생금(土生金)",
-   tags:[["g","도움받음"],["","배움"]],score:{all:4,love:3,money:4,invest:3},
-   all:"미토(未)가 신금(申)을 낳는 토생금(土生金) 관계라, 주변에서 지원과 배움을 받기 좋은 해입니다. 선배·멘토 운이 따라요.",
+  {an:"원숭이",em:"🐵",gz:"申",yrs:"1956·1968·1980·1992·2004·2016",
+   rank:5,title:"배움의 귀재",match:"닭띠",month:"음력 7월",
+   decl:"2027년, 원숭이띠는 도움 받을 사람을 만나게 됩니다.",
+   rel:"未土→申金 토생금(土生金) — 주변에서 지원받는 해",tags:[["g","도움받음"],["","배움"]],score:{all:4,love:3,money:4,invest:3},
+   all:"미토(未)가 신금(申)을 낳는 토생금(土生金) 관계라, 주변에서 지원과 배움을 받기 좋은 해입니다. 선배·멘토 운이 따라요. 음력 7월 전후 그 사람이 나타납니다.",
    love:"조언을 주는 사람과 가까워지기 쉬워요. 대화가 잘 통하는 사람에게 눈길이 갑니다.",
    money:"배운 것이 돈이 되는 해. 자격증·포트폴리오에 쓴 비용이 돌아오는 흐름입니다.",
-   invest:"공부 먼저, 투자 나중. 모의로 연습해 보기 좋은 해예요.",
+   action:"감사하고 싶은 선배·멘토에게 오늘 연락하세요 — 감사 인사가 다음 기회를 부릅니다.",
    tip:"감사 인사가 다음 기회를 부른다",lucky:["금색","숫자 9","음력 7월"]},
-  {an:"닭",em:"🐔",gz:"酉",yrs:"1957·1969·1981·1993·2005·2017",rel:"未土→酉金 토생금(土生金)",
-   tags:[["g","지원"],["w","지출 관리"]],score:{all:4,love:3,money:3,invest:3},
-   all:"흙이 쇠를 기르는 토생금 관계로, 기반이 받쳐 주는 해입니다. 들어온 만큼 나가기도 쉬운 구조라 지출 관리가 중요해요.",
+  {an:"닭",em:"🐔",gz:"酉",yrs:"1957·1969·1981·1993·2005·2017",
+   rank:6,title:"착실한 기반가",match:"원숭이띠",month:"음력 8월",
+   decl:"2027년, 닭띠는 버는 만큼 쓸 줄도 알게 되는 해를 맞습니다.",
+   rel:"未土→酉金 토생금(土生金) — 기반이 받쳐 주는 해",tags:[["g","지원"],["w","지출 관리"]],score:{all:4,love:3,money:3,invest:3},
+   all:"흙이 쇠를 기르는 토생금 관계로, 기반이 받쳐 주는 해입니다. 들어온 만큼 나가기도 쉬운 구조라 지출 관리가 중요해요. 음력 8월이 가장 단단한 시기입니다.",
    love:"꾸미고 보여 주는 데 신경이 쓰이는 해. 화려함보다 솔직함이 더 통해요.",
    money:"버는 힘은 있는데 새는 구멍도 있는 해. 쇼핑·모임 지출 한도를 정해 두세요.",
-   invest:"유행 따라가기보다 내 기준. 남의 수익 인증에 흔들리지 않기.",
+   action:"고정 지출 목록을 한 번 훑어보세요 — 모르는 사이 나가는 것들이 보입니다.",
    tip:"가계부 앱 하나면 충분",lucky:["흰색","숫자 4","음력 8월"]},
-  {an:"개",em:"🐶",gz:"戌",yrs:"1958·1970·1982·1994·2006·2018",rel:"戌未 형(刑)·파(破)",
-   tags:[["w","큰 변화"],["","이동"]],score:{all:3,love:3,money:3,invest:2},
-   all:"戌未는 삼형(三刑)의 일부이자 파(破)의 관계라, 판이 흔들리고 새로 짜이는 해입니다. 이사·이직·전환처럼 자리가 바뀌는 일이 생기기 쉬워요.",
+  {an:"개",em:"🐶",gz:"戌",yrs:"1958·1970·1982·1994·2006·2018",
+   rank:11,title:"대전환자",match:"말띠",month:"음력 10월",
+   decl:"2027년, 개띠는 오래 머물던 자리가 바뀌는 큰 전환을 맞습니다.",
+   rel:"戌未 형(刑)·파(破) — 판이 새로 짜이는 해",tags:[["w","큰 변화"],["","이동"]],score:{all:3,love:3,money:3,invest:2},
+   all:"戌未는 삼형(三刑)의 일부이자 파(破)의 관계라, 판이 흔들리고 새로 짜이는 해입니다. 이사·이직·전환처럼 자리가 바뀌는 일이 생기기 쉬워요. 음력 10월이 전환의 분기점입니다.",
    love:"환경이 바뀌면서 인연도 바뀌기 쉬운 해. 거리가 생겨도 연락의 질을 챙기면 이어집니다.",
    money:"이동·준비 비용이 생기기 쉬워요. 미리 예비비를 떼어 두면 흔들림이 줄어요.",
-   invest:"변화가 큰 해엔 단순하게. 복잡한 상품보다 이해할 수 있는 것만.",
+   action:"이직, 이사 가능성을 열어두고 옵션 하나를 조사해 보세요 — 준비가 운을 부릅니다.",
    tip:"변화를 피하기보다 준비하기",lucky:["갈색","숫자 1","음력 10월"]},
-  {an:"돼지",em:"🐷",gz:"亥",yrs:"1959·1971·1983·1995·2007·2019",rel:"亥未 반합(半合·木局)",
-   tags:[["g","성장"],["g","창의"]],score:{all:4,love:4,money:3,invest:3},
-   all:"亥卯未 삼합의 반합으로 나무(木) 기운이 살아나는 해라, 배우고 만들고 자라는 흐름입니다. 학업·창작·새 시도에 힘이 실려요.",
+  {an:"돼지",em:"🐷",gz:"亥",yrs:"1959·1971·1983·1995·2007·2019",
+   rank:3,title:"숨은 성장주",match:"토끼띠",month:"음력 10월",
+   decl:"2027년, 돼지띠는 배우고 만드는 것이 돈이 되는 흐름을 맞습니다.",
+   rel:"亥未 반합(半合·木局) — 나무 기운이 살아나는 해",tags:[["g","성장"],["g","창의"]],score:{all:4,love:4,money:3,invest:3},
+   all:"亥卯未 삼합의 반합으로 나무(木) 기운이 살아나는 해라, 배우고 만들고 자라는 흐름입니다. 학업·창작·새 시도에 힘이 실려요. 음력 10월 이후 성과가 눈에 보이기 시작합니다.",
    love:"함께 무언가를 하며 가까워지는 인연. 스터디·동아리·프로젝트에서 시작되기 쉬워요.",
    money:"당장의 돈보다 실력이 쌓이는 해. 성과로 받는 돈의 기운이 있어요.",
-   invest:"나에게 투자하는 해. 금융 상품은 소액으로 경험만 해 보기.",
+   action:"배우고 싶었던 것 하나를 오늘 등록하세요 — 첫 수업이 운을 엽니다.",
    tip:"작은 결과물을 자주 내보이기",lucky:["청록색","숫자 6","음력 3월"]}
 ];
 
 // ── 타로 78장 ──
 const MAJOR=[
   ["0","The Fool","바보","🃏","새로운 시작·순수한 용기","무모함·준비 없는 출발","2027은 겁내지 말고 첫발을 떼는 해. 계획이 완벽하지 않아도 괜찮아요."],
-  ["I","The Magician","마법사","🪄","재능 발휘·실행력·새 기회","재능 낭비·속임수","가진 것만으로도 시작할 수 있어요."],
+  ["I","The Magician","마법사","🪄","재능 발휘·실행력","재능 낭비·속임수","가진 것만으로도 시작할 수 있어요."],
   ["II","The High Priestess","여사제","🌙","직관·내면의 지혜","직감 무시·혼란","말보다 느낌을 믿을 때."],
   ["III","The Empress","여황제","🌸","풍요·돌봄·창조성","과잉·의존","가꾼 만큼 자라는 해."],
   ["IV","The Emperor","황제","👑","안정·질서·리더십","고집·경직","규칙과 루틴이 힘이 되는 해."],
@@ -385,15 +438,15 @@ const MAJOR=[
   ["VII","The Chariot","전차","🏇","의지·전진·승리","방향 상실·조급함","목표를 정하면 거침없이."],
   ["VIII","Strength","힘","🦁","부드러운 강함·인내","자기 의심·무기력","꾸준함이 힘이에요."],
   ["IX","The Hermit","은둔자","🏮","성찰·탐구·내면의 시간","고립·회피","조용히 들여다보면 길이 밝아지는 해."],
-  ["X","Wheel of Fortune","운명의 수레바퀴","🎡","전환점·행운","불운 반복·저항","흐름이 바뀌는 해."],
+  ["X","Wheel","운명의 수레바퀴","🎡","전환점·행운","불운 반복·저항","흐름이 바뀌는 해."],
   ["XI","Justice","정의","⚖️","균형·공정·책임","불공정·회피","뿌린 대로 거두는 해."],
-  ["XII","The Hanged Man","매달린 사람","🙃","관점 전환·기다림","헛된 희생·고집","보는 각도를 바꾸면 풀려요."],
+  ["XII","Hanged Man","매달린 사람","🙃","관점 전환·기다림","헛된 희생·고집","보는 각도를 바꾸면 풀려요."],
   ["XIII","Death","죽음(변화)","🦋","끝과 시작·정리","변화 거부·정체","끝은 새 시작의 다른 이름."],
   ["XIV","Temperance","절제","🍶","균형·조화·중용","과잉·불균형","적당히, 꾸준히."],
   ["XV","The Devil","악마","⛓️","유혹·집착을 알아차림","해방·나쁜 습관 끊기","나를 붙잡는 것을 알아보는 해."],
   ["XVI","The Tower","탑","⚡","갑작스런 변화·깨달음","변화 회피·두려움","흔들림 뒤에 더 단단한 것을 짓는 해."],
   ["XVII","The Star","별","⭐","희망·치유·영감","낙담·자신감 부족","다시 꿈꾸는 해."],
-  ["XVIII","The Moon","달","🌕","불확실·무의식","혼란 해소·진실 드러남","서두르지 않기. 시간이 답을 보여요."],
+  ["XVIII","The Moon","달","🌕","불확실·무의식","혼란 해소·진실","서두르지 않기. 시간이 답을 보여요."],
   ["XIX","The Sun","태양","☀️","성공·기쁨·명확함","일시적 우울·과신","노력이 빛을 보는 순간이 와요."],
   ["XX","Judgement","심판","📯","재평가·새 출발의 결심","자기 비판·미루기","지난 일을 정리하고 다시 일어서는 해."],
   ["XXI","The World","세계","🌍","완성·성취","미완성·마무리 지연","한 단계를 완성하고 더 넓은 세계로."]
@@ -419,136 +472,141 @@ function toast(m){const e=$("toast");e.textContent=m;e.classList.add("on");clear
 // ── 단계 전환 ──
 let cur=1;
 function goStep(n){
-  const from=$("s"+cur), to=$("s"+n);
-  if(n>cur){
-    to.classList.add("active");
-    from.classList.add("prev");
-    setTimeout(()=>{from.classList.remove("active","prev");from.scrollTop=0},420);
-  } else {
-    from.classList.remove("active");
-    to.classList.remove("prev");
-    setTimeout(()=>{from.scrollTop=0},420);
-  }
-  cur=n;
-  if(n===2) animateMeters();
+  const from=$("s"+cur),to=$("s"+n);
+  if(n>cur){to.classList.add("active");from.classList.add("prev");setTimeout(()=>{from.classList.remove("active","prev");from.scrollTop=0},420)}
+  else{from.classList.remove("active");to.classList.remove("prev");setTimeout(()=>{from.scrollTop=0},420)}
+  cur=n;if(n===2)animateMeters();
 }
 window.goStep=goStep;
 
 // ── 띠 그리드 ──
 let picked=null;
-$("zgrid").innerHTML=ZODIAC.map((z,i)=>{
-  const yrs=z.yrs.split("·"),last=yrs.slice(-3).join("·");
-  return`<button class="zbtn" data-i="${i}" aria-label="${z.an}띠 선택"><span class="em">${z.em}</span><span class="nm">${z.an}</span><span class="yrs">${last}…</span></button>`;
-}).join("");
-
+$("zgrid").innerHTML=ZODIAC.map((z,i)=>`<button class="zbtn" data-i="${i}"><span class="em">${z.em}</span><span class="nm">${z.an}</span><span class="rk">${z.rank}위</span></button>`).join("");
 $("zgrid").addEventListener("click",e=>{
-  const b=e.target.closest(".zbtn");
-  if(!b)return;
-  const i=+b.dataset.i, z=ZODIAC[i];
-  picked=z;
-  buildS2(z);
-  goStep(2);
+  const b=e.target.closest(".zbtn");if(!b)return;
+  const i=+b.dataset.i;picked=ZODIAC[i];
+  buildS2(picked);goStep(2);
   try{localStorage.setItem("f27_z",i)}catch(e){}
 });
 
-// ── 운세 결과 빌드 ──
+// ── Step 2 빌드 ──
+function tagStyle(cl){
+  if(cl==="g")return"background:rgba(74,222,128,.1);color:#4ade80;border-color:rgba(74,222,128,.28)";
+  if(cl==="w")return"background:rgba(251,145,70,.1);color:#fb923c;border-color:rgba(251,145,70,.28)";
+  return"background:rgba(255,255,255,.05);color:#9080b8;border-color:rgba(255,255,255,.12)";
+}
 function buildS2(z){
-  const tags=z.tags.map(([cl,nm])=>`<span class="tag t${cl||"n"}">${nm}</span>`).join("");
-  const ms=[["🌟 총운",z.score.all],["💞 연애",z.score.love],["💰 금전",z.score.money],["📈 투자",z.score.invest]];
-  $("s2wrap").innerHTML=`
-    <div class="z-hero">
-      <div class="z-em">${z.em}</div>
-      <div>
-        <h2>${z.an}띠 (${z.gz})</h2>
-        <div class="z-rel">정미년과: ${z.rel}</div>
-        <div class="tags">${tags}</div>
-      </div>
+  const tags=z.tags.map(([cl,nm])=>`<span style="font-size:11px;font-weight:800;border-radius:999px;padding:3px 10px;border:1px solid;${tagStyle(cl)}">${nm}</span>`).join("");
+  const ms=[["🌟 총운",z.score.all],["💞 연애",z.score.love],["💰 금전",z.score.money],["📊 재물",z.score.invest]];
+  $("s2w").innerHTML=`
+    <p class="z-decl">${esc(z.decl)}</p>
+    <div class="badge-row">
+      <span class="title-badge">「${esc(z.title)}」</span>
+      <span class="rank-badge">12띠 중 ${z.rank}위</span>
     </div>
-    <div class="yrs-note">출생연도 (음력 설 기준): ${z.yrs}</div>
-    <div class="meters" id="meters">
-      ${ms.map(([l,sc],idx)=>`<div class="mi"><div class="mi-lbl">${l}</div><div class="mi-score" id="ms${idx}">${sc}/5</div><div class="mi-bar"><div class="mi-fill" id="mf${idx}" data-val="${sc}"></div></div></div>`).join("")}
+    <div class="moon-month">
+      <span class="mm-lbl">🌙 운이 바뀌는 달</span>
+      <span class="mm-val">${esc(z.month)}</span>
+      <span class="mm-note">이후 흐름이 달라집니다</span>
     </div>
-    <div class="ztabs" id="ztabs">
-      <button class="on" data-tab="all">🌟 종합</button>
-      <button data-tab="love">💞 연애</button>
-      <button data-tab="money">💰 금전</button>
-      <button data-tab="invest">📈 투자</button>
+    <div class="meters">
+      ${ms.map(([l,v],i)=>`<div class="mi"><div class="mi-lbl">${l}</div><div class="mi-score">${v}/5</div><div class="mi-bar"><div class="mi-fill" id="mf${i}" data-val="${v}"></div></div></div>`).join("")}
     </div>
-    <div class="ztab-content on" id="tc-all">${esc(z.all)}</div>
-    <div class="ztab-content" id="tc-love">${esc(z.love)}</div>
-    <div class="ztab-content" id="tc-money">${esc(z.money)}</div>
-    <div class="ztab-content" id="tc-invest">${esc(z.invest)}</div>
-    <div class="z-advice"><b>✨ 한 줄 조언</b> — ${esc(z.tip)}</div>
-    <div class="lucky-wrap">${z.lucky.map(l=>`<span class="lucky-pill">🍀 ${esc(l)}</span>`).join("")}</div>
-  `;
-  $("ztabs").addEventListener("click",e=>{
-    const b=e.target.closest("[data-tab]");if(!b)return;
-    $("ztabs").querySelectorAll("button").forEach(x=>x.classList.remove("on"));
-    document.querySelectorAll(".ztab-content").forEach(x=>x.classList.remove("on"));
-    b.classList.add("on");$("tc-"+b.dataset.tab).classList.add("on");
-  });
-}
+    <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px">${tags}</div>
+    <div style="font-size:11px;color:var(--sub);margin-bottom:12px">${z.rel} · ${z.yrs}</div>
 
-function animateMeters(){
-  setTimeout(()=>{
-    for(let i=0;i<4;i++){
-      const fill=$("mf"+i);
-      if(fill) fill.style.width=(+fill.dataset.val/5*100)+"%";
-    }
-  },80);
+    <details class="acc" open>
+      <summary>🌟 종합운</summary>
+      <div class="acc-body"><p>${esc(z.all)}</p></div>
+    </details>
+    <details class="acc">
+      <summary>💞 연애운</summary>
+      <div class="acc-body"><p>${esc(z.love)}</p></div>
+    </details>
+    <details class="acc">
+      <summary>💰 재물 흐름</summary>
+      <div class="acc-body"><p>${esc(z.money)}</p></div>
+    </details>
+    <details class="acc">
+      <summary>✨ 2027 할 일 1개</summary>
+      <div class="acc-body">
+        <div class="acc-action"><b>지금 바로 하면 좋은 것</b>${esc(z.action)}</div>
+        <p style="margin-top:10px;font-size:13px;color:var(--sub)">🍀 행운 키워드</p>
+        <div class="lucky-row">${z.lucky.map(l=>`<span class="lpill">${esc(l)}</span>`).join("")}</div>
+      </div>
+    </details>
+
+    <div class="match-share">
+      <span class="match-txt">올해 나랑 <b>합(合)인 띠</b>: <b>${esc(z.match)}</b></span>
+      <button class="match-btn" onclick="shareToMatch()">그 사람한테 보내기</button>
+    </div>
+  `;
 }
+function animateMeters(){setTimeout(()=>{for(let i=0;i<4;i++){const f=$("mf"+i);if(f)f.style.width=(+f.dataset.val/5*100)+"%"}},80)}
 
 // ── 타로 ──
 const POS=["과거 · 2026","현재 · 지금","미래 · 2027"];
 let drawn=null;
-
 function renderSpread(cards){
   $("spread").innerHTML=POS.map((p,i)=>{
     const c=cards&&cards[i];
-    return`<div class="slot"><div class="plbl">${p}</div><div class="tcard" data-i="${i}"><div class="face back"><span>✦</span></div>${c?`<div class="face front ${c.rev?"rev":""}"><span class="fdir">${c.rev?"역":"정"}</span><div class="fn">${c.card.num}</div><div class="fs">${c.card.sym}</div><div class="fnm">${esc(c.card.ko)}</div><div class="fko">${esc(c.card.en)}</div></div>`:""}</div></div>`;
+    return`<div><div class="plbl">${p}</div><div class="tcard" id="tc${i}"><div class="face cback"><span>✦</span></div>${c?`<div class="face cfront ${c.rev?"rev":""}"><span class="fdir">${c.rev?"역":"정"}</span><div class="fn">${c.card.num}</div><div class="fs">${c.card.sym}</div><div class="fnm">${esc(c.card.ko)}</div><div class="fko">${esc(c.card.en)}</div></div>`:""}</div></div>`;
   }).join("");
 }
-
 function drawThree(){
   const idx=DECK.map((_,j)=>j);
   for(let i=idx.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]]}
   return idx.slice(0,3).map(i=>({card:DECK[i],rev:Math.random()<.35}));
 }
-
 function doDraw(){
   drawn=drawThree();renderSpread(drawn);
-  $("tread").classList.remove("on");
-  $("draw").style.display="none";$("redraw").style.display="inline-flex";
-  $("share3").style.display="none";
-  document.querySelectorAll(".tcard").forEach((el,i)=>setTimeout(()=>el.classList.add("flip"),300+i*620));
+  $("tread").classList.remove("on");$("phint").style.display="none";
+  $("draw").style.display="none";$("redraw").style.display="none";
+  $("share3").classList.remove("on");
+  // 순차 플립: 카드1 → 850ms → 카드2 → 멈춤 힌트 → 800ms → 카드3
+  setTimeout(()=>$("tc0")&&$("tc0").classList.add("flip"),300);
+  setTimeout(()=>$("tc1")&&$("tc1").classList.add("flip"),1150);
+  setTimeout(()=>{$("phint").style.display="block"},1950);
+  setTimeout(()=>{$("phint").style.display="none";$("tc2")&&$("tc2").classList.add("flip")},2750);
   setTimeout(()=>{
     $("tread").innerHTML=drawn.map((c,i)=>`<div class="tri"><div class="tpos">${POS[i]}</div><div class="tcn">${c.card.sym} ${esc(c.card.ko)} <small style="color:var(--sub);font-weight:400">${c.rev?"역방향":"정방향"}</small></div><div class="tmn">${esc(c.rev?c.card.rev:c.card.up)}</div>${c.card.y27&&!c.rev&&i===2?`<div class="ty27">✦ ${esc(c.card.y27)}</div>`:""}</div>`).join("")+
-      `<div class="src-note">타로는 상징을 통해 스스로를 돌아보는 도구입니다. 개인 사주는 월·일·시까지 보아야 하며, 중요한 결정은 전문가와 상의하세요.</div>`;
+      (picked?`<div class="tarot-action"><b>🌟 2027 할 일 1개 (${picked.an}띠)</b>${esc(picked.action)}</div>`:"");
     $("tread").classList.add("on");
-    $("share3").style.display="flex";
-  },300+3*620+300);
+    $("redraw").style.display="inline-flex";
+    $("share3").classList.add("on");
+  },3400);
 }
-$("draw").onclick=doDraw;$("redraw").onclick=doDraw;
+$("draw").onclick=doDraw;
+$("redraw").onclick=()=>{drawn=null;$("redraw").style.display="none";doDraw()};
 renderSpread(null);
 
 // ── 공유 ──
 const stars5=n=>"★".repeat(n)+"☆".repeat(5-n);
 function resultText(){
   let t="🔮 2027 정미년 운세\n";
-  if(picked) t+=`\n${picked.em} ${picked.an}띠 (${picked.rel})\n총운 ${stars5(picked.score.all)} · 연애 ${stars5(picked.score.love)} · 금전 ${stars5(picked.score.money)}\n"${picked.tip}"\n`;
-  if(drawn) t+=`\n🃏 타로 3장\n${drawn.map((c,i)=>`${POS[i]}: ${c.card.ko}(${c.rev?"역":"정"})`).join("\n")}\n`;
+  if(picked){
+    t+=`\n${picked.em} ${picked.an}띠 — 「${picked.title}」 (12띠 중 ${picked.rank}위)\n`;
+    t+=`총운 ${stars5(picked.score.all)} · 연애 ${stars5(picked.score.love)} · 재물 ${stars5(picked.score.money)}\n`;
+    t+=`🌙 운이 바뀌는 달: ${picked.month}\n"${picked.decl}"\n`;
+  }
+  if(drawn)t+=`\n🃏 타로 3장\n${drawn.map((c,i)=>`${POS[i]}: ${c.card.ko}(${c.rev?"역":"정"})`).join("\n")}\n`;
   return t+"\nhttps://hongfe.github.io/fortune2027/";
 }
 async function copyResult(){
-  const t=resultText();
-  try{await navigator.clipboard.writeText(t);toast("복사했어요! 카톡에 붙여 넣어 보세요 🎉")}
-  catch(e){toast(t.slice(0,60)+"...")}
+  try{await navigator.clipboard.writeText(resultText());toast("복사했어요! 카톡에 붙여 넣어 보세요 🎉")}
+  catch(e){toast("결과를 길게 눌러 복사하세요")}
 }
 function shareResult(){
-  if(navigator.share) navigator.share({title:"2027 정미년 운세",text:resultText()}).catch(()=>{});
+  if(navigator.share)navigator.share({title:"2027 정미년 운세",text:resultText()}).catch(()=>{});
   else copyResult();
 }
-window.shareResult=shareResult;window.copyResult=copyResult;
+function shareToMatch(){
+  if(!picked)return;
+  const t=`${picked.match}에게 — 2027년 나랑 합(合)인 띠야 🎯\n\n내 운세 보니 올해 ${picked.match}이랑 잘 맞는다고 나왔어.\n내 띠 뽑아봐 → https://hongfe.github.io/fortune2027/`;
+  if(navigator.share)navigator.share({title:"2027 운세",text:t}).catch(()=>{});
+  else{try{navigator.clipboard.writeText(t);toast("복사했어요! 카톡에 붙여 넣어 보내세요 💚")}catch(e){}}
+}
+window.shareResult=shareResult;window.copyResult=copyResult;window.shareToMatch=shareToMatch;
 
 // ── 복원 ──
 try{const z=localStorage.getItem("f27_z");if(z!==null&&ZODIAC[+z]){picked=ZODIAC[+z];buildS2(ZODIAC[+z])}}catch(e){}
