@@ -29,11 +29,9 @@ button{font-family:inherit}
 #sky{position:fixed;inset:0;z-index:0;pointer-events:none}
 
 /* ── 단계 슬라이드 ── */
-.step{position:fixed;inset:0;transform:translateX(100%);visibility:hidden;
-  transition:transform .42s cubic-bezier(.4,0,.2,1),visibility 0s .42s;
-  overflow-y:auto;overflow-x:hidden;z-index:1;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
-.step.active{transform:none;visibility:visible;transition:transform .42s cubic-bezier(.4,0,.2,1)}
-.step.prev{transform:translateX(-28%);visibility:visible}
+.step{position:fixed;inset:0;display:none;overflow-y:auto;overflow-x:hidden;z-index:1;-webkit-overflow-scrolling:touch;flex-direction:column}
+.step.active{display:flex;animation:stepin .22s ease-out}
+@keyframes stepin{from{opacity:0;transform:translateY(10px)}}
 .wrap{width:100%;max-width:520px;margin:0 auto;padding:0 18px;flex:1}
 
 .shdr{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:10px;
@@ -140,7 +138,6 @@ textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(2
 .cback span{position:relative;font-size:20px;text-shadow:0 0 14px var(--gold)}
 .cfront{transform:rotateY(180deg);background:#f3ead2;box-shadow:0 0 0 2px rgba(240,192,96,.7)}
 .cfront img{width:100%;height:100%;object-fit:cover;display:block}
-.cfront.rev img{transform:rotate(180deg)}
 .dirtag{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:900;border-radius:5px;padding:2px 7px;white-space:nowrap}
 .dirtag.up{background:#4ade80;color:#06220f}.dirtag.rv{background:#fb7185;color:#3a0010}
 .slot.glow .tcard{filter:drop-shadow(0 0 14px rgba(240,192,96,.55))}
@@ -198,7 +195,6 @@ textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(2
 .read{display:grid;grid-template-columns:76px 1fr;gap:12px;padding:12px 0;border-top:1px dashed rgba(255,255,255,.08)}
 .read:first-of-type{border-top:0;padding-top:0}
 .read img{width:76px;border-radius:7px;box-shadow:0 0 0 1.5px rgba(240,192,96,.55);display:block}
-.read img.rev{transform:rotate(180deg)}
 .rpos{font-size:10.5px;color:var(--vio);font-weight:900;letter-spacing:.04em}
 .rcn{font-size:15px;font-weight:900;margin:2px 0 1px}
 .rcn small{font-size:11px;font-weight:800;margin-left:4px}
@@ -775,12 +771,11 @@ document.querySelectorAll(".dots").forEach(d=>{const n=+d.dataset.n;d.innerHTML=
 let cur=1;
 function goStep(n){
   if(n===cur)return;
-  if(n===4)enterDeck();
   if(n===5)buildResult();
   const from=$("s"+cur),to=$("s"+n);
-  if(n>cur){to.classList.add("active");from.classList.add("prev");setTimeout(()=>{from.classList.remove("active","prev")},420)}
-  else{to.classList.remove("prev");to.classList.add("active");from.classList.remove("active")}
+  from.classList.remove("active");to.classList.add("active");
   to.scrollTop=0;cur=n;
+  if(n===4)enterDeck();
 }
 window.goStep=goStep;
 
@@ -925,7 +920,7 @@ function buildResult(){
 
   <div class="sec fade" style="animation-delay:.2s">
     <h3>🃏 카드 3장 풀이 <small>${CATNAME[cat]} 관점</small></h3>
-    ${p.map((c,i)=>`<div class="read"><img src="${img(c.card)}" alt="${esc(c.card.ko)}" class="${c.rev?"rev":""}" loading="lazy">
+    ${p.map((c,i)=>`<div class="read"><img src="${img(c.card)}" alt="${esc(c.card.ko)}" loading="lazy">
       <div><div class="rpos">${i+1} · ${POS[i][0]} — ${POS[i][1]}</div>
       <div class="rcn">${esc(c.card.ko)}<small class="${c.rev?"rv":"up"}">${c.rev?"역방향":"정방향"}</small></div>
       <div class="rkw">${esc(c.card.en)} · ${esc(c.rev?c.card.rv:c.card.up)}</div>
