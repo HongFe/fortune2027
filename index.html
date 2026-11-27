@@ -122,6 +122,19 @@ textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(2
 @keyframes pop{from{transform:scale(.6);opacity:0}}
 .privacy{font-size:11px;color:#6c5f94;margin-top:8px}
 
+.qchips{display:flex;flex-direction:column;gap:7px}
+.qchip{display:flex;align-items:center;gap:10px;text-align:left;border:1px solid var(--bd);background:var(--card);color:var(--tx);
+  border-radius:14px;padding:12px 14px;font:700 14.5px/1.4 var(--font);cursor:pointer;transition:.15s}
+.qchip .qt{font-size:10.5px;font-weight:900;color:var(--vio);background:rgba(192,132,252,.14);border-radius:6px;padding:3px 7px;flex-shrink:0;min-width:58px;text-align:center}
+.qchip[aria-pressed="true"]{background:rgba(240,192,96,.14);border-color:var(--gold)}
+.qchip[aria-pressed="true"] .qt{color:#1a0c00;background:var(--gold)}
+.ab{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ab label{position:relative;display:block}
+.ab label span{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-weight:900;color:var(--gold);font-size:14px}
+.ab input{width:100%;border-radius:12px;border:1px solid rgba(240,192,96,.3);background:rgba(10,6,28,.75);color:var(--tx);font:600 14.5px var(--font);padding:12px 10px 12px 28px}
+.ab input:focus{outline:none;border-color:var(--gold)}
+@media(max-width:360px){.ab{grid-template-columns:1fr}}
+
 /* ══ STEP 4 카드 고르기 ══ */
 .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;perspective:900px;margin:6px 0 14px}
 .slot .plbl{font-size:11px;color:var(--sub);font-weight:800;text-align:center;margin-bottom:6px}
@@ -206,6 +219,24 @@ textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(2
 .ctslot .rcn{font-size:12.5px;font-weight:900;text-align:center;margin:0}
 .ctslot small.up{color:var(--ok);font-size:10px;font-weight:800}
 .ctslot small.rv{color:var(--rose);font-size:10px;font-weight:800}
+.ctslot{position:relative}
+.card-trio .ctslot:not(:last-child)::after{content:"›";position:absolute;right:-9px;top:44%;color:var(--gold);font-size:22px;font-weight:900;text-shadow:0 0 8px rgba(240,192,96,.6)}
+.story{border-color:rgba(192,132,252,.3)}
+.trend{display:inline-block;font-size:12px;font-weight:900;border-radius:999px;padding:4px 11px;margin-bottom:10px}
+.trend.up{background:rgba(74,222,128,.12);color:#4ade80}.trend.down{background:rgba(251,113,133,.12);color:#fb7185}.trend.flat{background:rgba(240,192,96,.12);color:var(--gold)}
+.storyline{list-style:none;display:flex;flex-direction:column;gap:0;margin-bottom:12px;position:relative}
+.storyline li{display:grid;grid-template-columns:24px 1fr;gap:10px;position:relative;padding-bottom:12px}
+.storyline li:not(:last-child)::before{content:"";position:absolute;left:11px;top:24px;bottom:0;width:2px;background:linear-gradient(var(--vio),rgba(192,132,252,.15))}
+.storyline .sn{width:24px;height:24px;border-radius:50%;background:var(--vio);color:#1a0730;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.storyline p{font-size:14.5px;line-height:1.75}
+.storyline b{color:#f3dea4}
+.pattern{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:4px}
+.pattern li{font-size:13px;line-height:1.55;color:#ddd5f7;padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.045)}
+.cardact{border-radius:12px;padding:12px 14px;margin:2px 0 6px;background:rgba(240,192,96,.12);border:1px solid rgba(240,192,96,.45)}
+.cardact span{display:block;font-size:11px;font-weight:900;color:var(--gold);margin-bottom:3px}
+.cardact b{font-size:15.5px;color:#fff6dc;line-height:1.5}
+.cardact small{display:block;font-size:11px;color:var(--sub);margin-top:3px}
+.dontlist li.cardavoid small{color:var(--sub);font-size:11.5px}
 /* 카드 상세 (접힌 목록) */
 .read{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:11px 0;border-top:1px dashed rgba(255,255,255,.08);align-items:start}
 .read:first-of-type{border-top:0;padding-top:0}
@@ -329,6 +360,17 @@ textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(2
     <h2 class="h2">요즘 <em>가장 마음에 걸리는 것</em>은?</h2>
     <p class="lead">분야를 고르고, 상황을 편하게 적어 주세요. 단어를 읽고 맞는 처방을 찾아요.</p>
     <div class="catgrid" id="cats" role="group" aria-label="고민 분야"></div>
+    <div id="qbox" hidden>
+      <p class="lbl">무엇이 가장 궁금한가요? <span style="font-weight:600">(하나 고르기 · 선택)</span></p>
+      <div class="qchips" id="qs" role="group" aria-label="질문 고르기"></div>
+    </div>
+    <div id="abbox" hidden>
+      <p class="lbl">두 선택지를 짧게 적어 주세요</p>
+      <div class="ab">
+        <label><span>A</span><input id="optA" maxlength="20" placeholder="예) 지금 회사 남기" aria-label="선택지 A"></label>
+        <label><span>B</span><input id="optB" maxlength="20" placeholder="예) 스타트업 이직" aria-label="선택지 B"></label>
+      </div>
+    </div>
     <p class="lbl">상황을 한두 줄로 (선택이지만, 적을수록 정확해요)</p>
     <div class="ta-w">
       <textarea id="q" maxlength="300" aria-label="고민 상황 입력" placeholder="예) 팀장이랑 계속 부딪혀서 이직을 고민 중이에요. 지금 나가도 될까요?"></textarea>
@@ -757,21 +799,55 @@ MAJOR.forEach((m,i)=>DECK.push({id:"m"+String(i).padStart(2,"0"),major:true,num:
 SUITS.forEach(s=>RANKS.forEach((r,i)=>{const id=s.f+String(i+1).padStart(2,"0");
   DECK.push({id,major:false,suit:s,num:r[1],en:`${r[0]} of ${s.k}`,ko:`${s.ko} ${r[1]}`,v:VAL_FIX[s.f+(i+1)]??r[2],up:r[3],upAdv:r[4],rv:r[5],rvAdv:r[6]})}));
 const img=c=>`cards/${c.id}.webp`;
-const POS=[["지금 상황","현재 흐름"],["걸림돌","막고 있는 것"],["해결 열쇠","이렇게 풀어요"]];
+/* 질문 유형별 스프레드 — 같은 3장도 질문에 따라 자리 뜻이 달라진다 */
+const SPREADS={
+ std:[["지금 상황","현재 흐름"],["걸림돌","막고 있는 것"],["해결 열쇠","이렇게 풀어요"]],
+ feel:[["내 마음","나의 자리"],["그 사람의 마음","상대의 자리"],["두 사람의 열쇠","이어 주는 것"]],
+ choice:[["A를 고르면","첫 번째 길"],["B를 고르면","두 번째 길"],["선택의 열쇠","무엇을 기준으로"]]
+};
+const QTYPE={yesno:"예/아니오",feel:"속마음",when:"시기",how:"방법",outcome:"결과",choice:"A vs B"};
+/* 분야별 질문 [유형, 질문, 우선 처방 id] */
+const QS={
+ love:[["feel","그 사람 마음이 궁금해요",null],["yesno","먼저 다가가도 될까요?","crush"],["yesno","헤어진 사람과 다시 만날 수 있을까요?","reunion"],["when","새 인연은 언제 올까요?","meet"],["outcome","이 관계, 앞으로 어떻게 될까요?",null],["how","자꾸 싸우는데 어떻게 풀죠?","fight"],["choice","두 사람 사이에서 고민돼요","decide"]],
+ work:[["yesno","이직·퇴사해도 될까요?","quit"],["outcome","이번엔 합격할 수 있을까요?","jobhunt"],["how","상사·동료와 어떻게 지내죠?","boss"],["when","언제 움직이면 좋을까요?",null],["outcome","올해 일·사업 흐름은 어떨까요?",null],["how","일에 너무 지쳤어요","burnout"],["choice","두 회사·두 일 중 고민돼요","decide"]],
+ money:[["yesno","지금 투자해도 될까요?","invest"],["outcome","올해 돈이 모일까요?","save"],["when","빚은 언제쯤 정리될까요?","debt"],["how","수입을 어떻게 늘리죠?","income"],["yesno","이 계약, 해도 될까요?","house"],["how","돈이 자꾸 새요","spend"],["choice","A와 B 중 어디에 쓸까요?","decide"]],
+ people:[["feel","그 사람 속마음이 궁금해요","friend"],["yesno","먼저 연락해도 될까요?","friend"],["yesno","이 관계, 정리해야 할까요?","friend"],["how","가족과 어떻게 풀죠?","family"],["outcome","오해가 풀릴까요?","gossip"],["how","외로움을 어떻게 달래죠?","lonely"],["choice","두 사람·두 모임 중 고민돼요","decide"]],
+ mind:[["when","언제쯤 괜찮아질까요?","low"],["how","불안을 어떻게 다루죠?","anxiety"],["yesno","잠시 쉬어도 될까요?","burnout"],["outcome","다이어트·건강 목표, 이룰까요?","health"],["how","자신감을 되찾으려면?","esteem"],["how","잠을 잘 자고 싶어요","sleep"]],
+ study:[["outcome","시험에 붙을 수 있을까요?","exam"],["when","언제쯤 성적이 오를까요?","exam"],["how","집중이 안 돼요, 어떻게 하죠?","focus"],["yesno","공부 방법을 바꿔야 할까요?","focus"],["yesno","진학·유학, 가도 될까요?","admit"],["choice","두 학교·두 과정 중 고민돼요","admit"]],
+ change:[["yesno","이사·독립해도 될까요?","move"],["yesno","새로 시작해도 될까요?","challenge"],["when","언제 움직이면 좋을까요?","decide"],["how","쉬는 시간을 어떻게 보낼까요?","pause"],["yesno","해외로 가도 될까요?","abroad"],["choice","A와 B 중 뭘 고를까요?","decide"]]
+};
+/* 원소 — 카드끼리의 관계와 '카드가 고른 행동'을 정한다 */
+const ELOF=c=>c.major?"spirit":({w:"fire",c:"water",s:"air",p:"earth"})[c.suit.f];
+const ELNAME={fire:"불 — 행동",water:"물 — 감정",air:"바람 — 생각",earth:"흙 — 현실",spirit:"운명 — 큰 흐름"};
+const ELICON={fire:"🔥",water:"💧",air:"🌬️",earth:"🪙",spirit:"🌠"};
+const OPP={fire:"water",water:"fire",air:"earth",earth:"air"};
+const FRIEND={fire:"air",air:"fire",water:"earth",earth:"water"};
+const METHOD={fire:"먼저 움직이기",water:"마음을 표현하기",air:"정리하고 결단하기",earth:"현실적으로 준비하기",spirit:"큰 흐름에 올라타기"};
+const AVOID={fire:"성급하게 밀어붙이기",water:"감정에 휩쓸려 결정하기",air:"생각만 하다 말로 상처 주기",earth:"안전만 찾다가 기회 놓치기",spirit:"흐름을 거슬러 억지 쓰기"};
+const ACT={
+ fire:{love:"이번 주 안에 먼저 연락하거나 만나자고 말하기",work:"미뤄 둔 지원서·제안서를 이번 주에 보내기",money:"수입을 늘릴 행동 하나(부업·협상)를 바로 시작하기",people:"보고 싶은 사람에게 먼저 약속 잡기",mind:"오늘 30분, 땀 날 만큼 몸 움직이기",study:"오늘 가장 어려운 과목부터 1시간 하기",change:"결정한 것의 첫 단계를 48시간 안에 실행하기"},
+ water:{love:"마음을 솔직한 문장 하나로 전하기",work:"상사·동료에게 감정 빼고 1:1 대화 청하기",money:"결제 전에 '기분 때문인가?' 한 번 묻기",people:"서운했던 일과 고마운 일을 직접 말하기",mind:"감정 일기 3줄 쓰기",study:"스터디·공부 친구와 함께하기",change:"마음이 가장 편해지는 선택지를 적어 보기"},
+ air:{love:"애매한 관계라면 질문 하나로 분명히 하기",work:"할 일을 다 적고 우선순위 3개만 남기기",money:"모든 지출·빚을 표 하나로 정리하기",people:"오해는 사실만 짧게 정리해서 전하기",mind:"걱정 목록을 쓰고 '바꿀 수 있는 것'만 표시하기",study:"오답 노트로 약점만 골라 보기",change:"장단점 표를 만들고 결정 마감일 정하기"},
+ earth:{love:"주 1회 데이트처럼 함께하는 루틴 만들기",work:"성과·포트폴리오를 숫자로 정리하기",money:"자동이체 저축 하나 설정하기",people:"말보다 실질적인 도움 한 번 주기",mind:"기상·식사·수면 시간 고정하기",study:"매일 같은 시간·같은 자리에서 공부하기",change:"필요한 돈·서류·기간을 현실적으로 계산하기"},
+ spirit:{love:"억지로 당기지 말고 타이밍의 신호에 집중하기",work:"새로 들어오는 기회에 '일단 듣기'로 열어 두기",money:"한 방보다 흐름 — 큰 결정은 한 달 지켜본 뒤 하기",people:"붙잡기보다 오가는 인연을 흐르게 두기",mind:"지금 겪는 일이 나를 바꾸는 과정임을 받아들이기",study:"목표를 다시 크게 그리고 거꾸로 계획 세우기",change:"이미 시작된 변화에 올라탈 준비하기"}
+};
+const kwOf=c=>(c.rev?c.card.rv:c.card.up).split("·")[0];
+const nmOf=c=>`「${c.card.ko}${c.rev?"(역)":""}」`;
 
 /* ═════════ 5. 키워드 엔진 ═════════ */
 const norm=s=>String(s||"").toLowerCase().replace(/\s+/g,"");
 const YESNO=/(될까|할까|해도돼|해도될|좋을까|맞을까|올까|붙을까|할지|말지|가능할|괜찮을|될지|있을까|\?)/;
 const CRISIS=/(죽고싶|자살|사라지고싶|살기싫|죽어버)/;
-function analyze(text,cat,job,rel){
+function analyze(text,cat,job,rel,hint){
   const t=norm(text);const found=[];const scored=[];
   for(const s of SETS){
     let hits=0;for(const k of s.kw){if(t.includes(k)){hits++;if(!found.includes(k))found.push(k)}}
     let sc=hits*3;if(cat&&s.cat===cat)sc+=2;if(s.jobs&&s.jobs.includes(job))sc+=1.5;if(s.rels&&s.rels.includes(rel))sc+=1.5;
+    if(hint&&s.id===hint)sc+=7;
     scored.push({s,hits,sc});
   }
   scored.sort((a,b)=>b.sc-a.sc||b.hits-a.hits);
-  const hit=scored.filter(x=>x.hits>0);
+  const hit=scored.filter(x=>x.hits>0||(hint&&x.s.id===hint));
   let main,sub=null;
   if(hit.length){main=hit[0].s;const nx=hit.find(x=>x.s.id!==main.id&&x.sc>=3);if(nx)sub=nx.s}
   else if(cat){main=SET_BY[DEFAULT[cat](cat==="love"?rel:job)]}
@@ -783,7 +859,21 @@ function analyze(text,cat,job,rel){
 }
 
 /* ═════════ 6. 상태·유틸 ═════════ */
-const S={z:null,job:null,rel:null,cat:null,text:"",picks:[],order:[],an:null};
+const S={z:null,job:null,rel:null,cat:null,q:null,optA:"",optB:"",text:"",picks:[],order:[],an:null,dealt:null};
+const qOf=()=>S.cat&&S.q!=null?QS[S.cat][S.q]:null;
+function fullAnalyze(){
+  const q=qOf(),a=analyze(S.text,S.cat,S.job,S.rel,q?q[2]:null);
+  a.q=q;a.qt=q?q[0]:(a.yesno?"yesno":"outcome");
+  a.spread=a.qt==="feel"?"feel":a.qt==="choice"?"choice":"std";
+  return a;
+}
+const cut=(s,n)=>s.length>n?s.slice(0,n)+"…":s;
+const optA=()=>S.optA.trim()||"첫 번째",optB=()=>S.optB.trim()||"두 번째";
+function POSN(){
+  const sp=S.an?S.an.spread:"std",P=SPREADS[sp].map(x=>x.slice());
+  if(sp==="choice"){P[0][0]=`A · ${cut(optA(),8)}`;P[1][0]=`B · ${cut(optB(),8)}`}
+  return P;
+}
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function toast(m){const e=$("toast");e.textContent=m;e.classList.add("on");clearTimeout(toast.h);toast.h=setTimeout(()=>e.classList.remove("on"),2500)}
@@ -826,7 +916,21 @@ chipGroup($("jobs"),JOBS,"job",s2check);chipGroup($("rels"),RELS,"rel",s2check);
 $("cats").innerHTML=CATS.map(([id,e,n])=>`<button class="cat" data-id="${id}" aria-pressed="false"><span class="ce">${e}</span>${n}</button>`).join("");
 $("cats").addEventListener("click",ev=>{const b=ev.target.closest(".cat");if(!b)return;
   $("cats").querySelectorAll(".cat").forEach(c=>c.setAttribute("aria-pressed",c===b?"true":"false"));
-  S.cat=b.dataset.id;renderExamples();onType()});
+  S.cat=b.dataset.id;S.q=null;renderQs();renderExamples();onType()});
+function renderQs(){
+  $("qbox").hidden=!S.cat;if(!S.cat)return;
+  $("qs").innerHTML=QS[S.cat].map((q,i)=>`<button class="qchip" data-i="${i}" aria-pressed="false"><span class="qt">${QTYPE[q[0]]}</span>${esc(q[1])}</button>`).join("");
+  $("abbox").hidden=true;
+}
+$("qs").addEventListener("click",ev=>{const b=ev.target.closest(".qchip");if(!b)return;
+  const i=+b.dataset.i,same=S.q===i;S.q=same?null:i;
+  $("qs").querySelectorAll(".qchip").forEach(c=>c.setAttribute("aria-pressed",!same&&c===b?"true":"false"));
+  const q=qOf();$("abbox").hidden=!(q&&q[0]==="choice");
+  $("q").placeholder=q?({feel:"예) 3개월째 연락은 하는데 고백은 없어요. 그 사람은 어떤 마음일까요?",choice:"예) 둘 다 장단점이 있어서 몇 주째 결정을 못 하고 있어요.",when:"예) 1년째 준비 중인데 언제쯤 결과가 나올지 답답해요.",how:"예) 몇 번 시도했는데 잘 안 됐어요. 뭘 바꿔야 할까요?",yesno:"예) 하고 싶은 마음은 큰데 걱정도 돼요. 지금 해도 될까요?",outcome:"예) 지금처럼 계속하면 어떻게 될지 궁금해요."})[q[0]]:"예) 팀장이랑 계속 부딪혀서 이직을 고민 중이에요. 지금 나가도 될까요?";
+  if(q&&q[0]==="choice")$("optA").focus();
+  onType()});
+$("optA").addEventListener("input",e=>{S.optA=e.target.value});
+$("optB").addEventListener("input",e=>{S.optB=e.target.value});
 function renderExamples(){
   const ex=EXAMPLES[S.cat||"work"];
   $("examples").innerHTML=ex.map(x=>`<button class="ex">${esc(x)}</button>`).join("");
@@ -834,14 +938,15 @@ function renderExamples(){
 $("examples").addEventListener("click",ev=>{const b=ev.target.closest(".ex");if(!b)return;$("q").value=b.textContent;onType();$("q").focus()});
 function onType(){
   S.text=$("q").value;$("qcnt").textContent=S.text.length+"/300";
-  const a=analyze(S.text,S.cat,S.job,S.rel);
+  const a=fullAnalyze();
   const box=$("catch");
+  const qline=a.q?`<br>→ <b>${QTYPE[a.qt]}</b> 질문으로 ${a.spread==="feel"?"‘내 마음 · 그 사람 마음 · 열쇠’":a.spread==="choice"?"‘A · B · 선택의 열쇠’":"‘상황 · 걸림돌 · 열쇠’"} 3장을 펼쳐요`:"";
   if(a.kws.length){
     box.classList.add("hot");
-    box.innerHTML=`✦ 키워드 <b>${a.kws.length}개</b> 포착 ${a.kws.slice(0,8).map(k=>`<span class="kw">#${esc(k)}</span>`).join("")}<br>→ 「<b>${esc(a.main.t)}</b>」 처방 준비 완료${a.yesno?" · <b>예/아니오</b> 질문도 읽었어요":""}`;
+    box.innerHTML=`✦ 키워드 <b>${a.kws.length}개</b> 포착 ${a.kws.slice(0,8).map(k=>`<span class="kw">#${esc(k)}</span>`).join("")}<br>→ 「<b>${esc(a.main.t)}</b>」 처방 준비 완료${!a.q&&a.yesno?" · <b>예/아니오</b> 질문도 읽었어요":""}${qline}`;
   }else{
-    box.classList.remove("hot");
-    box.innerHTML=S.cat?`✦ <b>${CATNAME[S.cat]}</b> 분야로 읽을게요. 상황을 적으면 더 정확한 처방을 찾아요.`:"✦ 분야를 고르거나 상황을 적으면, 카드가 키워드를 읽어요.";
+    box.classList.toggle("hot",!!a.q);
+    box.innerHTML=S.cat?`✦ <b>${CATNAME[S.cat]}</b> 분야${a.q?` · 「${esc(a.q[1])}」`:""}로 읽을게요.${qline}${a.q?"":"<br>질문을 고르거나 상황을 적으면 더 정확해져요."}`:"✦ 분야를 고르거나 상황을 적으면, 카드가 키워드를 읽어요.";
   }
   $("s3next").disabled=!(S.cat||norm(S.text).length>=4);
 }
@@ -851,15 +956,18 @@ renderExamples();
 /* ── STEP 4 ── */
 function shuffle(){const a=DECK.map((_,i)=>i);for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function enterDeck(){
-  S.an=analyze(S.text,S.cat,S.job,S.rel);
-  const q=norm(S.text)?`“${esc(S.text.trim().slice(0,70))}${S.text.trim().length>70?"…":""}”`:`${CATNAME[S.an.cat]} 고민`;
-  $("qecho").innerHTML=`<b>${S.z?S.z.em+" "+S.z.an+"띠 · ":""}${esc(JOBS.find(j=>j[0]===S.job)?.[2]||"")}</b><br>${q}`;
-  if(S.picks.length===3)return;
+  S.an=fullAnalyze();
+  const txt=norm(S.text)?`“${esc(cut(S.text.trim(),70))}”`:"";
+  const ask=S.an.q?`<b>Q. ${esc(S.an.q[1])}</b>`:`${CATNAME[S.an.cat]} 고민`;
+  const ab=S.an.spread==="choice"?`<br>A 「${esc(optA())}」 vs B 「${esc(optB())}」`:"";
+  $("qecho").innerHTML=`<b>${S.z?S.z.em+" "+S.z.an+"띠 · ":""}${esc(JOBS.find(j=>j[0]===S.job)?.[2]||"")}</b><br>${ask}${ab}${txt?"<br>"+txt:""}`;
+  const key=S.an.spread+"|"+optA()+"|"+optB();
+  if(S.picks.length===3&&S.dealt===key)return;
   resetDeck();
 }
 function resetDeck(){
-  S.picks=[];S.order=shuffle();
-  $("slots").innerHTML=POS.map((p,i)=>`<div class="slot" id="sl${i}"><div class="plbl">${i+1}<b>${p[0]}</b></div><div class="tcard" id="tc${i}"><div class="empty">${i+1}</div></div><div class="cname" id="cn${i}"></div></div>`).join("");
+  S.picks=[];S.order=shuffle();S.dealt=S.an?S.an.spread+"|"+optA()+"|"+optB():null;
+  $("slots").innerHTML=POSN().map((p,i)=>`<div class="slot" id="sl${i}"><div class="plbl">${i+1}<b>${esc(p[0])}</b></div><div class="tcard" id="tc${i}"><div class="empty">${i+1}</div></div><div class="cname" id="cn${i}"></div></div>`).join("");
   $("deck").innerHTML=S.order.map((d,k)=>`<button class="dk" data-k="${k}" aria-label="${k+1}번째 카드" style="animation-delay:${Math.min(k,40)*12}ms"></button>`).join("");
   $("pickmsg").textContent="고민을 떠올리며, 끌리는 카드 3장을 고르세요";
   $("s4next").disabled=true;$("shuffle").hidden=false;
@@ -880,7 +988,7 @@ function reveal(){
   const fl=i=>{$("tc"+i).classList.add("flip");const c=S.picks[i];const n=$("cn"+i);n.textContent=c.card.ko;n.classList.add("on")};
   setTimeout(()=>fl(0),500);
   setTimeout(()=>fl(1),1400);
-  setTimeout(()=>{$("pickmsg").textContent="마지막 카드 — 해결 열쇠 ✦";$("sl2").classList.add("glow")},2200);
+  setTimeout(()=>{$("pickmsg").textContent=`마지막 카드 — ${POSN()[2][0]} ✦`;$("sl2").classList.add("glow")},2200);
   setTimeout(()=>{fl(2)},3000);
   setTimeout(()=>{$("sl2").classList.remove("glow");$("pickmsg").textContent="카드가 모두 열렸어요. 처방전을 확인하세요";$("s4next").disabled=false;
     $("s4next").scrollIntoView({behavior:"smooth",block:"nearest"})},3800);
@@ -888,6 +996,11 @@ function reveal(){
 
 /* ── STEP 5 결과 ── */
 function cardText(c,cat,pos){
+  const sp=S.an?S.an.spread:"std";
+  const pre=sp==="feel"&&pos===1?"<b>그 사람 쪽에서 보면</b> — ":sp==="choice"&&pos<2?`<b>이 길을 고르면</b> — `:"";
+  return pre+cardText0(c,cat);
+}
+function cardText0(c,cat){
   const k=cat==="study"?"work":cat;
   if(c.card.major){
     if(c.rev)return`<b>${esc(c.card.rv)}</b>. ${esc(c.card.rvAdv)}`;
@@ -912,6 +1025,82 @@ function answerBox(p,w){
   if(w.k==="no"&&v<0)return{cls:"no",v:"지금은 아니오에 가까워요",p:`「${key.card.ko}」는 '지금 이 방식'이 아니라고 말해요. 방법을 바꾸거나 때를 기다리면 답이 달라집니다.`};
   return{cls:"wait",v:"아직 — 타이밍을 보세요",p:`예/아니오보다 '언제·어떻게'가 중요한 패. 아래 타이밍과 처방을 먼저 실행해 보세요.`};
 }
+/* 질문 유형마다 다른 답 — 전부 카드에서 계산 */
+function answerFor(a,p,w,cat){
+  const k=p[2],el=ELOF(k.card),kn=nmOf(k);
+  if(a.qt==="yesno")return answerBox(p,w);
+  if(a.qt==="feel"){
+    const v=val(p[1]);
+    const T=v>=2?["🔥 뜨거움","호감이 분명해요. 오히려 당신의 신호를 기다리는 중일 수 있어요.","yes"]
+      :v===1?["☀️ 따뜻함","마음이 열려 있어요. 가볍게 다가가면 반응이 와요.","yes"]
+      :v===0?["🌤️ 미지근","아직 지켜보는 중이에요. 서두르지 말고 함께하는 시간을 늘리세요.","wait"]
+      :v===-1?["🌥️ 서늘함","조심스러워하고 있어요. 부담을 덜어 주는 게 먼저예요.","wait"]
+      :["❄️ 차가움","지금은 거리를 두고 싶어 해요. 시간을 주는 게 답이에요.","no"];
+    return{cls:T[2],v:`그 사람의 마음 온도: ${T[0]}`,p:`상대 자리에 ${nmOf(p[1])} — ‘${kwOf(p[1])}’. ${T[1]}`};
+  }
+  if(a.qt==="when"){
+    const sp=k.card.major?"이번 달 안":k.card.suit.speed;
+    return{cls:"wait",v:`첫 신호: ${sp}`,p:`열쇠 카드 ${kn}의 속도로 보면 ${sp} 작은 변화가 먼저 보여요. 결정적인 시기는 ${S.z?`${S.z.month} 전후 — ${S.z.an}띠의 운이 바뀌는 달`:"다음 계절"}이에요.`};
+  }
+  if(a.qt==="how")return{cls:"yes",v:`방법: ${METHOD[el]}`,p:`열쇠 카드 ${kn}는 ${ELNAME[el]}의 카드예요. 오늘은 '${ACT[el][cat]}'부터 시작하세요.`};
+  if(a.qt==="choice"){
+    const bonus=c=>{const e=ELOF(c.card);return e===el||FRIEND[e]===el?1:OPP[e]===el?-1:0};
+    const sa=val(p[0])+bonus(p[0]),sb=val(p[1])+bonus(p[1]);
+    const pa=Math.max(15,Math.min(85,Math.round(50+(sa-sb)*8)));
+    if(sa===sb)return{cls:"wait",v:"팽팽해요 — 기준이 답을 정해요",p:`A·B 기운이 ${pa}:${100-pa}로 비슷해요. 열쇠 ${kn}의 ‘${kwOf(k)}’${k.rev?" 걱정이 덜한":"에 더 가까운"} 쪽을 고르세요.`};
+    const win=sa>sb?`A 「${optA()}」`:`B 「${optB()}」`;
+    return{cls:"yes",v:`${win} 쪽으로 기울어요`,p:`A ${pa}% : B ${100-pa}%. ${sa>sb?"A":"B"} 자리의 카드가 더 밝고, 열쇠 카드 ${kn}와도 결이 맞아요.`};
+  }
+  return{cls:w.k,v:`결과 예감: ${w.ic} ${w.nm}`,p:`마지막 자리에 ${kn} — ${w.d}`};
+}
+/* 세 장을 하나의 이야기로 */
+function story(a,p){
+  const [c1,c2,c3]=p,e1=ELOF(c1.card),e2=ELOF(c2.card),e3=ELOF(c3.card),d=val(c3)-val(c1);
+  const trend=d>=2?["↗ 올라가는 흐름","up"]:d<=-2?["↘ 조심할 흐름","down"]:["→ 다지는 흐름","flat"];
+  let L;
+  if(a.spread==="feel")L=[
+    `당신의 마음엔 <b>${nmOf(c1)}</b> 카드 — ‘${kwOf(c1)}’의 기운이 있어요.`,
+    `그 사람 쪽엔 <b>${nmOf(c2)}</b> 카드 — ‘${kwOf(c2)}’. ${c2.rev?"속마음이 겉으로 잘 드러나지 않는 상태예요.":"그 마음은 생각보다 겉으로 드러나 있어요."}`,
+    c3.rev?`두 사람을 잇는 열쇠는 <b>${nmOf(c3)}</b> 카드 — ‘${kwOf(c3)}’ 상태부터 걷어 내는 거예요. 그다음 '${METHOD[e3]}'가 다리가 돼요.`
+          :`두 사람을 잇는 열쇠는 <b>${nmOf(c3)}</b> 카드의 ‘${kwOf(c3)}’. '${METHOD[e3]}'가 두 사람 사이의 다리가 돼요.`];
+  else if(a.spread==="choice")L=[
+    `A 「${esc(optA())}」 쪽엔 <b>${nmOf(c1)}</b> 카드 — ‘${kwOf(c1)}’의 길이에요.`,
+    `B 「${esc(optB())}」 쪽엔 <b>${nmOf(c2)}</b> 카드 — ‘${kwOf(c2)}’의 길이에요.`,
+    c3.rev?`무엇을 기준으로 고를지는 <b>${nmOf(c3)}</b> 카드가 알려 줘요. ‘${kwOf(c3)}’ 걱정이 덜한 쪽이 당신의 길이에요.`
+          :`무엇을 기준으로 고를지는 <b>${nmOf(c3)}</b> 카드가 알려 줘요. ‘${kwOf(c3)}’에 더 가까운 쪽이 당신의 길이에요.`];
+  else L=[
+    `지금 당신은 <b>${nmOf(c1)}</b> 카드의 자리에 서 있어요. ‘${kwOf(c1)}’ — 이것이 이 고민의 바탕이에요.`,
+    c2.rev?`그런데 <b>${nmOf(c2)}</b> 카드가 거꾸로 나왔어요. ‘${kwOf(c2)}’ 상태가 발목을 잡고 있어요.`
+          :`그런데 <b>${nmOf(c2)}</b> 카드의 ‘${kwOf(c2)}’ 기운이 넘치거나 모자란 게 걸림돌이에요.`,
+    c3.rev?`열쇠 카드 <b>${nmOf(c3)}</b>가 거꾸로 나왔어요 — ‘${kwOf(c3)}’ 상태부터 걷어 내야 길이 열려요. 그다음은 '${METHOD[e3]}'.`
+    :d>=2?`다행히 흐름은 위로 향해요. <b>${nmOf(c3)}</b> 카드의 ‘${kwOf(c3)}’ 방식으로 풀면 지금보다 확실히 나아집니다.`
+    :d<=-2?`지금보다 한 번 더 조심해야 하는 흐름이에요. <b>${nmOf(c3)}</b> 카드가 말하는 ‘${kwOf(c3)}’, 이 한 가지만 지키면 무너지지 않아요.`
+    :`큰 반전보다 꾸준히 다지는 흐름이에요. <b>${nmOf(c3)}</b> 카드의 ‘${kwOf(c3)}’, 이걸 하루하루 쌓으세요.`];
+  const P=[],maj=p.filter(c=>c.card.major).length,rv=p.filter(c=>c.rev).length;
+  if(maj===3)P.push("🌌 세 장 모두 메이저 아르카나 — 인생의 큰 장면이 바뀌는 고민이에요. 가볍게 넘기지 마세요.");
+  else if(maj===2)P.push("🌌 메이저 카드 2장 — 내 노력만큼이나 '때'가 중요한 일이에요.");
+  else if(maj===0)P.push("🖐️ 세 장 모두 마이너 카드 — 운명보다 내 선택과 습관으로 충분히 바꿀 수 있는 일이에요.");
+  const cnt={};p.forEach(c=>{if(!c.card.major)cnt[c.card.suit.f]=(cnt[c.card.suit.f]||[]).concat(c)});
+  for(const f in cnt)if(cnt[f].length>=2){const s=cnt[f][0].card.suit,e=ELOF(cnt[f][0].card);P.push(`${ELICON[e]} ${s.ko} 카드가 ${cnt[f].length}장 — 이 고민의 진짜 핵심은 ‘${ELNAME[e]}’이에요.`)}
+  if(rv===0)P.push("✨ 세 장 모두 정방향 — 막힌 곳 없이 열린 흐름이에요.");
+  else if(rv===2)P.push("🔁 역방향 2장 — 기운이 안으로 막혀 있어요. 속도를 늦추고 정리부터 하세요.");
+  else if(rv===3)P.push("🔁 세 장 모두 역방향 — 지금은 밀어붙일 때가 아니라 되돌아볼 때예요.");
+  const rel=(x,y)=>x==="spirit"||y==="spirit"?"spirit":x===y?"same":OPP[x]===y?"opp":"friend";
+  if(a.spread==="std"){
+    const r=rel(e2,e3);
+    P.push(r==="spirit"?"🌠 걸림돌이나 열쇠에 메이저 카드 — 혼자 애쓰기보다 흐름이 바뀌는 순간을 잡으세요."
+      :r==="same"?"🔗 걸림돌과 열쇠가 같은 원소 — 문제와 답이 같은 곳에 있어요. 방향만 바꾸면 돼요."
+      :r==="opp"?`⚔️ 열쇠(${ELNAME[e3].split(" — ")[0]})가 걸림돌(${ELNAME[e2].split(" — ")[0]})과 상극 — 피하지 말고 정면으로 풀어야 이기는 패예요.`
+      :`🤝 열쇠(${ELNAME[e3].split(" — ")[0]})가 걸림돌(${ELNAME[e2].split(" — ")[0]})을 부드럽게 감싸는 원소 — 싸우기보다 품으면 풀려요.`);
+  }else if(a.spread==="feel"){
+    const r=rel(e1,e2);
+    P.push(r==="spirit"?"🌠 두 사람 사이에 운명 카드 — 우연이 아니라 인연일 수 있어요."
+      :r==="same"?"💞 결이 같은 두 사람 — 말하지 않아도 통하는 부분이 많아요."
+      :r==="opp"?"⚡ 끌리지만 부딪히는 조합 — 속도와 표현 방식을 맞추는 게 숙제예요."
+      :"🌱 서로를 키워 주는 조합 — 천천히 가까워질수록 좋아요.");
+  }
+  return{L,P:P.slice(0,3),trend};
+}
 function timingText(p){
   const k=p[2].card;const z=S.z;
   const speed=k.major?"이번 달 안에 첫걸음":`${k.suit.speed}`;
@@ -922,15 +1111,19 @@ function luckyOf(p){
   if(!k.major)return k.suit.lucky;
   const z=S.z;return{color:z?z.lucky[0]:"금색",place:"전망 좋은 높은 곳",item:`「${k.ko}」 카드를 폰 배경화면으로`,act:z?z.action.split(" — ")[0]:"오늘 할 일 하나 끝내기"};
 }
-function setBlock(s,n){
+function setBlock(s,act,avoid){
   return`<div class="rx-t">💊 ${esc(s.t)}</div><p class="rx-d">${esc(s.d)}</p>
+    ${act||""}
     <p class="subl">✅ 이렇게 하세요</p><ol class="dolist">${s.do.map((x,i)=>`<li data-n="${i+1}">${esc(x)}</li>`).join("")}</ol>
-    <p class="subl">❌ 이건 피하세요</p><ul class="dontlist">${s.dont.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+    <p class="subl">❌ 이건 피하세요</p><ul class="dontlist">${avoid?`<li class="cardavoid">${avoid}</li>`:""}${s.dont.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
 }
 function buildResult(){
-  const a=S.an||analyze(S.text,S.cat,S.job,S.rel),p=S.picks;if(p.length<3)return;
+  const a=S.an||fullAnalyze(),p=S.picks;if(p.length<3)return;
   const z=S.z,job=JOBS.find(j=>j[0]===S.job),rel=RELS.find(r=>r[0]===S.rel),cat=a.cat;
-  const w=weather(p),lk=luckyOf(p),ans=a.yesno?answerBox(p,w):null;
+  const w=weather(p),lk=luckyOf(p),ans=answerFor(a,p,w,cat),stry=story(a,p),POS=POSN();
+  const e3=ELOF(p[2].card),e2=ELOF(p[1].card);
+  const act=`<div class="cardact"><span>🃏 카드가 고른 첫 행동 · ${METHOD[e3]}</span><b>${esc(ACT[e3][cat])}</b><small>${POS[2][0]} ${nmOf(p[2])} 카드에서</small></div>`;
+  const avoid=a.spread==="std"?`${esc(AVOID[e2])} <small>— 걸림돌 ${nmOf(p[1])} 카드</small>`:"";
   const zText=!z?"":cat==="love"?z.love:cat==="money"?z.money:z.all;
   const careNeeded=a.crisis||a.main.care||(a.sub&&a.sub.care);
   $("result").innerHTML=`
@@ -944,28 +1137,33 @@ function buildResult(){
     <div class="wtxt"><div class="wlbl">이 고민의 기운 날씨</div><div class="wval">${w.nm}</div><div class="wdesc">${w.d}</div></div>
     <div class="wscore"><b>${w.pct}</b><span>흐름 지수</span></div>
   </div>
-  ${ans?`<div class="answer ${ans.cls} fade" style="animation-delay:.15s"><div class="al">🔮 당신의 질문에 카드가 답하면</div><div class="av">${ans.v}</div><p>${esc(ans.p)}</p></div>`:""}
+  <div class="answer ${ans.cls} fade" style="animation-delay:.15s"><div class="al">🔮 ${a.q?`Q. ${esc(a.q[1])}`:"당신의 질문에 카드가 답하면"}</div><div class="av">${esc(ans.v)}</div><p>${esc(ans.p)}</p></div>
 
-  <div class="sec fade" style="animation-delay:.2s">
-    <h3>🃏 카드 3장 <small>${CATNAME[cat]} 관점</small></h3>
+  <div class="sec story fade" style="animation-delay:.2s">
+    <h3>🃏 세 장이 이어지는 이야기 <small>${CATNAME[cat]} 관점</small></h3>
     <div class="card-trio">
       ${p.map((c,i)=>`<div class="ctslot">
-        <div class="rpos">${POS[i][0]}</div>
+        <div class="rpos">${esc(POS[i][0])}</div>
         <img src="${img(c.card)}" alt="${esc(c.card.ko)}" loading="lazy">
         <div class="rcn">${esc(c.card.ko)}</div>
         <small class="${c.rev?"rv":"up"}">${c.rev?"역방향":"정방향"}</small>
       </div>`).join("")}
     </div>
+    ${a.spread==="std"?`<span class="trend ${stry.trend[1]}">${stry.trend[0]}</span>`:""}
+    <ol class="storyline">${stry.L.map((l,i)=>`<li><span class="sn">${i+1}</span><p>${l}</p></li>`).join("")}</ol>
+    ${stry.P.length?`<ul class="pattern">${stry.P.map(x=>`<li>${x}</li>`).join("")}</ul>`:""}
+    <details class="rx2"><summary>카드 한 장씩 자세히 보기</summary><div style="margin-top:10px">
     ${p.map((c,i)=>`<div class="read">
       <div class="read-num">${i+1}</div>
-      <div><div class="rpos">${POS[i][0]} — ${POS[i][1]}</div>
+      <div><div class="rpos">${esc(POS[i][0])} — ${POS[i][1]}</div>
       <div class="rcn">${esc(c.card.ko)}<small class="${c.rev?"rv":"up"}">${c.rev?"역방향":"정방향"}</small></div>
-      <div class="rkw">${esc(c.card.en)} · ${esc(c.rev?c.card.rv:c.card.up)}</div>
+      <div class="rkw">${esc(c.card.en)} · ${ELICON[ELOF(c.card)]} ${ELNAME[ELOF(c.card)]}</div>
       <div class="rmn">${cardText(c,cat,i)}</div></div></div>`).join("")}
+    </div></details>
   </div>
 
   <div class="sec rx fade" style="animation-delay:.25s">
-    ${setBlock(a.main)}
+    ${setBlock(a.main,act,avoid)}
     <div class="timing"><span aria-hidden="true">⏰</span><div>${timingText(p)}</div></div>
     ${a.sub?`<details class="rx2"><summary>➕ 함께 읽힌 처방: ${esc(a.sub.t)}</summary><div style="margin-top:10px">${setBlock(a.sub)}</div></details>`:""}
   </div>
@@ -1024,14 +1222,14 @@ function buildResult(){
   </div>
   <p class="foot-note">타로와 띠 운세는 상징을 빌려 스스로를 돌아보는 놀이예요. 처방은 일반적인 생활 조언이며, 투자·법률·의료 결정은 전문가와 상의하세요.<br>입력한 고민은 이 기기에서만 읽고 어디에도 보내지 않아요.<br>카드 이미지: Rider–Waite–Smith 타로(1909, 그림 Pamela Colman Smith) · 퍼블릭 도메인</p>`;
 }
-window.newQuestion=()=>{S.picks=[];$("q").value="";onType();goStep(3)};
+window.newQuestion=()=>{S.picks=[];S.q=null;$("q").value="";$("optA").value=$("optB").value=S.optA=S.optB="";renderQs();onType();goStep(3)};
 window.redraw=()=>{resetDeck();goStep(4)};
 
 /* ── 공유 ── */
 function resultText(){
   const a=S.an,p=S.picks,z=S.z;if(!a||p.length<3)return"🔮 2027 정미년 타로 처방전\nhttps://hongfe.github.io/fortune2027/";
-  const w=weather(p);
-  return`🔮 2027 정미년 타로 처방전\n\n${z?`${z.em} ${z.an}띠 「${z.title}」 · `:""}${CATNAME[a.cat]} 고민\n${w.ic} 기운 날씨: ${w.nm} (흐름 지수 ${w.pct})\n\n🃏 ${p.map((c,i)=>`${POS[i][0]}: ${c.card.ko}${c.rev?"(역)":""}`).join(" / ")}\n\n💊 ${a.main.t}\n✅ ${a.main.do[0]}\n\n나도 고민 적고 카드 뽑기 → https://hongfe.github.io/fortune2027/`;
+  const w=weather(p),POS=POSN(),ans=answerFor(a,p,w,a.cat),e3=ELOF(p[2].card);
+  return`🔮 2027 정미년 타로 처방전\n\n${z?`${z.em} ${z.an}띠 「${z.title}」 · `:""}${CATNAME[a.cat]} 고민${a.q?`\nQ. ${a.q[1]}`:""}\n→ ${ans.v}\n\n🃏 ${p.map((c,i)=>`${POS[i][0]}: ${c.card.ko}${c.rev?"(역)":""}`).join(" → ")}\n${w.ic} 기운 날씨: ${w.nm} (흐름 지수 ${w.pct})\n\n💊 ${a.main.t}\n🃏 카드가 고른 행동: ${ACT[e3][a.cat]}\n\n나도 고민 적고 카드 뽑기 → https://hongfe.github.io/fortune2027/`;
 }
 async function copyResult(){try{await navigator.clipboard.writeText(resultText());toast("복사했어요! 카톡에 붙여 넣어 보세요 🎉")}catch(e){toast("복사가 막혀 있어요. 화면을 캡처해 공유해 주세요")}}
 function shareResult(){if(navigator.share)navigator.share({title:"2027 정미년 타로 처방전",text:resultText()}).catch(()=>{});else copyResult()}
@@ -1063,6 +1261,21 @@ if(/selftest/.test(location.search)){
   let ok=0;const fails=[];
   for(const [q,c,j,r,exp,yn] of T){const a=analyze(q,c,j,r);const pass=exp.includes(a.main.id)&&a.yesno===yn;pass?ok++:fails.push(`${q||"("+c+")"} → ${a.main.id}/${a.yesno}`)}
   if(DECK.length!==78)fails.push("deck "+DECK.length);
+  // 질문 선택이 처방을 끌어오는지
+  for(const c in QS)QS[c].forEach(q=>{if(q[2]&&!SET_BY[q[2]])fails.push("hint "+q[2]);
+    if(q[2]&&analyze("",c,"office","solo",q[2]).main.id!==q[2])fails.push("hint-route "+q[1])});
+  // 모든 질문 유형 × 무작위 카드 500회: 답·이야기에 빈 값이 없는지
+  const sv={...S};let fz=0;
+  for(let n=0;n<500;n++){
+    const c=CATS[n%7][0],qi=n%QS[c].length,q=QS[c][qi];
+    Object.assign(S,{cat:c,q:qi,job:JOBS[n%7][0],rel:RELS[n%5][0],z:ZODIAC[n%12],optA:n%3?"회사":"",optB:"<b>x</b>",text:""});
+    S.an=fullAnalyze();const ix=shuffle();S.picks=[0,1,2].map(j=>({card:DECK[ix[j]],rev:Math.random()<.4}));
+    const a=S.an,w=weather(S.picks),ans=answerFor(a,S.picks,w,a.cat),st=story(a,S.picks);
+    const out=JSON.stringify([ans,st,POSN(),ACT[ELOF(S.picks[2].card)][a.cat],S.picks.map((p,i)=>cardText(p,a.cat,i))]);
+    if(/undefined|NaN|null/.test(out)||st.L.length!==3||!ans.v){fz++;if(fz<3)fails.push("fuzz "+q[1]+" "+out.slice(0,120))}
+    if(a.spread==="choice"&&/<b>x/.test(JSON.stringify(st.L)))fails.push("xss story");
+  }
+  Object.assign(S,sv);S.an=null;S.picks=[];
   if(SETS.some(s=>!CATNAME[s.cat]||s.do.length!==3||s.dont.length!==2))fails.push("set shape");
   const ids=new Set(SETS.map(s=>s.id));if(ids.size!==SETS.length)fails.push("dup id");
   for(const c of CATS)for(const j of JOBS)if(!LENS[j[0]][c[0]])fails.push("lens "+j[0]+c[0]);
